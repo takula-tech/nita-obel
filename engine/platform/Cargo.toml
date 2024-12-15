@@ -1,0 +1,78 @@
+[package]
+name = "obel_platform"
+version = "0.0.0"
+description = "Platform agnostic support"
+keywords = ["obel", "obel_engine", "obel_platform"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+
+[lints]
+workspace = true
+[package.metadata.docs.rs]
+workspace = true
+[badges]
+maintenance = { status = "actively-developed" }
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[dependencies]
+foldhash = { workspace = true }
+hashbrown = { workspace = true, optional = true, features = [
+  "equivalent",
+  "raw-entry",
+  "inline-more",
+] }
+getrandom = { workspace = true, features = ["js"] }
+thread_local = { workspace = true, optional = true }
+critical-section = { workspace = true, optional = true }
+portable-atomic-util = { workspace = true, optional = true }
+portable-atomic = { workspace = true, optional = true, features = ["fallback"] }
+spin = { workspace = true, features = [
+  "mutex",
+  "spin_mutex",
+  "rwlock",
+  "once",
+  "lazy",
+  "barrier",
+] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+web-time = { workspace = true }
+
+[features]
+default = ["std"]
+# Functionality
+## Adds serialization support through `serde`.
+serialize = ["hashbrown/serde"]
+# Platform Compatibility
+## Allows access to the `std` crate. Enabling this feature will prevent compilation
+## on `no_std` targets, but provides access to certain additional features on
+## supported platforms.
+std = [
+  "alloc",
+  "critical-section?/std",
+  "portable-atomic?/std",
+  "portable-atomic-util?/std",
+  "spin/std",
+  "foldhash/std",
+  "dep:thread_local",
+]
+alloc = ["portable-atomic-util?/alloc", "dep:hashbrown"]
+## `critical-section` provides the building blocks for synchronization primitives
+## on all platforms, including `no_std`.
+critical-section = ["dep:critical-section", "portable-atomic?/critical-section"]
+## `portable-atomic` provides additional platform support for atomic types and
+## operations, even on targets without native support.
+portable-atomic = [
+  "dep:portable-atomic",
+  "dep:portable-atomic-util",
+  "spin/portable_atomic",
+]

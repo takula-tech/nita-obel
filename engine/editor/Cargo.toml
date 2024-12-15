@@ -1,0 +1,27 @@
+[package]
+name = "obel_editor"
+version = "0.0.0"
+description = "Provides core App functionality"
+keywords = ["obel", "obel_editor"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+[dependencies]
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
+
+[badges]
+maintenance = { status = "actively-developed" }
