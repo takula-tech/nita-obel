@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Example/Empty",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/examples/empty",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "sourceLanguages": ["rust"]
+    }
+  ]
+}
