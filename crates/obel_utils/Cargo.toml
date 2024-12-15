@@ -1,0 +1,40 @@
+[package]
+name = "obel_utils"
+version = "0.0.0"
+description = "A collection of utils"
+keywords = ["obel", "obel_app"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = "README.md"
+
+[features]
+default = ["std", "serde", "tracing"]
+std = ["alloc", "tracing?/std", "foldhash/std", "dep:thread_local"]
+alloc = ["dep:hashbrown"]
+serde = ["hashbrown?/serde"]
+detailed_trace = []
+tracing = ["dep:tracing"]
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[dependencies]
+foldhash = { workspace = true }
+tracing = { workspace = true, optional = true }
+hashbrown = { workspace = true, optional = true }
+thread_local = { workspace = true, optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { workspace = true }
+web-time = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
