@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  merge_group:
+  pull_request:
+  push:
+    branches:
+      - main
+      - rc-*
+
+env:
+  CARGO_TERM_COLOR: always
+  # If nightly is breaking CI, modify this variable to target a specific nightly version.
+  NIGHTLY_TOOLCHAIN: nightly
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: ${{github.event_name == 'pull_request'}}
+
+jobs:
+  cargo-release-build-stable:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-release-build-stable-${{ hashFiles('**/Cargo.toml') }}
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: ./.github/actions/install-linux-deps
+      - run: cargo build -r --workspace
+        env:
+          CARGO_INCREMENTAL: 0
+          # RUSTFLAGS: "-C debuginfo=0 -D warnings"

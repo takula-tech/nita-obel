@@ -1,0 +1,25 @@
+[package]
+name = "obel_dylib"
+version = "0.0.0"
+description = "Force the obel Engine to be dynamically linked for faster linking"
+keywords = ["obel", "obel_dylib"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+obel_root = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true

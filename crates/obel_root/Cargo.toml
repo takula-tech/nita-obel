@@ -1,0 +1,30 @@
+[package]
+name = "obel_root"
+version = "0.0.0"
+description = "An internal obel crate used to facilitate optional dynamic linking via the 'dynamic_linking' feature"
+keywords = ["obel", "obel_root"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+[features]
+# Used to disable code that is unsupported when obel is dynamically linked
+dynamic_linking = ["obel_diagnostic/dynamic_linking"]
+
+[dependencies]
+obel_utils = { workspace = true }
+obel_diagnostic = { workspace = true }
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
