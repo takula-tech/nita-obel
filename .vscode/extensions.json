@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "DavidAnson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "dracula-theme.theme-dracula",
+    "tamasfe.even-better-toml",
+    "rust-lang.rust-analyzer",
+    "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig",
+    "github.vscode-github-actions"
+  ]
+}
