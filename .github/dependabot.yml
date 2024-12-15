@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # 123
+  # Targets Rust projects using the cargo package manager.
+  - package-ecosystem: cargo
+    # Specifies the root directory of the repository as the location of the Cargo.toml file.
+    directory: /
+    schedule:
+      interval: weekly
+    # labels automatically added to pull requests created by Dependabot for easier filtering and identification.
+    labels:
+      - "auto-bump-rust-crates"
+
+  # Targets GitHub Actions workflows, ensuring that workflow dependencies
+  # (e.g., actions used in .github/workflows/*.yml) are kept up-to-date.
+  - package-ecosystem: github-actions
+    # Indicates the root directory to check for GitHub Actions workflows.
+    directory: /
+    schedule:
+      interval: weekly
+    # labels automatically added to pull requests created by Dependabot for easier filtering and identification.
+    labels:
+      - "auto-bump-github-actions"

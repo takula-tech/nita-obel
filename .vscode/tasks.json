@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build All Obel Debug Libraries",
+      "type": "shell",
+      "command": "cargo build --workspace",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Build All Obel Release Libraries",
+      "type": "shell",
+      "command": "cargo build -r --workspace",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run All Unit tests",
+      "type": "shell",
+      "command": "cargo test --workspace",
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Examples/empty",
+      "type": "shell",
+      "command": "cargo run --package obel --example empty",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
