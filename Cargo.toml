@@ -1,0 +1,91 @@
+[package]
+name = "obel"
+version = "0.0.1"
+exclude = ["assets/", "tools/", ".github/", "examples/wasm/assets/"]
+description = "A refreshingly simple data-driven game engine and app framework"
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+[features]
+# Force dynamic linking, which improves iterative compile times
+dynamic_linking = ["dep:obel_dylib", "obel_root/dynamic_linking"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+obel_root = { workspace = true }
+[target.'cfg(not(target_family = "wasm"))'.dependencies] # Wasm does not support dynamic linking.
+obel_dylib = { path = "crates/obel_dylib", default-features = false, optional = true }
+# workspace in the below does nt work as dept does ot support optional so have to specify it
+# obel_dylib = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
+
+[workspace]
+exclude = [
+  "crates/obel_derive/compile_fail",
+  "crates/obel_ecs/compile_fail",
+  "crates/obel_reflect/compile_fail",
+  "tools/compile_fail_utils",
+]
+members = ["crates/*"]
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.82.0"
+homepage = "https://obelengine.org"
+license = "MIT OR Apache-2.0"
+categories = ["game-engines", "graphics", "gui", "rendering"]
+repository = "https://github.com/obelengine/obel"
+documentation = "https://docs.rs/obel"
+# readme = "README.md"
+
+[workspace.dependencies]
+# [dev-dependencies]
+static_assertions = "1.1.0"
+# [dependencies]
+foldhash = { version = "0.1.3", default-features = false }
+tracing = { version = "0.1", default-features = false }
+const-fnv1a-hash = "1.1.0"
+# [target.'cfg(or(target_arch = "macOS"),target_arch = "linux")'.dependencies]
+# #[global_allocator]
+# static GLOBAL: tikv_jemallocator::Jemalloc = tikv_jemallocator::Jemalloc;
+# on Linux, jemalloc can be configured to use transparent huge pages (THP).
+# This can further speed up programs, possibly at the cost of higher memory usage.
+# MALLOC_CONF="thp:always,metadata_thp:always" cargo build --release
+tikv-jemallocator = "0.6.0"
+# another cross-plateform allocator
+#[global_allocator]
+# static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+mimalloc = "0.1.43"
+# [target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2.0", features = ["js"] }
+web-time = { version = "1.1" }
+# [obel]
+obel_root = { path = "crates/obel_root", default-features = false, version = "0.0.1" }
+obel_utils = { path = "crates/obel_utils", default-features = false, version = "0.0.1" }
+obel_diagnostic = { path = "crates/obel_diagnostic", default-features = false, version = "0.0.1" }
+
+[workspace.lints.rust]
+missing_docs = "warn"
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(docsrs_dep)'] }
+unsafe_code = "deny"
+unsafe_op_in_unsafe_fn = "warn"
+unused_qualifications = "warn"
+
+[workspace.package.metadata.docs.rs]
+rustdoc-args = ["-Zunstable-options", "--generate-link-to-definition"]
+all-features = true
