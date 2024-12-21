@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # 123
   # Targets Rust projects using the cargo package manager.
   - package-ecosystem: cargo
     # Specifies the root directory of the repository as the location of the Cargo.toml file.
