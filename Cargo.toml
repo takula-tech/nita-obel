@@ -39,7 +39,7 @@ exclude = [
     "crates/obel_reflect/compile_fail",
     "tools/compile_fail_utils",
 ]
-members = ["crates/*", "examples/*"]
+members = ["crates/*"]
 
 [workspace.package]
 edition = "2021"

@@ -1,3 +1,6 @@
+# When linting documentation (e.g., comments or docstrings),
+# these identifiers will be accepted as correctly spelled or valid
+# even if they don’t follow conventional naming rules.
 doc-valid-idents = [
   "GilRs",
   "glTF",
@@ -11,8 +14,13 @@ doc-valid-idents = [
   "..",
 ]
 
+# Ensures that linting checks (like naming conventions, unused functions, or documentation completeness)
+# apply to private items as well as public items. When true, the tool will not skip private items during checks 
+# aiming for high internal code quality, not just public API cleanliness.
 check-private-items = true
 
+# Encourages developers to use project-specific wrappers or methods that provide better guarantees,
+# such as deterministic behavior when working with floating-point operations.
 disallowed-methods = [
   { path = "f32::powi", reason = "use obel_math::ops::FloatPow::squared, obel_math::ops::FloatPow::cubed, or obel_math::ops::powf instead for libm determinism" },
   { path = "f32::log", reason = "use obel_math::ops::ln, obel_math::ops::log2, or obel_math::ops::log10 instead for libm determinism" },
