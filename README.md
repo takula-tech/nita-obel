@@ -20,33 +20,33 @@ As a result, the Minimum Supported Rust Version (MSRV) is generally close to "th
 
 ## Design Goals
 
-* **Capable**: Offer a complete 2D and 3D feature set
-* **Simple**: Easy for newbies to pick up, but infinitely flexible for power users
-* **Data Focused**: Data-oriented architecture using the Entity Component System paradigm
-* **Modular**: Use only what you need. Replace what you don't like
-* **Fast**: App logic should run quickly, and when possible, in parallel
-* **Productive**: Changes should compile quickly ... waiting isn't fun
+- **Capable**: Offer a complete 2D and 3D feature set
+- **Simple**: Easy for newbies to pick up, but infinitely flexible for power users
+- **Data Focused**: Data-oriented architecture using the Entity Component System paradigm
+- **Modular**: Use only what you need. Replace what you don't like
+- **Fast**: App logic should run quickly, and when possible, in parallel
+- **Productive**: Changes should compile quickly ... waiting isn't fun
 
 ## About
 
-* **[Features](https://obelengine.org):** A quick overview of obel's features.
-* **[News](https://obelengine.org/news/)**: A development blog that covers our progress, plans and shiny new features.
+- **[Features](https://obelengine.org):** A quick overview of obel's features.
+- **[News](https://obelengine.org/news/)**: A development blog that covers our progress, plans and shiny new features.
 
 ## Docs
 
-* **[Quick Start Guide](https://obelengine.org/learn/quick-start/introduction):** obel's official Quick Start Guide. The best place to start learning obel.
-* **[obel Rust API Docs](https://docs.rs/obel):** obel's Rust API docs, which are automatically generated from the doc comments in this repo.
-* **[Official Examples](https://github.com/obelengine/obel/tree/latest/examples):** obel's dedicated, runnable examples, which are great for digging into specific concepts.
-* **[Community-Made Learning Resources](https://obelengine.org/assets/#learning)**: More tutorials, documentation, and examples made by the obel community.
+- **[Quick Start Guide](https://obelengine.org/learn/quick-start/introduction):** obel's official Quick Start Guide. The best place to start learning obel.
+- **[obel Rust API Docs](https://docs.rs/obel):** obel's Rust API docs, which are automatically generated from the doc comments in this repo.
+- **[Official Examples](https://github.com/obelengine/obel/tree/latest/examples):** obel's dedicated, runnable examples, which are great for digging into specific concepts.
+- **[Community-Made Learning Resources](https://obelengine.org/assets/#learning)**: More tutorials, documentation, and examples made by the obel community.
 
 ## Community
 
 Before contributing or participating in discussions with the community, you should familiarize yourself with our [**Code of Conduct**](./CODE_OF_CONDUCT.md).
 
-* **[Discord](https://discord.gg/obel):** obel's official discord server.
-* **[Reddit](https://reddit.com/r/obel):** obel's official subreddit.
-* **[GitHub Discussions](https://github.com/obelengine/obel/discussions):** The best place for questions about obel, answered right here!
-* **[obel Assets](https://obelengine.org/assets/):** A collection of awesome obel projects, tools, plugins and learning materials.
+- **[Discord](https://discord.gg/obel):** obel's official discord server.
+- **[Reddit](https://reddit.com/r/obel):** obel's official subreddit.
+- **[GitHub Discussions](https://github.com/obelengine/obel/discussions):** The best place for questions about obel, answered right here!
+- **[obel Assets](https://obelengine.org/assets/):** A collection of awesome obel projects, tools, plugins and learning materials.
 
 ### Contributing
 
@@ -99,6 +99,7 @@ obel is the result of the hard work of many people. A huge thanks to all obel co
 A huge thanks to obel's [generous sponsors](https://obelengine.org). obel will always be free and open source, but it isn't free to make. Please consider [sponsoring our work](https://obelengine.org/donate/) if you like what we're building.
 
 <!-- This next line need to stay exactly as is. It is required for BrowserStack sponsorship. -->
+
 This project is tested with BrowserStack.
 
 ## License
@@ -106,8 +107,8 @@ This project is tested with BrowserStack.
 obel is free, open source and permissively licensed!
 Except where noted (below and/or in individual files), all code in this repository is dual-licensed under either:
 
-* MIT License ([LICENSE-MIT](LICENSE-MIT) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
-* Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0))
+- MIT License ([LICENSE-MIT](LICENSE-MIT) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0))
 
 at your option.
 This means you can select the license you prefer!
@@ -133,4 +134,5 @@ shall be dual licensed as above,
 without any additional terms or conditions.
 
 ## crate.io push token
-cio8tdsT1HVJJLcwTHjNLF2uG1keAcAjaZP
+
+ciolly83ufbFfezXEErdU6f9G67ytYzf04d

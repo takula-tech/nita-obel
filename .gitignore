@@ -6,7 +6,7 @@ tools/**/target
 **/*.rs.bk
 
 # Cargo
-Cargo.lock
+# Cargo.lock
 .cargo/config
 .cargo/config.toml
 
