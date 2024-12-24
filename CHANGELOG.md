@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.0.1]
+
+### ⚙️ Miscellaneous Tasks
+
+- Init - ([d3b7eb7](https://github.com/takula-tech/nita-obel/commit/d3b7eb7fff0bfef934d3d56530ffdb4a4b5dbc1d))
+
+
 ## [0.0.0]
 
 ### ⚙️ Miscellaneous Tasks
