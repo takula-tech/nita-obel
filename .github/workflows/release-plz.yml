@@ -1,4 +1,4 @@
-# Name of the workflow: you can change it.
+# Name of the workflow: you can change it. s
 name: Release-plz
 
 permissions:
