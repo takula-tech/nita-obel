@@ -1,6 +1,6 @@
 [package]
 name = "obel"
-version = "0.0.1"
+version = "0.0.2"
 exclude = ["assets/", "tools/", ".github/", "examples/wasm/assets/"]
 description = "A refreshingly simple data-driven game engine and app framework"
 categories = { workspace = true }
@@ -75,9 +75,9 @@ mimalloc = "0.1.43"
 getrandom = { version = "0.2.0", features = ["js"] }
 web-time = { version = "1.1" }
 # [obel]
-obel_root = { path = "crates/obel_root", default-features = false, version = "0.0.1" }
-obel_utils = { path = "crates/obel_utils", default-features = false, version = "0.0.1" }
-obel_diagnostic = { path = "crates/obel_diagnostic", default-features = false, version = "0.0.1" }
+obel_root = { path = "crates/obel_root", default-features = false, version = "0.0.2" }
+obel_utils = { path = "crates/obel_utils", default-features = false, version = "0.0.2" }
+obel_diagnostic = { path = "crates/obel_diagnostic", default-features = false, version = "0.0.2" }
 
 [workspace.lints.rust]
 missing_docs = "warn"

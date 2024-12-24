@@ -1,6 +1,6 @@
 [package]
 name = "obel_root"
-version = "0.0.1"
+version = "0.0.2"
 description = "An internal obel crate used to facilitate optional dynamic linking via the 'dynamic_linking' feature"
 keywords = ["obel", "obel_root"]
 categories = { workspace = true }

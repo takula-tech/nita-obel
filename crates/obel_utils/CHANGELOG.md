@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.0.2](https://github.com/takula-tech/nita-obel/compare/obel_utils-v0.0.1...obel_utils-v0.0.2)
+
+### ⚙️ Miscellaneous Tasks
+
+- Init - ([eb5443d](https://github.com/takula-tech/nita-obel/commit/eb5443dd6c259979454a569ca62fcd333d76a042))
+
+
 ## [0.0.1]
 
 ### ⚙️ Miscellaneous Tasks

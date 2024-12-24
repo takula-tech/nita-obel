@@ -100,7 +100,7 @@ dependencies = [
 
 [[package]]
 name = "obel"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "obel_dylib",
  "obel_root",
@@ -108,14 +108,14 @@ dependencies = [
 
 [[package]]
 name = "obel_app"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "static_assertions",
 ]
 
 [[package]]
 name = "obel_diagnostic"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "const-fnv1a-hash",
  "obel_utils",
@@ -131,7 +131,7 @@ dependencies = [
 
 [[package]]
 name = "obel_root"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "obel_diagnostic",
  "obel_utils",
@@ -140,7 +140,7 @@ dependencies = [
 
 [[package]]
 name = "obel_utils"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "foldhash",
  "getrandom",
