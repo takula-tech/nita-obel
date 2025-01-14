@@ -1,5 +1,8 @@
 //!  Utilities to call fn when dropped
 
+#[cfg(feature = "std")]
+extern crate std;
+
 use core::mem::ManuallyDrop;
 
 /**
