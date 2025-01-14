@@ -14,7 +14,7 @@
 #[cfg(feature = "tracing")]
 pub use ::tracing;
 #[cfg(feature = "tracing")]
-mod log;
+mod trace;
 
 mod time;
 pub use time::*;
@@ -38,3 +38,12 @@ pub use object_safe::*;
 
 mod drop_cb;
 pub use drop_cb::*;
+
+mod parallel_queue;
+pub use parallel_queue::*;
+
+mod sync_cell;
+pub use sync_cell::*;
+
+mod sync_cell_unsafe;
+pub use sync_cell_unsafe::*;

@@ -53,8 +53,10 @@ impl<F: FnOnce()> OnDrop<F> {
 
 impl<F: FnOnce()> Drop for OnDrop<F> {
     fn drop(&mut self) {
-        // SAFETY: We may move out of `self`, since this instance can never be observed after it's dropped.
-        #[expect(unsafe_code)]
+        #[expect(
+            unsafe_code,
+            reason = "SAFETY: We may move out of `self`, since this instance can never be observed after it's dropped"
+        )]
         let callback = unsafe { ManuallyDrop::take(&mut self.callback) };
         callback();
     }
