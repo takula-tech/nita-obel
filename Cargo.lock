@@ -130,6 +130,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "obel_ptr"
+version = "0.0.0"
+dependencies = [
+ "static_assertions",
+]
+
+[[package]]
 name = "obel_root"
 version = "0.0.0"
 dependencies = [
