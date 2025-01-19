@@ -56,15 +56,17 @@ documentation = "https://docs.rs/obel"
 
 [workspace.dependencies]
 # [dev-dependencies]
+ron = "0.8.0"
+rmp-serde = "1.1"
+bincode = "1.3"
+serde_json = "1.0"
 static_assertions = "1.1.0"
 # [dependencies]
+# used by bevy-utils, but it also needs reflect impls
 foldhash = { version = "0.1.3", default-features = false }
 tracing = { version = "0.1", default-features = false }
 const-fnv1a-hash = "1.1.0"
-hashbrown = { version = "0.15.1", features = [
-  "equivalent",
-  "raw-entry",
-], default-features = false }
+hashbrown = { version = "0.15.1", default-features = false }
 thread_local = { version = "1.0" }
 # [target.'cfg(or(target_arch = "macOS"),target_arch = "linux")'.dependencies]
 # #[global_allocator]
@@ -78,13 +80,33 @@ tikv-jemallocator = "0.6.0"
 # static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 mimalloc = "0.1.43"
 # [target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { version = "0.2.0", features = ["js"] }
+getrandom = { version = "0.2.0" }
 web-time = { version = "1.1" }
 sysinfo = { version = "0.33.0", default-features = false }
+erased-serde = { version = "0.4", default-features = false }
+disqualified = { version = "1.0", default-features = false }
+downcast-rs = { version = "2", default-features = false }
+thiserror = { version = "2", default-features = false }
+derive_more = { version = "1", default-features = false }
+serde = { version = "1", default-features = false }
+spin = { version = "0.9.8", default-features = false }
+assert_type_match = "0.1.1"
+variadics_please = "1.1"
+toml_edit = { version = "0.22.7", default-features = false }
+syn = "2.0"
+quote = "1.0"
+proc-macro2 = "1.0"
+smallvec = { version = "1.11", default-features = false }
+glam = { version = "0.29", default-features = false }
+petgraph = { version = "0.6" }
+smol_str = { version = "0.2.0", default-features = false }
+uuid = { version = "1.0", default-features = false }
+wgpu-types = { version = "23", default-features = false }
 # [obel]
 obel_root = { path = "crates/obel_root", default-features = false, version = "0.0.0" }
 obel_utils = { path = "crates/obel_utils", default-features = false, version = "0.0.0" }
 obel_diagnostic = { path = "crates/obel_diagnostic", default-features = false, version = "0.0.0" }
+obel_ptr = { path = "crates/obel_ptr", default-features = false, version = "0.0.0" }
 
 [workspace.lints.rust]
 missing_docs = "warn"

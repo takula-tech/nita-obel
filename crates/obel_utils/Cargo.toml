@@ -24,13 +24,16 @@ tracing = ["dep:tracing"]
 static_assertions = { workspace = true }
 
 [dependencies]
+hashbrown = { workspace = true, features = [
+  "equivalent",
+  "raw-entry",
+], optional = true }
 foldhash = { workspace = true }
 tracing = { workspace = true, optional = true }
-hashbrown = { workspace = true, optional = true }
 thread_local = { workspace = true, optional = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { workspace = true }
+getrandom = { workspace = true, features = ["js"] }
 web-time = { workspace = true }
 
 [lints]

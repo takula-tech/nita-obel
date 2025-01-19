@@ -1,0 +1,87 @@
+[package]
+name = "obel_reflect"
+version = "0.0.0"
+description = "rust reflect to ease game developments"
+keywords = ["obel", "obel_reflect"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = "README.md"
+
+[features]
+default = ["std", "smallvec", "debug"]
+std = [
+  "obel_utils/std",
+  "erased-serde/std",
+  "downcast-rs/std",
+  "serde/std",
+  "spin/std",
+  "glam?/std",
+  "smol_str?/std",
+  "uuid?/std",
+]
+# When enabled, provides obel-related reflection implementations
+obel_refelct = ["smallvec", "smol_str"]
+glam = ["dep:glam"]
+petgraph = ["dep:petgraph", "std"]
+smallvec = ["dep:smallvec"]
+uuid = ["dep:uuid"]
+wgpu-types = ["dep:wgpu-types", "std"]
+# Enables features useful for debugging reflection
+debug = ["debug_stack"]
+# When enabled, keeps track of the current serialization/deserialization context for better error messages
+debug_stack = []
+# # When enabled, allows documentation comments to be accessed via reflection
+# documentation = ["obel_reflect_derive/documentation"]
+# # Enables function reflection
+# functions = ["obel_reflect_derive/functions"]
+
+[dependencies]
+obel_utils = { workspace = true, features = ["alloc"] }
+obel_ptr = { workspace = true }
+toml_edit = { workspace = true, features = ["parse"] }
+syn = { workspace = true }
+quote = { workspace = true }
+proc-macro2 = { workspace = true }
+foldhash = { workspace = true }
+erased-serde = { workspace = true, features = ["alloc"] }
+disqualified = { workspace = true }
+downcast-rs = { workspace = true }
+thiserror = { workspace = true }
+derive_more = { workspace = true, features = ["from"] }
+serde = { workspace = true, features = ["alloc", 'derive'] }
+spin = { workspace = true, features = ["once", "rwlock"] }
+assert_type_match = { workspace = true }
+variadics_please = { workspace = true }
+glam = { workspace = true, optional = true, features = ["serde"] }
+smallvec = { workspace = true, optional = true }
+petgraph = { workspace = true, optional = true, features = ["serde-1"] }
+smol_str = { workspace = true, optional = true, features = ["serde"] }
+uuid = { workspace = true, optional = true, features = ["v4", "serde"] }
+wgpu-types = { workspace = true, optional = true, features = ["serde"] }
+
+[dev-dependencies]
+ron = { workspace = true }
+rmp-serde = { workspace = true }
+bincode = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
+static_assertions = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[[example]]
+name = "reflect_docs"
+path = "examples/reflect_docs.rs"
+required-features = ["documentation"]
