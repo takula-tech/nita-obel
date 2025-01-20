@@ -6,10 +6,7 @@
 // enriching the documentation with conditional information.
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![cfg_attr(not(feature = "std"), no_std)]
-#![doc(
-    html_logo_url = "assets/icon.png",
-    html_favicon_url = "assets/icon.png"
-)]
+#![doc(html_logo_url = "assets/icon.png", html_favicon_url = "assets/icon.png")]
 
 #[cfg(feature = "tracing")]
 pub use ::tracing;

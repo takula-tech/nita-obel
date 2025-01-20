@@ -4,10 +4,7 @@
 #![expect(unsafe_code, reason = "Raw pointers apparently unsafe")]
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![doc = include_str!("../README.md")]
-#![doc(
-    html_logo_url = "assets/icon.png",
-    html_favicon_url = "assets/icon.png"
-)]
+#![doc(html_logo_url = "assets/icon.png", html_favicon_url = "assets/icon.png")]
 
 use core::{
     cell::UnsafeCell,

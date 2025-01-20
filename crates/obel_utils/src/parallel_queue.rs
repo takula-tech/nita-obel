@@ -63,11 +63,7 @@ impl<T: Send> Parallel<Vec<T>> {
     ///
     /// The ordering is not guaranteed.
     pub fn drain_into(&mut self, out: &mut Vec<T>) {
-        let size = self
-            .locals
-            .iter_mut()
-            .map(|queue| queue.get_mut().len())
-            .sum();
+        let size = self.locals.iter_mut().map(|queue| queue.get_mut().len()).sum();
         out.reserve(size);
         for queue in self.locals.iter_mut() {
             out.append(queue.get_mut());

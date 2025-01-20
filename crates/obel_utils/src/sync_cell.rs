@@ -26,11 +26,17 @@ pub struct SyncCell<T: ?Sized> {
 impl<T: Sized> SyncCell<T> {
     /// Construct a new instance of a `SyncCell` from the given value.
     pub fn new(inner: T) -> Self {
-        Self { inner }
+        Self {
+            inner,
+        }
     }
 
     /// Deconstruct this `SyncCell` into its inner value.
-    pub fn to_inner(Self { inner }: Self) -> T {
+    pub fn to_inner(
+        Self {
+            inner,
+        }: Self,
+    ) -> T {
         inner
     }
 }

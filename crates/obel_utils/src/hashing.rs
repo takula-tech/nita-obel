@@ -131,10 +131,7 @@ where
 }
 impl<V: Debug, H> Debug for Hashed<V, H> {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        f.debug_struct("Hashed")
-            .field("hash", &self.hash)
-            .field("value", &self.value)
-            .finish()
+        f.debug_struct("Hashed").field("hash", &self.hash).field("value", &self.value).finish()
     }
 }
 impl<V, H> Hash for Hashed<V, H> {
@@ -191,9 +188,7 @@ impl<K: Hash + Eq + PartialEq + Clone, V> PreHashMapExt<K, V> for PreHashMap<K, 
     fn get_or_insert_with<F: FnOnce() -> V>(&mut self, key: &Hashed<K>, func: F) -> &mut V {
         key.hash();
         use hashbrown::hash_map::RawEntryMut;
-        let entry = self
-            .raw_entry_mut()
-            .from_key_hashed_nocheck(key.hash(), key);
+        let entry = self.raw_entry_mut().from_key_hashed_nocheck(key.hash(), key);
         match entry {
             RawEntryMut::Occupied(entry) => entry.into_mut(),
             RawEntryMut::Vacant(entry) => {
@@ -232,9 +227,7 @@ impl Hasher for NoOpHasher {
     fn write(&mut self, bytes: &[u8]) {
         // This should never be called by consumers. Prefer to call `write_u64` instead.
         // Don't break applications (slower fallback, just check in test):
-        self.0 = bytes.iter().fold(self.0, |hash, b| {
-            hash.rotate_left(8).wrapping_add(*b as u64)
-        });
+        self.0 = bytes.iter().fold(self.0, |hash, b| hash.rotate_left(8).wrapping_add(*b as u64));
     }
     #[inline]
     fn write_u64(&mut self, i: u64) {
@@ -281,9 +274,6 @@ mod tests {
             map_2.insert(i, i);
         }
 
-        assert_eq!(
-            map_1.iter().collect::<Vec<_>>(),
-            map_2.iter().collect::<Vec<_>>()
-        );
+        assert_eq!(map_1.iter().collect::<Vec<_>>(), map_2.iter().collect::<Vec<_>>());
     }
 }
