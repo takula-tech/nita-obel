@@ -10,7 +10,7 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = "README.md"
+readme = { workspace = true }
 
 [features]
 # Used to disable code that is unsupported when obel is dynamically linked

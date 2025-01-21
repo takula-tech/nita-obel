@@ -10,10 +10,10 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = "README.md"
+readme = { workspace = true }
 
 [features]
-default = ["std", "serde", "tracing"]
+default = ["std", "serde"]
 std = ["alloc", "tracing?/std", "foldhash/std", "dep:thread_local"]
 alloc = ["dep:hashbrown"]
 serde = ["hashbrown?/serde"]

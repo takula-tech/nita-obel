@@ -1,6 +1,6 @@
 # Bevy Pointer
 
-[![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/bevyengine/bevy#license)
+[![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/ntakulatech/nita_obel#license)
 [![Crates.io](https://img.shields.io/crates/v/obel_ptr.svg)](https://crates.io/crates/obel_ptr)
 [![Downloads](https://img.shields.io/crates/d/obel_ptr.svg)](https://crates.io/crates/obel_ptr)
 [![Docs](https://docs.rs/obel_ptr/badge.svg)](https://docs.rs/obel_ptr/latest/obel_ptr/)

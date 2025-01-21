@@ -9,7 +9,8 @@
 
 ## What is obel?
 
-obel is a refreshingly simple data-driven game engine built in Rust. It is free and open-source forever!
+obel is a refreshingly simple data-driven game engine built in Rust.
+It is free and open-source forever!
 
 ## WARNING
 

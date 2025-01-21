@@ -52,7 +52,7 @@ license = "MIT OR Apache-2.0"
 categories = ["game-engines", "graphics", "gui", "rendering"]
 repository = "https://github.com/obelengine/obel"
 documentation = "https://docs.rs/obel"
-# readme = "README.md"
+readme = "README.md"
 
 [workspace.dependencies]
 # [dev-dependencies]
@@ -75,13 +75,13 @@ thread_local = { version = "1.0" }
 # This can further speed up programs, possibly at the cost of higher memory usage.
 # MALLOC_CONF="thp:always,metadata_thp:always" cargo build --release
 tikv-jemallocator = "0.6.0"
-# another cross-plateform allocator
+# another cross-platform allocator
 #[global_allocator]
 # static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 mimalloc = "0.1.43"
 # [target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { version = "0.2.0" }
-web-time = { version = "1.1" }
+getrandom = { version = "0.2.0", default-features = false }
+web-time = { version = "1.1", default-features = false }
 sysinfo = { version = "0.33.0", default-features = false }
 erased-serde = { version = "0.4", default-features = false }
 disqualified = { version = "1.0", default-features = false }
@@ -102,6 +102,10 @@ petgraph = { version = "0.6" }
 smol_str = { version = "0.2.0", default-features = false }
 uuid = { version = "1.0", default-features = false }
 wgpu-types = { version = "23", default-features = false }
+critical-section = { version = "1.2.0", default-features = false }
+portable-atomic = { version = "1", default-features = false }
+portable-atomic-util = { version = "0.2.4", default-features = false }
+
 # [obel]
 obel_root = { path = "crates/obel_root", default-features = false, version = "0.0.0" }
 obel_utils = { path = "crates/obel_utils", default-features = false, version = "0.0.0" }
