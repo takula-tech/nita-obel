@@ -1,56 +1,65 @@
-# Bevy Platform
+# Obel Platform
 
 [![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/ntakulatech/nita_obel#license)
 [![Crates.io](https://img.shields.io/crates/v/obel_platform.svg)](https://crates.io/crates/obel_platform)
 [![Downloads](https://img.shields.io/crates/d/obel_platform.svg)](https://crates.io/crates/obel_platform)
 [![Docs](https://docs.rs/obel_platform/badge.svg)](https://docs.rs/obel_platform/latest/obel_platform/)
-[![Discord](https://img.shields.io/discord/691052431525675048.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/bevy)
+[![Discord](https://img.shields.io/discord/691052431525675048.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/obel)
 
-Rust is a fantastic multi-platform language with extensive support for modern targets through its [standard library](https://doc.rust-lang.org/stable/std/).
-However, some items within the standard library have alternatives that are better suited for [Bevy](https://crates.io/crates/bevy) and game engines in general.
-Additionally, to support embedded and other esoteric platforms, it's often necessary to shed reliance on `std`, making your crate [`no_std`](https://docs.rust-embedded.org/book/intro/no-std.html).
+## Overview
 
-These needs are handled by this crate, `obel_platform`.
-The goal of this crate is to provide alternatives and extensions to the Rust standard library which minimize friction when developing with and for Bevy across multiple platforms.
+`obel_platform` is a specialized crate designed to enhance cross-platform development  
+for [Obel](https://crates.io/crates/nita_obel) game engine projects. While Rust's [standard library](https://doc.rust-lang.org/stable/std/) provides excellent multi-platform support,  
+this crate offers optimized alternatives specifically tailored for game development and embedded systems.
 
-## Getting Started
+Key benefits:
 
-Like any dependency from [crates.io](https://crates.io/), use `cargo` to add it to your `Cargo.toml` file:
+- Platform-optimized alternatives to standard library components
+- First-class support for [`no_std`](https://docs.rust-embedded.org/book/intro/no-std.html) environments
+- Seamless integration with Bevy ecosystem
+
+## Installation
+
+Add the crate to your project using cargo:
 
 ```sh
 cargo add obel_platform
 ```
 
-Now, instead of importing from `std` you can use `obel_platform` for items it has alternative for.
-See the documentation for what items are available, and explanations for _why_ you may want to use them.
+## Usage
 
-## `no_std` Support
-
-By default, `obel_platform` will activate the `std` feature, requiring access to the `std` crate for whichever platforms you're targeting.
-To use this crate on `no_std` platforms, disable default features:
-
-```toml
-obel_platform = { version = "x.y.z", default-features = false }
-```
+Simply import from `obel_platform` instead of `std` for supported items. Refer to the [documentation](https://docs.rs/obel_platform/latest/obel_platform/) for available items and their benefits.
 
 ## Features
 
-### `std` (_default_)
+### Standard Library Support (`std`) [default]
 
-Enables usage of the standard library. Note that where this crate has alternatives to the standard library that it considers _better_ than what's provided, it will provide the alternative even when `std` is enabled.
-This is explicitly incompatible with `no_std` targets.
+- Enables standard library integration
+- Provides optimized alternatives where beneficial
+- Incompatible with `no_std` targets
 
-### `alloc`
+### Allocation Support (`alloc`) [default]
 
-Enables usage of the [`alloc`](https://doc.rust-lang.org/stable/alloc/) crate. Note that this feature is automatically enabled when enabling `std`.
-This is compatible with most `no_std` targets, but not all.
+- Enables [`alloc`](https://doc.rust-lang.org/stable/alloc/) crate functionality
+- Automatically enabled with `std` feature
+- Compatible with most `no_std` targets
 
-### `portable-atomic`
+### Portable Atomics (`portable-atomic`)
 
-Switches to using [`portable-atomic`](https://docs.rs/portable-atomic/latest/portable_atomic/) as a backend for atomic types, such as `Arc`, `AtomicU8`, etc.
-You may need to enable this feature on platforms without full support for atomic types or certain operations, such as [atomic CAS](https://en.wikipedia.org/wiki/Compare-and-swap).
+- Uses [`portable-atomic`](https://docs.rs/portable-atomic/latest/portable_atomic/) for atomic operations
+- Essential for platforms with limited atomic operation support
+- Provides consistent atomic behavior across platforms
 
-### `critical-section`
+### Critical Section Support (`critical-section`)
 
-Switches to using [`critical-section`](https://docs.rs/critical-section/latest/critical_section/) as a backend for synchronization.
-You may need to enable this feature on platforms with little to no support for atomic operations, and is often paired with the `portable-atomic` feature.
+- Implements synchronization using [`critical-section`](https://docs.rs/critical-section/latest/critical_section/)
+- Ideal for platforms with minimal atomic operation support
+- Often used in conjunction with `portable-atomic`
+
+## No-std Configuration
+
+To use on generic(`no_std`) platforms, disable default features but enable `other` feature in your `Cargo.toml`:
+
+```toml
+obel_platform = { version = "x.y.z", default-features = false, features = ["generic"]  }
+```

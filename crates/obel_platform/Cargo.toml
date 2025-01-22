@@ -25,7 +25,7 @@ std = [
   "portable-atomic-util?/std",
 ]
 alloc = ["portable-atomic-util?/alloc"]
-other = ["critical-section", "portable-atomic"]
+generic = ["critical-section", "portable-atomic"]
 ## provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["dep:critical-section", "portable-atomic?/critical-section"]
