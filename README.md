@@ -7,6 +7,10 @@
 [![CI](https://github.com/obelengine/obel/workflows/CI/badge.svg)](https://github.com/obelengine/obel/actions)
 [![Discord](https://img.shields.io/discord/691052431525675048.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/obel)
 
+commit 85eceb022da0326b47ac2b0d9202c9c9f01835bb (HEAD -> learn, origin/main, origin/HEAD, main)
+Author: Alice Cecile <alice.i.cecile@gmail.com>
+Date: Mon Jan 20 21:57:57 2025 -0500
+
 ## What is obel?
 
 obel is a refreshingly simple data-driven game engine built in Rust.

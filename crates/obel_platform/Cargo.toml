@@ -19,11 +19,13 @@ default = ["std"]
 ## on `no_std` targets, but provides access to certain additional features on
 ## supported platforms from deps of critical-section,portable-atomic and portable-atomic-util .
 std = [
+  "alloc",
   "critical-section?/std",
   "portable-atomic?/std",
   "portable-atomic-util?/std",
 ]
 alloc = ["portable-atomic-util?/alloc"]
+other = ["critical-section", "portable-atomic"]
 ## provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["dep:critical-section", "portable-atomic?/critical-section"]

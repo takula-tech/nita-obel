@@ -14,27 +14,34 @@ readme = { workspace = true }
 
 [features]
 default = ["std", "serde"]
-std = ["alloc", "tracing?/std", "foldhash/std", "dep:thread_local"]
-alloc = ["dep:hashbrown"]
-serde = ["hashbrown?/serde"]
-detailed_trace = []
-tracing = ["dep:tracing"]
+## Adds serialization support through `serde`.
+serde = ["hashbrown/serde"]
+# Platform Compatibility
+## Allows access to the `std` crate. Enabling this feature will prevent compilation
+## on `no_std` targets, but provides access to certain additional features on
+## supported platforms.
+std = ["alloc", "obel_platform/std", "foldhash/std", "dep:thread_local"]
+## Allows access to the `alloc` crate.
+alloc = ["obel_platform/alloc", "dep:hashbrown"]
+generic = ["critical-section", "portable-atomic"]
+## `critical-section` provides the building blocks for synchronization primitives
+## on all platforms, including `no_std`.
+critical-section = ["obel_platform/critical-section"]
+## `portable-atomic` provides additional platform support for atomic types and
+## operations, even on targets without native support.
+portable-atomic = ["obel_platform/portable-atomic"]
 
 [dev-dependencies]
 static_assertions = { workspace = true }
 
 [dependencies]
-hashbrown = { workspace = true, features = [
+obel_platform = { workspace = true }
+foldhash = { workspace = true }
+thread_local = { workspace = true, optional = true }
+hashbrown = { workspace = true, optional = true, features = [
   "equivalent",
   "raw-entry",
-], optional = true }
-foldhash = { workspace = true }
-tracing = { workspace = true, optional = true }
-thread_local = { workspace = true, optional = true }
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { workspace = true, features = ["js"] }
-web-time = { workspace = true }
+] }
 
 [lints]
 workspace = true

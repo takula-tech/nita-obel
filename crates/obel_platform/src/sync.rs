@@ -1,5 +1,8 @@
 //! Provides various synchronization alternatives to language primitives.
 
+#[cfg(any(feature = "alloc", feature = "portable-atomic"))]
+pub use arc::{Arc, Weak};
+
 pub mod atomic {
     //! Provides various atomic alternatives to language primitives.
     //!
@@ -12,15 +15,15 @@ pub mod atomic {
         AtomicU32, AtomicU64, AtomicU8, AtomicUsize, Ordering,
     };
 
-    #[cfg(feature = "std")]
+    #[cfg(not(feature = "portable-atomic"))]
     use core::sync::atomic;
-    #[cfg(all(not(feature = "std"), feature = "portable-atomic"))]
+
+    #[cfg(feature = "portable-atomic")]
     use portable_atomic as atomic;
 }
 
-pub use arc::{Arc, Weak};
-
-#[cfg(any(feature = "alloc", feature = "std"))]
+#[cfg(all(feature = "alloc", not(feature = "portable-atomic")))]
 use alloc::sync as arc;
-#[cfg(all(not(feature = "std"), not(feature = "std"), feature = "portable-atomic"))]
+
+#[cfg(all(feature = "alloc", feature = "portable-atomic"))]
 use portable_atomic_util as arc;
