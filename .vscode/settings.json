@@ -19,5 +19,8 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "debug.allowBreakpointsEverywhere": true,
   "extensions.ignoreRecommendations": false,
-  "[toml]": { "editor.defaultFormatter": "tamasfe.even-better-toml" }
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "cSpell.words": ["reimplementation"]
 }

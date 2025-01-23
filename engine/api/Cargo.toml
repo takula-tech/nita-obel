@@ -1,0 +1,33 @@
+[package]
+name = "obel_engine_api"
+version = "0.0.0"
+description = "facilitate optional dynamic linking via the 'dynamic_linking' feature"
+keywords = ["obel", "obel_engine_api"]
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = { workspace = true }
+
+[features]
+default = ["portable-atomic"]
+portable-atomic = []
+# Used to disable code that is unsupported when obel is dynamically linked
+dynamic_linking = ["obel_engine_diagnostic/dynamic_linking"]
+
+[dependencies]
+obel_engine_platform = { workspace = true }
+obel_engine_diagnostic = { workspace = true }
+obel_engine_reflect = { workspace = true }
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+workspace = true
