@@ -9,7 +9,7 @@ pub struct BevyManifest {
 }
 
 const OBEL: &str = "obel";
-const OBEL_ENGINE_API: &str = "obel_engine_api";
+const OBEL_API: &str = "obel_api";
 
 impl BevyManifest {
     /// Returns a global shared instance of the [`BevyManifest`] struct.
@@ -50,8 +50,8 @@ impl BevyManifest {
                 return Some(Self::parse_str(dep_package(dep).unwrap_or(name)));
             } else if let Some(dep) = deps.get(OBEL) {
                 dep_package(dep).unwrap_or(OBEL)
-            } else if let Some(dep) = deps.get(OBEL_ENGINE_API) {
-                dep_package(dep).unwrap_or(OBEL_ENGINE_API)
+            } else if let Some(dep) = deps.get(OBEL_API) {
+                dep_package(dep).unwrap_or(OBEL_API)
             } else {
                 return None;
             };

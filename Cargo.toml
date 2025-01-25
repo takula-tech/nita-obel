@@ -14,7 +14,7 @@ readme = { workspace = true }
 
 [features]
 # Force dynamic linking, which improves iterative compile times
-dynamic_linking = ["dep:obel_engine_dylib", "obel_engine_api/dynamic_linking"]
+dynamic_linking = ["dep:obel_dylib", "obel_api/dynamic_linking"]
 
 [profile.release]
 lto = true
@@ -23,10 +23,10 @@ codegen-units = 1
 panic = "unwind"
 
 [dependencies]
-obel_engine_api = { workspace = true }
+obel_api = { workspace = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies] # Wasm does not support dynamic linking.
-obel_engine_dylib = { workspace = true, optional = true }
+obel_dylib = { workspace = true, optional = true }
 
 [lints]
 workspace = true
@@ -59,13 +59,13 @@ readme = "README.md"
 
 [workspace.dependencies]
 # [obel-dependencies]
-obel_engine_api = { path = "engine/api", default-features = false, version = "0.0.0" }
-obel_engine_dylib = { path = "engine/dylib", default-features = false, version = "0.0.0" }
-obel_engine_app = { path = "engine/core/app", default-features = false, version = "0.0.0" }
-obel_engine_diagnostic = { path = "engine/core/diagnostic", default-features = false, version = "0.0.0" }
-obel_engine_reflect = { path = "engine/core/reflect", default-features = false, version = "0.0.0" }
-obel_engine_statechart = { path = "engine/core/statechart", default-features = false, version = "0.0.0" }
-obel_engine_platform = { path = "engine/platform", default-features = false, version = "0.0.0" }
+obel_api = { path = "engine/api", default-features = false, version = "0.0.0" }
+obel_dylib = { path = "engine/dylib", default-features = false, version = "0.0.0" }
+obel_app = { path = "engine/core/app", default-features = false, version = "0.0.0" }
+obel_diagnostic = { path = "engine/core/diagnostic", default-features = false, version = "0.0.0" }
+obel_reflect = { path = "engine/core/reflect", default-features = false, version = "0.0.0" }
+obel_statechart = { path = "engine/core/statechart", default-features = false, version = "0.0.0" }
+obel_platform = { path = "engine/platform", default-features = false, version = "0.0.0" }
 
 # [dev-dependencies]
 ron = "0.8.0"

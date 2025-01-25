@@ -237,8 +237,25 @@ dependencies = [
 name = "obel"
 version = "0.0.0"
 dependencies = [
- "obel_engine_api",
- "obel_engine_dylib",
+ "obel_api",
+ "obel_dylib",
+]
+
+[[package]]
+name = "obel_api"
+version = "0.0.0"
+dependencies = [
+ "obel_diagnostic",
+ "obel_platform",
+ "obel_reflect",
+ "static_assertions",
+]
+
+[[package]]
+name = "obel_app"
+version = "0.0.0"
+dependencies = [
+ "static_assertions",
 ]
 
 [[package]]
@@ -249,47 +266,37 @@ dependencies = [
 ]
 
 [[package]]
-name = "obel_engine_api"
-version = "0.0.0"
-dependencies = [
- "obel_engine_diagnostic",
- "obel_engine_platform",
- "obel_engine_reflect",
- "static_assertions",
-]
-
-[[package]]
-name = "obel_engine_app"
-version = "0.0.0"
-dependencies = [
- "static_assertions",
-]
-
-[[package]]
-name = "obel_engine_diagnostic"
+name = "obel_diagnostic"
 version = "0.0.0"
 dependencies = [
  "const-fnv1a-hash",
- "obel_engine_platform",
+ "obel_platform",
  "sysinfo",
 ]
 
 [[package]]
-name = "obel_engine_dylib"
+name = "obel_dylib"
 version = "0.0.0"
 dependencies = [
- "obel_engine_api",
+ "obel_api",
 ]
 
 [[package]]
-name = "obel_engine_editor"
+name = "obel_editor"
 version = "0.0.0"
 dependencies = [
  "static_assertions",
 ]
 
 [[package]]
-name = "obel_engine_platform"
+name = "obel_feat_physics"
+version = "0.0.0"
+dependencies = [
+ "static_assertions",
+]
+
+[[package]]
+name = "obel_platform"
 version = "0.0.0"
 dependencies = [
  "critical-section",
@@ -305,7 +312,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "obel_engine_reflect"
+name = "obel_reflect"
 version = "0.0.0"
 dependencies = [
  "assert_type_match",
@@ -316,7 +323,7 @@ dependencies = [
  "erased-serde",
  "foldhash",
  "glam",
- "obel_engine_platform",
+ "obel_platform",
  "petgraph",
  "proc-macro2",
  "quote",
@@ -337,14 +344,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "obel_engine_statechart"
-version = "0.0.0"
-dependencies = [
- "static_assertions",
-]
-
-[[package]]
-name = "obel_feat_physics"
+name = "obel_statechart"
 version = "0.0.0"
 dependencies = [
  "static_assertions",

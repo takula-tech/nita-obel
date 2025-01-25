@@ -1,8 +1,8 @@
 [package]
-name = "obel_engine_platform"
+name = "obel_platform"
 version = "0.0.0"
 description = "Platform agnostic support"
-keywords = ["obel", "obel_engine", "obel_engine_platform"]
+keywords = ["obel", "obel_engine", "obel_platform"]
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
@@ -47,6 +47,7 @@ foldhash = { workspace = true }
 hashbrown = { workspace = true, optional = true, features = [
   "equivalent",
   "raw-entry",
+  "inline-more",
 ] }
 getrandom = { workspace = true, features = ["js"] }
 thread_local = { workspace = true, optional = true }

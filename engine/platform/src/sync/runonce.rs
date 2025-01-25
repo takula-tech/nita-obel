@@ -8,7 +8,7 @@ use crate::sync::atomic::{AtomicBool, Ordering};
 ///
 /// # Example
 /// ```
-/// use obel_engine_platform::sync::once;
+/// use obel_platform::sync::once;
 ///
 /// // This will only print once, even if called multiple times
 /// for _ in 0..3 {
@@ -54,7 +54,7 @@ impl Default for OnceFlag {
 ///
 /// # Example
 /// ```
-/// use obel_engine_platform::sync::once;
+/// use obel_platform::sync::once;
 ///
 /// fn initialize_resource() {
 ///     once!({

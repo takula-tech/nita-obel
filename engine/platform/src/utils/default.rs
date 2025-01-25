@@ -5,7 +5,7 @@ An ergonomic abbreviation for [`Default::default()`] to make initializing struct
 
 This is especially helpful when combined with ["struct update syntax"](https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax).
 ```
-use obel_engine_platform::utils::default;
+use obel_platform::utils::default;
 
 #[derive(Default)]
 struct Foo {

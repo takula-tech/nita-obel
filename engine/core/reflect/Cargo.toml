@@ -1,8 +1,8 @@
 [package]
-name = "obel_engine_reflect"
+name = "obel_reflect"
 version = "0.0.0"
 description = "rust reflect to ease game developments"
-keywords = ["obel", "obel_engine", "obel_engine_reflect"]
+keywords = ["obel", "obel_engine", "obel_reflect"]
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
@@ -57,16 +57,16 @@ std = [
   "uuid?/std",
 ]
 alloc = []
-platform_std = ["obel_engine_platform/std", "obel_engine_platform/serialize"]
+platform_std = ["obel_platform/std", "obel_platform/serialize"]
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
-critical-section = ["obel_engine_platform/critical-section"]
+critical-section = ["obel_platform/critical-section"]
 ## `portable-atomic` provides additional platform support for atomic types and
 ## operations, even on targets without native support.
-portable-atomic = ["obel_engine_platform/portable-atomic"]
+portable-atomic = ["obel_platform/portable-atomic"]
 
 [dependencies]
-obel_engine_platform = { workspace = true, features = ["alloc", "serialize"] }
+obel_platform = { workspace = true, features = ["alloc", "serialize"] }
 toml_edit = { workspace = true, features = ["parse"] }
 syn = { workspace = true }
 quote = { workspace = true }

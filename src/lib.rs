@@ -31,7 +31,7 @@
     html_favicon_url = "https://nita-obel.takulatech.net/assets/icon.png"
 )]
 
-pub use obel_engine_api::*;
+pub use obel_api::*;
 
 // Wasm does not support dynamic linking.
 #[cfg(all(feature = "dynamic_linking", not(target_family = "wasm")))]
@@ -40,4 +40,4 @@ pub use obel_engine_api::*;
     clippy::single_component_path_imports,
     reason = "This causes obel to be compiled as a dylib when using dynamic linking, and as such cannot be removed or changed without affecting dynamic linking."
 )]
-use obel_engine_dylib;
+use obel_dylib;

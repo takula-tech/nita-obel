@@ -13,7 +13,7 @@ In most cases, this will just work.
 # Examples
 
 ```rust
-# use obel_engine_platform::utils::OnDrop;
+# use obel_platform::utils::OnDrop;
 # fn test_panic(do_panic: bool, log: impl FnOnce(&str)) {
 // This will print a message when the variable `_catch` gets dropped,
 // even if a panic occurs before we reach the end of this scope.

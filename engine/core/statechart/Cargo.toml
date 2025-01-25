@@ -1,8 +1,8 @@
 [package]
-name = "obel_engine_statechart"
+name = "obel_statechart"
 version = "0.0.0"
 description = "Provides statechart plugin to implement complex game logics eg, behavior tree"
-keywords = ["obel", "obel_engine", "obel_engine_statechart"]
+keywords = ["obel", "obel_engine", "obel_statechart"]
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
