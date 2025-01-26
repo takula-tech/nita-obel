@@ -1,6 +1,6 @@
 [package]
 name = "obel"
-version = "0.0.1"
+version = "0.0.2"
 exclude = [
   "assets/",
   "tools/",
@@ -69,12 +69,12 @@ readme = "README.md"
 [workspace.dependencies]
 # [obel-dependencies]
 obel_api = { path = "engine/obel_api", default-features = false, version = "0.0.1" }
-obel_dylib = { path = "engine/obel_dylib", default-features = false, version = "0.0.1" }
+obel_dylib = { path = "engine/obel_dylib", default-features = false, version = "0.0.2" }
 obel_app = { path = "engine/core/obel_app", default-features = false, version = "0.0.1" }
-obel_diagnostic = { path = "engine/core/obel_diagnostic", default-features = false, version = "0.0.1" }
+obel_diagnostic = { path = "engine/core/obel_diagnostic", default-features = false, version = "0.0.2" }
 obel_reflect = { path = "engine/core/obel_reflect", default-features = false, version = "0.0.1" }
 obel_statechart = { path = "engine/core/obel_statechart", default-features = false, version = "0.0.1" }
-obel_platform = { path = "engine/obel_platform", default-features = false, version = "0.0.1" }
+obel_platform = { path = "engine/obel_platform", default-features = false, version = "0.0.2" }
 obel_ui_test_runner = { path = "tools/obel_ui_test_runner", default-features = false, version = "0.0.1" }
 
 # [dev-dependencies]
