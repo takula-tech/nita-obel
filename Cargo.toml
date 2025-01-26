@@ -7,6 +7,7 @@ exclude = [
   ".github/",
   "examples/wasm/assets/",
   "templates/",
+  "engine/**/compile_ui_test",
 ]
 description = "A refreshingly simple data-driven game engine and app framework"
 categories = { workspace = true }
