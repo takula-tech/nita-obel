@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "aaron-bond.better-comments",
     "DavidAnson.vscode-markdownlint",
     "yzhang.markdown-all-in-one",
     "dracula-theme.theme-dracula",
@@ -8,6 +7,14 @@
     "rust-lang.rust-analyzer",
     "esbenp.prettier-vscode",
     "EditorConfig.EditorConfig",
-    "github.vscode-github-actions"
+    "github.vscode-github-actions",
+    "serayuzgur.crates",
+    "hediet.vscode-drawio",
+    "usernamehw.errorlens",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "bierner.markdown-mermaid",
+    "Gruntfuggly.todo-tree",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

@@ -46,7 +46,7 @@ impl<T: ?Sized> ConstNonNull<T> {
     /// # Examples
     ///
     /// ```
-    /// use obel_ptr::ConstNonNull;
+    /// use obel_platform::utils::ConstNonNull;
     ///
     /// let x = 0u32;
     /// let ptr = ConstNonNull::<u32>::new(&x as *const _).expect("ptr is null!");
@@ -67,13 +67,13 @@ impl<T: ?Sized> ConstNonNull<T> {
     /// # Examples
     /// ### Correct usage
     /// ```
-    /// use obel_ptr::ConstNonNull;
+    /// use obel_platform::utils::ConstNonNull;
     /// let x = 0u32;
     /// let ptr = unsafe { ConstNonNull::new_unchecked(&x as *const _) };
     /// ```
     /// ### Incorrect usage
     /// ```rust,no_run
-    /// use obel_ptr::ConstNonNull;
+    /// use obel_platform::utils::ConstNonNull;
     /// // NEVER DO THAT!!! This is undefined behavior. ⚠️
     /// let ptr = unsafe { ConstNonNull::<u32>::new_unchecked(core::ptr::null()) };
     /// ```
@@ -104,7 +104,7 @@ impl<T: ?Sized> ConstNonNull<T> {
     /// # Examples
     ///
     /// ```
-    /// use obel_ptr::ConstNonNull;
+    /// use obel_platform::utils::ConstNonNull;
     /// let mut x = 0u32;
     /// let ptr = ConstNonNull::new(&mut x as *mut _).expect("ptr is null!");
     /// let ref_x = unsafe { ptr.as_ref() };
@@ -488,6 +488,7 @@ impl<'a, T> ThinSlicePtr<'a, T> {
     /// # Safety
     /// `index` must be in-bounds.
     pub unsafe fn get(self, index: usize) -> &'a T {
+        #[cfg(debug_assertions)]
         debug_assert!(index < self.len);
         let ptr = self.ptr.as_ptr();
         unsafe { &*ptr.add(index) }

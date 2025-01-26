@@ -8,11 +8,11 @@ use crate::sync::atomic::{AtomicBool, Ordering};
 ///
 /// # Example
 /// ```
-/// use obel_platform::sync::once;
+/// use obel_platform::run_once;
 ///
 /// // This will only print once, even if called multiple times
 /// for _ in 0..3 {
-///     once!(println!("This prints only once"));
+///     run_once!(println!("This prints only once"));
 /// }
 /// ```
 pub struct OnceFlag(AtomicBool);
@@ -54,10 +54,10 @@ impl Default for OnceFlag {
 ///
 /// # Example
 /// ```
-/// use obel_platform::sync::once;
+/// use obel_platform::run_once;
 ///
 /// fn initialize_resource() {
-///     once!({
+///     run_once!({
 ///         // Expensive initialization code here
 ///         println!("Resource initialized");
 ///     });
@@ -75,7 +75,7 @@ impl Default for OnceFlag {
 #[macro_export]
 macro_rules! run_once {
     ($expression:expr) => {{
-        static SHOULD_FIRE: $crate::OnceFlag = $crate::OnceFlag::new();
+        static SHOULD_FIRE: $crate::sync::OnceFlag = $crate::sync::OnceFlag::new();
         if SHOULD_FIRE.set() {
             $expression;
         }

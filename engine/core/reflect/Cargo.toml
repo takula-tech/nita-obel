@@ -1,7 +1,7 @@
 [package]
 name = "obel_reflect"
 version = "0.0.0"
-description = "rust reflect to ease game developments"
+description = "provide rust reflect function to ease game developments"
 keywords = ["obel", "obel_engine", "obel_reflect"]
 categories = { workspace = true }
 edition = { workspace = true }

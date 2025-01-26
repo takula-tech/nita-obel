@@ -8,7 +8,7 @@
 //! # Example
 //! Instead of writing this:
 //! ```
-//! # use quote::quote;
+//! use quote::quote;
 //! quote!(
 //!     fn get_id() -> Option<i32> {
 //!         Some(0)
@@ -17,7 +17,7 @@
 //! ```
 //! Or this:
 //! ```
-//! # use quote::quote;
+//! use quote::quote;
 //! quote!(
 //!     fn get_id() -> ::core::option::Option<i32> {
 //!         ::core::option::Option::Some(0)
@@ -26,8 +26,8 @@
 //! ```
 //! We should write this:
 //! ```
-//! use bevy_macro_utils::fq_std::FQOption;
-//! # use quote::quote;
+//! use obel_reflect::FQOption;
+//! use quote::quote;
 //!
 //! quote!(
 //!     fn get_id() -> #FQOption<i32> {

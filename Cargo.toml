@@ -1,7 +1,13 @@
 [package]
 name = "obel"
 version = "0.0.0"
-exclude = ["assets/", "tools/", ".github/", "examples/wasm/assets/"]
+exclude = [
+  "assets/",
+  "tools/",
+  ".github/",
+  "examples/wasm/assets/",
+  "templates/",
+]
 description = "A refreshingly simple data-driven game engine and app framework"
 categories = { workspace = true }
 edition = { workspace = true }
@@ -35,7 +41,7 @@ workspace = true
 workspace = true
 
 [workspace]
-exclude = ["engine/samplecrate"]
+exclude = ["templates/"]
 members = [
   "engine/editor",
   "engine/feat/*",
@@ -44,7 +50,9 @@ members = [
   "engine/platform",
   "engine/api",
   "engine/dylib",
-  # "engine/samplecrate",
+  # Several crates with macros have `compile tests` nested inside them.
+  "engine/**/compile_ui_test",
+  "tools/*",
 ]
 
 [workspace.package]
@@ -66,6 +74,7 @@ obel_diagnostic = { path = "engine/core/diagnostic", default-features = false, v
 obel_reflect = { path = "engine/core/reflect", default-features = false, version = "0.0.0" }
 obel_statechart = { path = "engine/core/statechart", default-features = false, version = "0.0.0" }
 obel_platform = { path = "engine/platform", default-features = false, version = "0.0.0" }
+obel_ui_test_runner = { path = "tools/ui_test_runner", default-features = false, version = "0.0.0" }
 
 # [dev-dependencies]
 ron = "0.8.0"

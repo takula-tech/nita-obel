@@ -13,7 +13,7 @@ pub use syncunsafecell::*;
 mod default;
 mod dropcb;
 #[cfg(feature = "std")]
-mod parallelqueue;
+mod parallelqueue; // thread_local crate needs std
 mod ptr;
 mod synccell;
 mod syncunsafecell;
