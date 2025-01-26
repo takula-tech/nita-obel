@@ -97,16 +97,6 @@ This [list][cargo_features] outlines the different cargo features supported by o
 
 [cargo_features]: docs/cargo_features.md
 
-## Thanks
-
-obel is the result of the hard work of many people. A huge thanks to all obel contributors, the many open source projects that have come before us, the [Rust gamedev ecosystem](https://arewegameyet.rs/), and the many libraries we build on.
-
-A huge thanks to obel's [generous sponsors](https://obelengine.org). obel will always be free and open source, but it isn't free to make. Please consider [sponsoring our work](https://obelengine.org/donate/) if you like what we're building.
-
-<!-- This next line need to stay exactly as is. It is required for BrowserStack sponsorship. -->
-
-This project is tested with BrowserStack.
-
 ## License
 
 obel is free, open source and permissively licensed!
