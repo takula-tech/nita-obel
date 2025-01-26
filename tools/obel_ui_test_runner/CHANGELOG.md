@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [0.0.0]
+## [0.0.1]
 
 ### ⛰️ Features
 
@@ -10,7 +10,6 @@
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(obel_ui_test)* Add new crate - ([058c9b8](https://github.com/takula-tech/nita-obel/commit/058c9b8a14670189f100387b750c8bce38a79440))
-- *(obel_utils)* Code cleanup and improve using obel_platform - ([dd468ed](https://github.com/takula-tech/nita-obel/commit/dd468ede70a67f83c382821a3ecab39391f21da0))
+- _(obel_ui_test)_ Add new crate - ([058c9b8](https://github.com/takula-tech/nita-obel/commit/058c9b8a14670189f100387b750c8bce38a79440))
+- _(obel_utils)_ Code cleanup and improve using obel_platform - ([dd468ed](https://github.com/takula-tech/nita-obel/commit/dd468ede70a67f83c382821a3ecab39391f21da0))
 - Init - ([f382fe1](https://github.com/takula-tech/nita-obel/commit/f382fe1fc141778032e0099a6300c5daf0b050cd))
-

@@ -1,8 +1,8 @@
 [package]
-name = "obel_editor"
-version = "0.0.0"
-description = "Provides core App functionality"
-keywords = ["obel", "obel_editor"]
+name = "obel_physics"
+version = "0.0.1"
+description = "Provides the feature"
+keywords = ["obel", "obel_physics"]
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
