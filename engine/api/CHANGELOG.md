@@ -15,4 +15,3 @@
 - Update project folder structure - ([6b199e2](https://github.com/takula-tech/nita-obel/commit/6b199e28615c2b848a9888bd6d76a2f4a5d472d4))
 - Init - ([f382fe1](https://github.com/takula-tech/nita-obel/commit/f382fe1fc141778032e0099a6300c5daf0b050cd))
 
-# Changelog

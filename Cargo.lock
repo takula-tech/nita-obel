@@ -527,7 +527,7 @@ dependencies = [
 
 [[package]]
 name = "obel_app"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "static_assertions",
 ]
@@ -571,7 +571,7 @@ dependencies = [
 
 [[package]]
 name = "obel_platform"
-version = "0.0.0"
+version = "0.0.1"
 dependencies = [
  "critical-section",
  "foldhash",
