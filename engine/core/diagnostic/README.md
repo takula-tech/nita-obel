@@ -1,4 +1,4 @@
-# obel Diagnostic
+# Obel Diagnostic
 
 [![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
 [![Crates.io](https://img.shields.io/crates/v/obel_diagnostic.svg)](https://crates.io/crates/obel_diagnostic)
