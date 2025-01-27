@@ -1,6 +1,6 @@
 [package]
 name = "obel_reflect_complie_test"
-version = "0.0.0"
+version = "0.0.5"
 publish = false
 description = "Compile fail tests for Obel Engine's reflection system"
 keywords = ["obel", "obel_reflect_complie_test"]

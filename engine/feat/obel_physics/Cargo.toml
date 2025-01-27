@@ -1,6 +1,6 @@
 [package]
 name = "obel_physics"
-version = "0.0.0"
+version = "0.0.5"
 description = "Provides the feature"
 keywords = ["obel", "obel_physics"]
 categories = { workspace = true }

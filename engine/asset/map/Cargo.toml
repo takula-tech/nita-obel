@@ -1,6 +1,6 @@
 [package]
 name = "obel_ast_map"
-version = "0.0.0"
+version = "0.0.5"
 description = "Provides obel_ast_map"
 keywords = ["obel", "obel_ast_map"]
 categories = { workspace = true }

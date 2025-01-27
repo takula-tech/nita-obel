@@ -1,6 +1,6 @@
 [package]
 name = "obel_dylib"
-version = "0.0.0"
+version = "0.0.5"
 description = "Force the obel Engine to be dynamically linked for faster linking"
 keywords = ["obel", "obel_dylib"]
 categories = { workspace = true }

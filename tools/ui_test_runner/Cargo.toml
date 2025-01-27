@@ -3,7 +3,7 @@ maintenance = { status = "actively-developed" }
 
 [package]
 name = "obel_ui_test_runner"
-version = "0.0.0"
+version = "0.0.5"
 description = "provide ui test runner function to ease compile tests"
 keywords = ["obel", "obel_ui_test_runner"]
 categories = { workspace = true }
