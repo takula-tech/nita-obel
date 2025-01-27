@@ -44,6 +44,7 @@ workspace = true
 [workspace]
 exclude = ["templates/", "tools/typescript"]
 members = [
+  "tools/*",
   "engine/editor",
   "engine/platform",
   "engine/api",
@@ -53,7 +54,6 @@ members = [
   "engine/core/*",
   # Several crates with macros have `compile tests` nested inside them.
   "engine/**/compile_ui_test",
-  "tools/*",
 ]
 
 [workspace.package]
