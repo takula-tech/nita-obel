@@ -563,13 +563,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "obel_physics"
-version = "0.0.2"
-dependencies = [
- "static_assertions",
-]
-
-[[package]]
 name = "obel_platform"
 version = "0.0.2"
 dependencies = [
@@ -623,6 +616,13 @@ version = "0.0.1"
 dependencies = [
  "obel_reflect",
  "obel_ui_test_runner",
+ "static_assertions",
+]
+
+[[package]]
+name = "obel_scene"
+version = "0.0.0"
+dependencies = [
  "static_assertions",
 ]
 

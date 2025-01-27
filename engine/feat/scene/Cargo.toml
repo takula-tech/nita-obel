@@ -6,10 +6,10 @@ workspace = true
 workspace = true
 
 [package]
-name = "obel_physics"
-version = "0.0.2"
-description = "Provides the feature"
-keywords = ["obel", "obel_physics"]
+name = "obel_scene"
+version = "0.0.0"
+description = "Provides scene to organize game objects"
+keywords = ["obel", "obel_engine", "obel_scene"]
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
@@ -18,6 +18,8 @@ license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
 readme = { workspace = true }
+
+[dependencies]
 
 [dev-dependencies]
 static_assertions = { workspace = true }
