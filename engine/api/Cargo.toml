@@ -1,6 +1,6 @@
 [package]
 name = "obel_api"
-version = "0.0.2"
+version = "0.0.3"
 description = "facilitate optional dynamic linking via the 'dynamic_linking' feature..."
 keywords = ["obel", "obel_api"]
 categories = { workspace = true }

@@ -509,7 +509,7 @@ checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
 
 [[package]]
 name = "obel"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "obel_api",
  "obel_dylib",
@@ -517,7 +517,7 @@ dependencies = [
 
 [[package]]
 name = "obel_api"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "obel_diagnostic",
  "obel_platform",
@@ -541,7 +541,7 @@ dependencies = [
 
 [[package]]
 name = "obel_diagnostic"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "const-fnv1a-hash",
  "obel_platform",
@@ -564,7 +564,7 @@ dependencies = [
 
 [[package]]
 name = "obel_platform"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "critical-section",
  "foldhash",
@@ -580,7 +580,7 @@ dependencies = [
 
 [[package]]
 name = "obel_reflect"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "assert_type_match",
  "bincode",

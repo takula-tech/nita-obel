@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.0.3](https://github.com/takula-tech/nita-obel/compare/obel_reflect-v0.0.2...obel_reflect-v0.0.3)
+
+### ⚙️ Miscellaneous Tasks
+
+- Updated the following local packages: obel_platform - ([0000000](https://github.com/takula-tech/nita-obel/commit/0000000))
+
 ## [0.0.2](https://github.com/takula-tech/nita-obel/compare/obel_reflect-v0.0.1...obel_reflect-v0.0.2)
 
 ### ⚙️ Miscellaneous Tasks
