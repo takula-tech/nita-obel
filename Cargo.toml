@@ -42,6 +42,7 @@ workspace = true
 workspace = true
 
 [workspace]
+resolver = "2"
 exclude = ["templates/", "tools/typescript"]
 members = [
   "tools/*",
