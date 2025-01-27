@@ -2,7 +2,7 @@
 name = "[replace me]"
 description = "[replace me]"
 keywords = ["obel", "[replace me]"]
-version = "0.0.5"
+version = "0.0.1"
 categories = { workspace = true }
 edition = { workspace = true }
 rust-version = { workspace = true }
