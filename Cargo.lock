@@ -517,7 +517,7 @@ dependencies = [
 
 [[package]]
 name = "obel_api"
-version = "0.0.0"
+version = "0.0.1"
 dependencies = [
  "obel_diagnostic",
  "obel_platform",

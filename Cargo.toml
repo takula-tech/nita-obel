@@ -68,7 +68,7 @@ readme = "README.md"
 
 [workspace.dependencies]
 # [obel-dependencies]
-obel_api = { path = "engine/api", default-features = false, version = "0.0.0" }
+obel_api = { path = "engine/api", default-features = false, version = "0.0.1" }
 obel_dylib = { path = "engine/dylib", default-features = false, version = "0.0.0" }
 obel_app = { path = "engine/core/app", default-features = false, version = "0.0.0" }
 obel_diagnostic = { path = "engine/core/diagnostic", default-features = false, version = "0.0.0" }
