@@ -62,8 +62,9 @@ results.forEach((result, index) => {
     const data = result.value as { name: string; version: string };
     const remote = crates.get(data.name);
     if (!remote) return;
-    crates.set(data.name, { ...remote, remoteVersion: data.version });
-    console.log(data);
+    const newVal = { ...remote, remoteVersion: data.version };
+    crates.set(newVal.name, newVal);
+    console.log(newVal);
   } else {
     console.error(`\nError fetching version for ${name}:`, result.reason);
   }
