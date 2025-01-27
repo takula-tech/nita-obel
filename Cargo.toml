@@ -3,11 +3,14 @@ name = "obel"
 version = "0.0.2"
 exclude = [
   "assets/",
+  "benches",
+  "docs/",
+  "engine/",
+  "examples/",
+  "templates/",
+  "tests/",
   "tools/",
   ".github/",
-  "examples/wasm/assets/",
-  "templates/",
-  "engine/**/compile_ui_test",
 ]
 description = "A refreshingly simple data-driven game engine and app framework"
 categories = { workspace = true }
