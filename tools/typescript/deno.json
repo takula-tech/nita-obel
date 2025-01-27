@@ -1,7 +1,8 @@
 {
   "tasks": {},
   "imports": {
-    "@std/assert": "jsr:@std/assert@1",
-    "@david/dax": "jsr:@david/dax@^0.42.0"
+    "@std/assert": "jsr:@std/assert",
+    "@std/toml": "jsr:@std/toml",
+    "@david/dax": "jsr:@david/dax"
   }
 }

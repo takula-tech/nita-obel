@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno run --allow-all
+
 import $ from "@david/dax";
-import * as TOML from "https://deno.land/std@0.220.1/toml/mod.ts";
+import * as TOML from "@std/toml";
 
 // Define root path constant using fs api
 const rootPath = new URL("../..\n", import.meta.url).pathname;
@@ -72,7 +73,7 @@ await Promise.all(
       const manifestPath = `${rootPath}${crateInfo.path}`;
       const cmd = `cd ${manifestPath} && release-plz set-version ${version}`;
       console.log(cmd);
-      await $`${cmd}`;
+      // await $`${cmd}`;
     }
   })
 );

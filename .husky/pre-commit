@@ -4,14 +4,16 @@ cargo fmt --all -- --check ||
     echo '❌❌❌❌ Failed Cargo fmt ❌❌❌❌'
     exit 1;
 )
+
 echo '\n🏗️👷 Cargo Clippy...'
 cargo clippy --all --all-features -- -D warnings ||
 (
     echo '❌❌❌❌ Failed Cargo Clippy ❌❌❌❌'
     exit 1;
 )
+
 echo '\n🏗️👷 Cargo Test...'
-cargo test ||
+cargo test --workspace ||
 (
     echo '❌❌❌❌ Failed Cargo Test ❌❌❌❌'
     exit 1;
