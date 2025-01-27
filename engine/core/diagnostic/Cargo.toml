@@ -17,8 +17,13 @@ readme = { workspace = true }
 dynamic_linking = []
 sysinfo_plugin = ["dep:sysinfo"]
 
+## Allows access to the `std` crate. Enabling this feature will prevent compilation
+## on `no_std` targets, but provides access to certain additional features on
+## supported platforms.
+std = ["obel_platform/std"]
+
 [dependencies]
-obel_platform = { workspace = true }
+obel_platform = { workspace = true, features = ["alloc"] }
 const-fnv1a-hash = { workspace = true }
 
 # macOS
