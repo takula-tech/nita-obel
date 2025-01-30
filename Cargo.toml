@@ -55,7 +55,6 @@ members = [
   "engine/feat/*",
   "engine/asset/*",
   "engine/core/*",
-  # "engine/core/reflect/derive",
   # Several crates with macros have `compile tests` nested inside them.
   "engine/**/compile_ui_test",
 ]
