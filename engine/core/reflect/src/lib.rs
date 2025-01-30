@@ -7,7 +7,7 @@
 // Without these declarations, while local compilation and tests succeed,
 // the release build fails with import errors for obel_platform's boxed and vec types
 // with the below error:
-// Compiling obel_reflect_derive v0.0.5 (/home/runner/work/nita-obel/nita-obel/target/package/obel_reflect_derive-0.0.5)
+// Compiling obel_reflect_derive v0.0.5 (/home/runner/work/nita-obel/nita-obel/target/package/obel_reflect_derive-0.0.6)
 // error[E0432]: unresolved import `obel_platform::boxed`
 //  --> src/remote.rs:9:21
 //   |
