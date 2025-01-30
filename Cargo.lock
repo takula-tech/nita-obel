@@ -521,7 +521,7 @@ checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
 
 [[package]]
 name = "obel"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "obel_api",
  "obel_dylib",
