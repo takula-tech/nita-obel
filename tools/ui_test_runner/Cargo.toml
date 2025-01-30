@@ -1,5 +1,9 @@
 [badges]
 maintenance = { status = "actively-developed" }
+[lints]
+workspace = true
+[package.metadata.docs.rs]
+workspace = true
 
 [package]
 name = "obel_ui_test_runner"
@@ -14,14 +18,6 @@ license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
 readme = { workspace = true }
-
-[lints]
-workspace = true
-[package.metadata.docs.rs]
-workspace = true
-
-[dev-dependencies]
-static_assertions = { workspace = true }
 
 [dependencies]
 ui_test = "0.23.0"

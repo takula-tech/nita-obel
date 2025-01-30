@@ -657,7 +657,6 @@ dependencies = [
 name = "obel_ui_test_runner"
 version = "0.0.5"
 dependencies = [
- "static_assertions",
  "ui_test",
 ]
 
