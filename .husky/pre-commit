@@ -6,7 +6,7 @@ cargo fmt --all -- --check ||
 )
 
 echo '\n🏗️👷 Cargo Clippy...'
-cargo clippy --all --all-features -- -D warnings ||
+cargo clippy --workspace --all-features -- -D warnings ||
 (
     echo '❌❌❌❌ Failed Cargo Clippy ❌❌❌❌'
     exit 1;

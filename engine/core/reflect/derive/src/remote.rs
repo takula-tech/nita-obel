@@ -6,8 +6,7 @@ use crate::{
     impls::impl_assertions,
     ReflectDerive, REFLECT_ATTRIBUTE_NAME,
 };
-use obel_platform::boxed::Box;
-use obel_platform::vec::Vec;
+use obel_platform::{boxed::Box, vec::Vec};
 use obel_reflect_utils::FQOption;
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, Span};

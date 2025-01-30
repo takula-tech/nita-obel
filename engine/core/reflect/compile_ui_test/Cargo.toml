@@ -27,3 +27,7 @@ static_assertions = { workspace = true }
 
 [dependencies]
 obel_reflect_derive = { workspace = true, features = ["functions"] }
+
+[[test]]
+name = "derive"
+harness = false
