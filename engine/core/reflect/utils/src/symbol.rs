@@ -1,4 +1,4 @@
-use alloc::fmt::{self, Display};
+use core::fmt::{self, Display};
 use syn::{Ident, Path};
 
 /// A single named value, representable as a [string](str).

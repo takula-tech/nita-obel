@@ -11,8 +11,3 @@ extern crate std;
 extern crate alloc;
 
 extern crate proc_macro;
-
-#[cfg(feature = "std")]
-mod utils;
-#[cfg(feature = "std")]
-pub use utils::*;

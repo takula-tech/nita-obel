@@ -1,13 +1,7 @@
 //! Platform-agnostic impls to `string` items
 
 #[cfg(feature = "alloc")]
-pub use alloc::format;
-
-#[cfg(feature = "alloc")]
-pub use alloc::string::ToString;
-
-#[cfg(feature = "alloc")]
-pub use alloc::string::String;
+pub use alloc::{format, string::String, string::ToString};
 
 #[cfg(not(feature = "alloc"))]
 compile_error!(

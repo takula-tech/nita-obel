@@ -26,7 +26,7 @@
 //! ```
 //! We should write this:
 //! ```
-//! use obel_reflect::FQOption;
+//! use obel_reflect_utils::FQOption;
 //! use quote::quote;
 //!
 //! quote!(

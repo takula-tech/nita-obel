@@ -7,6 +7,7 @@ pub use hash_set::HashSet;
 pub use hash_table::HashTable;
 pub use hashbrown::Equivalent;
 
+#[cfg(feature = "alloc")]
 pub mod hash_map {
     //! Provides [`HashMap`]
 
@@ -35,6 +36,7 @@ pub mod hash_map {
     pub type Entry<'a, K, V, S = FixedHasher> = hb::Entry<'a, K, V, S>;
 }
 
+#[cfg(feature = "alloc")]
 pub mod hash_set {
     //! Provides [`HashSet`]
 
@@ -54,6 +56,7 @@ pub mod hash_set {
     pub type Entry<'a, T, S = FixedHasher> = hb::Entry<'a, T, S>;
 }
 
+#[cfg(feature = "alloc")]
 pub mod hash_table {
     //! Provides [`HashTable`]
 
@@ -62,3 +65,8 @@ pub mod hash_table {
         IterMut, OccupiedEntry, VacantEntry,
     };
 }
+
+#[cfg(not(feature = "alloc"))]
+compile_error!(
+    "Missing `hashbrown` impls in your platform. please report this issue to the maintainer"
+);

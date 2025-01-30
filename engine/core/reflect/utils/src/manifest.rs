@@ -4,17 +4,17 @@ use proc_macro::TokenStream;
 use toml_edit::{DocumentMut, Item};
 
 /// The path to the `Cargo.toml` file for the Bevy project.
-pub struct BevyManifest {
+pub struct ObelManifest {
     manifest: DocumentMut,
 }
 
 const OBEL: &str = "obel";
 const OBEL_API: &str = "obel_api";
 
-impl BevyManifest {
-    /// Returns a global shared instance of the [`BevyManifest`] struct.
+impl ObelManifest {
+    /// Returns a global shared instance of the [`ObelManifest`] struct.
     pub fn shared() -> &'static LazyLock<Self> {
-        static LAZY_SELF: LazyLock<BevyManifest> = LazyLock::new(|| BevyManifest {
+        static LAZY_SELF: LazyLock<ObelManifest> = LazyLock::new(|| ObelManifest {
             manifest: env::var_os("CARGO_MANIFEST_DIR")
                 .map(PathBuf::from)
                 .map(|mut path| {
@@ -35,7 +35,7 @@ impl BevyManifest {
     }
 
     /// Attempt to retrieve the [path](syn::Path) of a particular package in
-    /// the [manifest](BevyManifest) by [name](str).
+    /// the [manifest](ObelManifest) by [name](str).
     pub fn maybe_get_path(&self, name: &str) -> Option<syn::Path> {
         fn dep_package(dep: &Item) -> Option<&str> {
             if dep.as_str().is_some() {
@@ -95,7 +95,7 @@ impl BevyManifest {
         self.maybe_get_path(OBEL)
             .map(|bevy_path| {
                 let mut segments = bevy_path.segments;
-                segments.push(BevyManifest::parse_str(subcrate));
+                segments.push(ObelManifest::parse_str(subcrate));
                 syn::Path {
                     leading_colon: None,
                     segments,

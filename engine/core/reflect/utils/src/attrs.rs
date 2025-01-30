@@ -1,5 +1,5 @@
-use crate::utils::symbol::Symbol;
-use alloc::format;
+use crate::symbol::Symbol;
+use obel_platform::string::format;
 use syn::{Expr, ExprLit, Lit};
 
 /// Get a [literal string](struct@syn::LitStr) from the provided [expression](Expr).

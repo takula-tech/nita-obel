@@ -591,9 +591,8 @@ dependencies = [
  "foldhash",
  "glam",
  "obel_platform",
+ "obel_reflect_derive",
  "petgraph",
- "proc-macro2",
- "quote",
  "rmp-serde",
  "ron",
  "serde",
@@ -602,9 +601,7 @@ dependencies = [
  "smol_str",
  "spin",
  "static_assertions",
- "syn",
  "thiserror 2.0.11",
- "toml_edit",
  "uuid",
  "variadics_please",
  "wgpu-types",
@@ -617,6 +614,29 @@ dependencies = [
  "obel_reflect",
  "obel_ui_test_runner",
  "static_assertions",
+]
+
+[[package]]
+name = "obel_reflect_derive"
+version = "0.0.5"
+dependencies = [
+ "obel_platform",
+ "obel_reflect_utils",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "uuid",
+]
+
+[[package]]
+name = "obel_reflect_utils"
+version = "0.0.5"
+dependencies = [
+ "obel_platform",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "toml_edit",
 ]
 
 [[package]]
