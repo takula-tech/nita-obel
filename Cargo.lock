@@ -611,7 +611,7 @@ dependencies = [
 name = "obel_reflect_complie_test"
 version = "0.0.1"
 dependencies = [
- "obel_reflect",
+ "obel_reflect_derive",
  "obel_ui_test_runner",
  "static_assertions",
 ]
