@@ -3,6 +3,7 @@
     html_logo_url = "https://obelengine.org/assets/icon.png",
     html_favicon_url = "https://obelengine.org/assets/icon.png"
 )]
+#![no_std] // tells the compiler "don't automatically link std"
 
 //! Forces dynamic linking of obel.
 //!
