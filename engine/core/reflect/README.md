@@ -1,10 +1,10 @@
 # Obel Reflect
 
-[![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
-[![Crates.io](https://img.shields.io/crates/v/obel.svg)](https://crates.io/crates/obel_reflect)
-[![Downloads](https://img.shields.io/crates/d/obel_reflect.svg)](https://crates.io/crates/obel_reflect)
-[![Docs](https://docs.rs/obel_reflect/badge.svg)](https://docs.rs/obel_reflect/latest/obel_reflect/)
-[![Discord](https://img.shields.io/discord/691052431525675048.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/obel)
+[![license](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
+[![crates.io](https://img.shields.io/crates/v/obel.svg)](https://crates.io/crates/obel)
+[![downloads](https://img.shields.io/crates/d/obel.svg)](https://crates.io/crates/obel)
+[![docs.rs](https://docs.rs/obel/badge.svg)](https://docs.rs/obel/latest/obel/)
+[![discord.online](https://img.shields.io/discord/1335036405788971020.svg?label=&logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/3jq8js8u)
 
 This crate enables you to dynamically interact with Rust types:
 
@@ -139,8 +139,12 @@ let reflect_value: Box<dyn Reflect> = Box::new(MyType {
 });
 
 // This means we no longer have direct access to MyType or its methods. We can only call Reflect methods on reflect_value.
-// What if we want to call `do_thing` on our type? We could downcast using reflect_value.downcast_ref::<MyType>(), but what if we
-// don't know the type at compile time?
+// What if we want to call `do_thing` on our type?
+// We could downcast using reflect_value.downcast_ref::<MyType>(), but what if we don't know the type at compile time?
+// Also we cannot directly downcast from dyn Reflect to dyn DoThing
+// because Rust's type system doesn't allow direct downcasing between different trait objects - &Reflect and &DoThing
+// This won't work!
+let my_trait = (&*reflect_value as &dyn DoThing);
 
 // Normally in rust we would be out of luck at this point. Lets use our new reflection powers to do something cool!
 let mut type_registry = TypeRegistry::default();
@@ -171,7 +175,7 @@ The whole point of Rust is static safety! Why build something that makes it easy
 - Sometimes the dynamic way is easier
 - Sometimes the dynamic way puts less burden on your users to derive a bunch of traits (this was a big motivator for the obel project)
 
-## `Sequence Diagram`
+## Sequence Diagram
 
 The following sequence diagram illustrates how a type with `#[derive(Reflect)]` is processed:
 

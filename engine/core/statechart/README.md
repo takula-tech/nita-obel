@@ -1,10 +1,10 @@
 # Obel Statechart
 
-[![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
-[![Crates.io](https://img.shields.io/crates/v/obel_statechart.svg)](https://crates.io/crates/obel_statechart)
-[![Downloads](https://img.shields.io/crates/d/obel_statechart.svg)](https://crates.io/crates/obel_statechart)
-[![Docs](https://docs.rs/obel_statechart/badge.svg)](https://docs.rs/obel_statechart/latest/obel_statechart/)
-[![Discord](https://img.shields.io/discord/691052431525675048.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/obel)
+[![license](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
+[![crates.io](https://img.shields.io/crates/v/obel.svg)](https://crates.io/crates/obel)
+[![downloads](https://img.shields.io/crates/d/obel.svg)](https://crates.io/crates/obel)
+[![docs.rs](https://docs.rs/obel/badge.svg)](https://docs.rs/obel/latest/obel/)
+[![discord.online](https://img.shields.io/discord/1335036405788971020.svg?label=&logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/3jq8js8u)
 
 You can think of statechart(SC) as kind of event-driven behavior tree (BT).
 But actually SC is more powerful and has more benefits than traditional BT.

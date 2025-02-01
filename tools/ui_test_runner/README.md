@@ -1,4 +1,10 @@
-# Helpers for compile fail tests
+# Obel UI Test Runner
+
+[![license](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
+[![crates.io](https://img.shields.io/crates/v/obel.svg)](https://crates.io/crates/obel)
+[![downloads](https://img.shields.io/crates/d/obel.svg)](https://crates.io/crates/obel)
+[![docs.rs](https://docs.rs/obel/badge.svg)](https://docs.rs/obel/latest/obel/)
+[![discord.online](https://img.shields.io/discord/1335036405788971020.svg?label=&logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/3jq8js8u)
 
 This crate contains everything needed to set up compile tests for the Bevy repo. The `CI` workflow executes these tests on the stable rust toolchain (see [tools/ci](../../tools/ci/src/main.rs)).
 

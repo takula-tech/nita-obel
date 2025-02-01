@@ -67,6 +67,10 @@ license = "MIT OR Apache-2.0"
 categories = ["game-engines", "graphics", "gui", "rendering"]
 repository = "https://github.com/obelengine/obel"
 documentation = "https://docs.rs/obel"
+# - Used by crates.io to display the README on the package's page
+# - Shows up on the package's GitHub repository
+# - Does NOT include the README content in the generated rustdoc
+# - Does NOT allow running doc-tests from the README
 readme = "README.md"
 
 [workspace.dependencies]

@@ -1,4 +1,5 @@
-//! A collection of helper types and functions for working on macros within the Bevy ecosystem.
+#![doc = include_str!("../README.md")]
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 
 extern crate proc_macro;
 
