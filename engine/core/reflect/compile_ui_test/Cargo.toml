@@ -19,7 +19,7 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = { workspace = true }
+readme = "README.md"
 
 [dev-dependencies]
 obel_ui_test_runner = { workspace = true }

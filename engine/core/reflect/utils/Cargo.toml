@@ -17,7 +17,7 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = { workspace = true }
+readme = "README.md"
 
 [dependencies]
 obel_platform = { workspace = true, features = ["std"] }

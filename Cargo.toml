@@ -19,7 +19,7 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = { workspace = true }
+readme = "README.md"
 
 [features]
 # Force dynamic linking, which improves iterative compile times
@@ -62,11 +62,11 @@ members = [
 [workspace.package]
 edition = "2021"
 rust-version = "1.82.0"
-homepage = "https://obelengine.org"
+homepage = "https://takulatech.net"
 license = "MIT OR Apache-2.0"
 categories = ["game-engines", "graphics", "gui", "rendering"]
-repository = "https://github.com/obelengine/obel"
-documentation = "https://docs.rs/obel"
+repository = "https://github.com/takula-tech/nita-obel"
+documentation = "https://obel.takulatech.net/docs"
 # - Used by crates.io to display the README on the package's page
 # - Shows up on the package's GitHub repository
 # - Does NOT include the README content in the generated rustdoc

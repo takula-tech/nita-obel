@@ -10,7 +10,7 @@ homepage = { workspace = true }
 license = { workspace = true }
 repository = { workspace = true }
 documentation = { workspace = true }
-readme = { workspace = true }
+readme = "README.md"
 
 [features]
 # Disables diagnostics that are unsupported when obel is dynamically linked
