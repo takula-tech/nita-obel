@@ -10,7 +10,7 @@ proc-macro = true
 
 [package]
 name = "obel_reflect_derive"
-version = "0.0.6"
+version = "0.0.7"
 description = "Provide the macro derives fro obel_reflect"
 keywords = ["obel", "obel_engine", "obel_reflect_derive"]
 categories = { workspace = true }

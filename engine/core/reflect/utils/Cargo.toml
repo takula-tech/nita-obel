@@ -7,7 +7,7 @@ workspace = true
 
 [package]
 name = "obel_reflect_utils"
-version = "0.0.6"
+version = "0.0.7"
 description = "Provide the token utils fro obel_reflect"
 keywords = ["obel", "obel_engine", "obel_reflect_utils"]
 categories = { workspace = true }

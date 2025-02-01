@@ -7,7 +7,7 @@ workspace = true
 
 [package]
 name = "obel_ui_test_runner"
-version = "0.0.6"
+version = "0.0.7"
 description = "provide ui test runner function to ease compile tests"
 keywords = ["obel", "obel_ui_test_runner"]
 categories = { workspace = true }
