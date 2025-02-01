@@ -1,6 +1,6 @@
 [package]
 name = "obel_statechart"
-version = "0.0.8"
+version = "0.0.9"
 description = "Provides statechart plugin to implement complex game logics eg, behavior tree"
 keywords = ["obel", "obel_engine", "obel_statechart"]
 categories = { workspace = true }
