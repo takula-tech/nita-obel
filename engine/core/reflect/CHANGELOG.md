@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.0.8](https://github.com/takula-tech/nita-obel/compare/obel_reflect-v0.0.7...obel_reflect-v0.0.8)
+
+### 📚 Documentation
+
+- Enable README.md at crate level - ([fbb99b1](https://github.com/takula-tech/nita-obel/commit/fbb99b1fd164ea65ca293713ddd36f0b9891bcad))
+
 ## [0.0.7](https://github.com/takula-tech/nita-obel/compare/obel_reflect-v0.0.6...obel_reflect-v0.0.7)
 
 ### 📚 Documentation
