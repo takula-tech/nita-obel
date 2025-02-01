@@ -1,6 +1,6 @@
 [package]
 name = "obel_platform"
-version = "0.0.6"
+version = "0.0.7"
 description = "Platform agnostic support"
 keywords = ["obel", "obel_engine", "obel_platform"]
 categories = { workspace = true }

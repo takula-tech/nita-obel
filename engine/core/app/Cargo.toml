@@ -1,6 +1,6 @@
 [package]
 name = "obel_app"
-version = "0.0.6"
+version = "0.0.7"
 description = "Provides core App functionality"
 keywords = ["obel", "obel_engine", "obel_app"]
 categories = { workspace = true }
