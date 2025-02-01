@@ -1,4 +1,4 @@
-# When linting documentation (e.g., comments or docstrings),
+# When linting documentation (e.g., comments or doc strings),
 # these identifiers will be accepted as correctly spelled or valid
 # even if they don’t follow conventional naming rules.
 doc-valid-idents = [
@@ -15,7 +15,7 @@ doc-valid-idents = [
 ]
 
 # Ensures that linting checks (like naming conventions, unused functions, or documentation completeness)
-# apply to private items as well as public items. When true, the tool will not skip private items during checks 
+# apply to private items as well as public items. When true, the tool will not skip private items during checks
 # aiming for high internal code quality, not just public API cleanliness.
 check-private-items = true
 
