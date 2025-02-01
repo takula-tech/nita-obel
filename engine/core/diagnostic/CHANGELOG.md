@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.0.9](https://github.com/takula-tech/nita-obel/compare/obel_diagnostic-v0.0.8...obel_diagnostic-v0.0.9)
+
+### 📚 Documentation
+
+- Comment doc(html_logo_url - ([20be5e7](https://github.com/takula-tech/nita-obel/commit/20be5e708f1da4f6deb7ccdf2d37420a6b9e8008))
+
 ## [0.0.8](https://github.com/takula-tech/nita-obel/compare/obel_diagnostic-v0.0.7...obel_diagnostic-v0.0.8)
 
 ### 📚 Documentation

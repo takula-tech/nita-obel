@@ -7,7 +7,7 @@ workspace = true
 
 [package]
 name = "obel_scene"
-version = "0.0.8"
+version = "0.0.9"
 description = "Provides scene to organize game objects"
 keywords = ["obel", "obel_engine", "obel_scene"]
 categories = { workspace = true }
