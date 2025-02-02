@@ -604,6 +604,7 @@ dependencies = [
  "glam",
  "obel_platform",
  "obel_reflect_derive",
+ "obel_reflect_utils",
  "petgraph",
  "rmp-serde",
  "ron",
@@ -648,6 +649,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+ "tempfile",
  "toml_edit",
 ]
 

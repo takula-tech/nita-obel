@@ -66,6 +66,7 @@ critical-section = ["obel_platform/critical-section"]
 portable-atomic = ["obel_platform/portable-atomic"]
 
 [dependencies]
+obel_reflect_utils = { workspace = true }
 obel_reflect_derive = { workspace = true }
 obel_platform = { workspace = true, features = ["alloc", "serialize"] }
 # toml_edit = { workspace = true, features = ["parse"] }

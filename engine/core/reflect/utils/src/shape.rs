@@ -1,4 +1,4 @@
-use proc_macro::Span;
+use proc_macro2::Span;
 use syn::{punctuated::Punctuated, token::Comma, Data, DataStruct, Error, Field, Fields};
 
 /// Get the fields of a data structure if that structure is a struct with named fields;
@@ -17,7 +17,7 @@ pub fn get_struct_fields(data: &Data) -> syn::Result<&Punctuated<Field, Comma>> 
             // This deliberately points to the call site rather than the structure
             // body; marking the entire body as the source of the error makes it
             // impossible to figure out which `derive` has a problem.
-            Span::call_site().into(),
+            Span::call_site(),
             "Only structs are supported",
         )),
     }

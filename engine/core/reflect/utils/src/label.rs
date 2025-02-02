@@ -1,7 +1,7 @@
 use obel_platform::{
     collections::HashSet, string::format, string::String, string::ToString, vec::Vec,
 };
-use proc_macro::{TokenStream, TokenTree};
+use proc_macro2::{TokenStream, TokenTree};
 use quote::{quote, quote_spanned};
 use syn::{spanned::Spanned, Ident};
 
@@ -66,8 +66,7 @@ pub fn derive_label(
         let message = format!("Cannot derive {trait_name} for unions.");
         return quote_spanned! {
             input.span() => compile_error!(#message);
-        }
-        .into();
+        };
     }
 
     let ident = input.ident.clone();
@@ -104,5 +103,4 @@ pub fn derive_label(
             }
         };
     }
-    .into()
 }
