@@ -3,5 +3,6 @@
 
 extern crate proc_macro;
 
+mod ident;
 mod meta;
 mod string_expr;
