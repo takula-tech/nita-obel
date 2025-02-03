@@ -1,5 +1,7 @@
 {
-  "tasks": {},
+  "tasks": {
+    "cargo-installs": "cargo install cargo-tarpaulin"
+  },
   "imports": {
     "@std/assert": "jsr:@std/assert",
     "@std/toml": "jsr:@std/toml",

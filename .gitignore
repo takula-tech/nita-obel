@@ -33,3 +33,5 @@ assets/scenes/load_scene_example-new.scn.ron
 **/screenshot-*.png
 
 node_modules/
+lcov.info
+build_rs_cov.profraw
