@@ -104,3 +104,78 @@ pub fn derive_label(
         };
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use proc_macro2::Span;
+    use syn::parse_quote;
+
+    #[test]
+    fn test_ensure_no_collision() {
+        // Test case 1: No collision
+        let ident = Ident::new("unique_name", Span::call_site());
+        let haystack = quote! { existing_name another_name };
+        let result = ensure_no_collision(ident, haystack);
+        assert_eq!(result.to_string(), "unique_name");
+
+        // Test case 2: Single collision
+        let ident = Ident::new("test", Span::call_site());
+        let haystack = quote! { test other_name };
+        let result = ensure_no_collision(ident, haystack);
+        assert_eq!(result.to_string(), "testX");
+
+        // Test case 3: Multiple collisions requiring multiple X's
+        let ident = Ident::new("test", Span::call_site());
+        let haystack = quote! { test testX other_name };
+        let result = ensure_no_collision(ident, haystack);
+        assert_eq!(result.to_string(), "testXX");
+
+        // Test case 4: Nested group tokens
+        let ident = Ident::new("nested", Span::call_site());
+        let haystack = quote! {
+            outer {
+                nested
+                inner
+            }
+        };
+        let result = ensure_no_collision(ident, haystack);
+        assert_eq!(result.to_string(), "nestedX");
+    }
+
+    #[test]
+    fn test_derive_label() {
+        // Test case 1: Simple struct derivation
+        let input: syn::DeriveInput = parse_quote! {
+            struct TestStruct {
+                field: i32
+            }
+        };
+        let trait_name = "TestLabel";
+        let trait_path: syn::Path = parse_quote!(TestLabel);
+        let dyn_eq_path: syn::Path = parse_quote!(DynEq);
+
+        let result = derive_label(input, trait_name, &trait_path, &dyn_eq_path);
+        assert!(result.to_string() == "const _ : () = { extern crate alloc ; impl TestLabel for TestStruct where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;");
+
+        // Test case 2: Union type (should return compile error)
+        let union_input: syn::DeriveInput = parse_quote! {
+            union TestUnion {
+                field: i32
+            }
+        };
+        let result = derive_label(union_input, trait_name, &trait_path, &dyn_eq_path);
+        assert!(
+            result.to_string() == "compile_error ! (\"Cannot derive TestLabel for unions.\") ;"
+        );
+
+        // Test case 3: Generic struct
+        let generic_input: syn::DeriveInput = parse_quote! {
+            struct GenericStruct<T: Clone> {
+                field: T
+            }
+        };
+        let result = derive_label(generic_input, trait_name, &trait_path, &dyn_eq_path);
+        assert!(result.to_string() == "const _ : () = { extern crate alloc ; impl < T : Clone > TestLabel for GenericStruct < T > where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;");
+    }
+}

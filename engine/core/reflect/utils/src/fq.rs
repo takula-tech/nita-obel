@@ -8,7 +8,7 @@
 //! # Example
 //! Instead of writing this:
 //! ```
-//! use quote::quote;
+//! # use quote::quote;
 //! quote!(
 //!     fn get_id() -> Option<i32> {
 //!         Some(0)
@@ -17,7 +17,7 @@
 //! ```
 //! Or this:
 //! ```
-//! use quote::quote;
+//! # use quote::quote;
 //! quote!(
 //!     fn get_id() -> ::core::option::Option<i32> {
 //!         ::core::option::Option::Some(0)
@@ -27,7 +27,7 @@
 //! We should write this:
 //! ```
 //! use obel_reflect_utils::FQOption;
-//! use quote::quote;
+//! # use quote::quote;
 //!
 //! quote!(
 //!     fn get_id() -> #FQOption<i32> {

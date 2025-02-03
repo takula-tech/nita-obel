@@ -2,16 +2,17 @@
 
 pub use time::Instant;
 
-#[cfg(all(not(target_arch = "wasm32"), feature = "std"))]
-use std::time;
-
+// TODO: Create a `web` feature to enable WASI compatibility.
+// See https://github.com/bevyengine/bevy/issues/4906
 #[cfg(target_arch = "wasm32")]
 use web_time as time;
 
-// TODO: Create a `web` feature to enable WASI compatibility.
-// See https://github.com/bevyengine/bevy/issues/4906
+#[cfg(all(not(target_arch = "wasm32"), feature = "std"))]
+use std::time;
+
 #[cfg(all(not(target_arch = "wasm32"), not(feature = "std")))]
 use fallback as time;
+
 #[cfg(all(not(target_arch = "wasm32"), not(feature = "std")))]
 mod fallback {
     //! Provides a fallback implementation of `Instant` from the standard library.
@@ -29,7 +30,7 @@ mod fallback {
         time::Duration,
     };
 
-    static ELAPSED_GETTER: AtomicPtr<fn() -> Duration> = AtomicPtr::new(unset_getter as *mut _);
+    static ELAPSED_GETTER: AtomicPtr<()> = AtomicPtr::new(unset_getter as *mut _);
 
     /// Fallback implementation of `Instant` suitable for a `no_std` environment.
     ///
@@ -52,7 +53,7 @@ mod fallback {
             let getter = ELAPSED_GETTER.load(Ordering::Acquire);
 
             // SAFETY: Function pointer is always valid
-            let getter = unsafe { *getter };
+            let getter = unsafe { core::mem::transmute::<_, fn() -> Duration>(getter) };
 
             Self((getter)())
         }
@@ -65,8 +66,8 @@ mod fallback {
         /// - The function provided must accurately represent the elapsed time.
         /// - The function must preserve all invariants of the [`Instant`] type.
         /// - The pointer to the function must be valid whenever [`Instant::now`] is called.
-        pub unsafe fn set_elapsed(getter: *mut fn() -> Duration) {
-            ELAPSED_GETTER.store(getter, Ordering::Release);
+        pub unsafe fn set_elapsed(getter: fn() -> Duration) {
+            ELAPSED_GETTER.store(getter as *mut _, Ordering::Release);
         }
 
         /// Returns the amount of time elapsed from another instant to this one,
