@@ -129,12 +129,18 @@ mod tests {
 
         // Test const + const concatenation
         let const_result = expr1.clone().appended_by(expr2.clone());
-        assert!(const_result.into_borrowed().to_string().contains("concat"));
+        assert_eq!(
+            const_result.into_owned().to_string(),
+            "obel_reflect :: __macro_exports :: alloc_utils :: ToString :: to_string (:: core :: concat ! (\"hello\" , \" world\"))"
+        );
 
         // Test owned + borrowed concatenation
         let owned = StringExpr::Owned(quote! { String::from("hello") });
         let mixed_result = owned.appended_by(expr2);
-        assert!(mixed_result.into_owned().to_string().contains("+"));
+        assert_eq!(
+            mixed_result.into_owned().to_string(),
+            "String :: from (\"hello\") + \" world\""
+        );
     }
 
     #[test]
