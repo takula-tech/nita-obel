@@ -40,3 +40,45 @@ pub(crate) fn get_reflect_ident(name: &str) -> Ident {
 pub(crate) fn ident_or_index(ident: Option<&Ident>, index: usize) -> Member {
     ident.map_or_else(|| Member::Unnamed(index.into()), |ident| Member::Named(ident.clone()))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_reflect_ident() {
+        let cases = [
+            ("Hash", "ReflectHash"),
+            ("Debug", "ReflectDebug"),
+            ("Custom", "ReflectCustom"),
+            ("", "Reflect"),
+        ];
+        for (input, expected) in cases {
+            let reflected = get_reflect_ident(input);
+            assert_eq!(expected, reflected.to_string());
+        }
+    }
+
+    #[test]
+    fn test_ident_or_index_with_named_fields() {
+        let field_name = Ident::new("field", Span::call_site());
+        let member = ident_or_index(Some(&field_name), 0);
+        assert!(matches!(member, Member::Named(_)));
+        if let Member::Named(ident) = member {
+            assert_eq!("field", ident.to_string());
+        }
+    }
+
+    #[test]
+    fn test_ident_or_index_with_unnamed_fields() {
+        let member = ident_or_index(None, 0);
+        assert!(matches!(member, Member::Unnamed(_)));
+        if let Member::Unnamed(index) = member {
+            assert_eq!(0, index.index);
+        }
+        let member = ident_or_index(None, 42);
+        if let Member::Unnamed(index) = member {
+            assert_eq!(42, index.index);
+        }
+    }
+}

@@ -16,6 +16,7 @@ tools/**/target
 # .zed
 dxcompiler.dll
 dxil.dll
+.DS_Store
 
 # obel Assets
 assets/**/*.meta
