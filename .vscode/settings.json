@@ -15,7 +15,7 @@
   "rust-analyzer.check.workspace": false,
   "rust-analyzer.check.invocationStrategy": "once",
   // "rust-analyzer.check.extraArgs": ["--all", "--all-features", "--", "-D", "warnings"],
-  "rust-analyzer.check.extraArgs": ["--no-deps", "--all-features"],
+  "rust-analyzer.check.extraArgs": ["--no-deps", "--all-features", "--all-targets"],
   "terminal.integrated.defaultProfile.linux": "bash",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.defaultProfile.osx": "zsh",

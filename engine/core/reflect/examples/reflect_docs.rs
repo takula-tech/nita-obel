@@ -1,1 +1,3 @@
+//! docs
 
+fn main() {}

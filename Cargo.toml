@@ -26,7 +26,8 @@ readme = "README.md"
 dynamic_linking = ["dep:obel_dylib", "obel_api/dynamic_linking"]
 
 [profile.release]
-lto = true
+# more aggressive, and may improve performance and reduce binary size further while increasing build times
+lto = "fat"
 codegen-units = 1
 # we're long alive game server who better prefer unwind to panic = "abort"
 panic = "unwind"
