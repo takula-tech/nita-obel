@@ -6,60 +6,122 @@
 [![docs.rs](https://docs.rs/obel/badge.svg)](https://docs.rs/obel/latest/obel/)
 [![discord.online](https://img.shields.io/discord/1335036405788971020.svg?label=&logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/3jq8js8u)
 
+## Table of Contents
+- [Obel Platform](#obel-platform)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Installation](#installation)
+    - [Using Cargo](#using-cargo)
+    - [No Standard Library Support](#no-standard-library-support)
+  - [Features](#features)
+    - [`std` (default)](#std-default)
+    - [`alloc` (default)](#alloc-default)
+    - [`portable-atomic`](#portable-atomic)
+    - [`critical-section`](#critical-section)
+  - [Platform Support](#platform-support)
+  - [Troubleshooting](#troubleshooting)
+    - [Common Issues](#common-issues)
+
 ## Overview
 
-`obel_platform` is a specialized crate designed to enhance cross-platform development  
-for [Obel](https://crates.io/crates/nita_obel) game engine projects. While Rust's [standard library](https://doc.rust-lang.org/stable/std/) provides excellent multi-platform support,  
-this crate offers optimized alternatives specifically tailored for game development and embedded systems.
+Rust is a fantastic multi-platform language with extensive support for modern targets through its [standard library](https://doc.rust-lang.org/stable/std/).
+However, some items within the standard library have alternatives that are better suited for [obel](https://crates.io/crates/obel) and game engines in general.
+Additionally, to support embedded and other esoteric platforms, it's often necessary to shed reliance on `std`, making your crate [`no_std`](https://docs.rust-embedded.org/book/intro/no-std.html).
 
-Key benefits:
-
-- Platform-optimized alternatives to standard library components
-- First-class support for [`no_std`](https://docs.rust-embedded.org/book/intro/no-std.html) environments
-- Seamless integration with Bevy ecosystem
+The `obel_platform` crate addresses these needs by providing alternatives and extensions to the Rust standard library. Our goal is to minimize friction when developing with and for obel across multiple platforms, from desktop to embedded systems.
 
 ## Installation
 
-Add the crate to your project using cargo:
+### Using Cargo
+
+Add the dependency to your `Cargo.toml` file:
+
+```toml
+[dependencies]
+obel_platform = "0.1.0"
+```
+
+Or use the cargo command:
 
 ```sh
 cargo add obel_platform
 ```
 
-## Usage
+### No Standard Library Support
 
-Simply import from `obel_platform` instead of `std` for supported items. Refer to the [documentation](https://docs.rs/obel_platform/latest/obel_platform/) for available items and their benefits.
+For `no_std` platforms, disable default features in your `Cargo.toml`:
+
+```toml
+[dependencies]
+obel_platform = { version = "0.1.0", default-features = false }
+```
 
 ## Features
 
-### Standard Library Support (`std`) [default]
+### `std` (default)
 
-- Enables standard library integration
-- Provides optimized alternatives where beneficial
-- Incompatible with `no_std` targets
+Enables usage of the standard library. Even with `std` enabled, this crate provides optimized alternatives to standard library components where beneficial for game engine performance. Key benefits include:
 
-### Allocation Support (`alloc`) [default]
+- Optimized collections for game engine use cases
+- Enhanced error handling suited for game development
+- Platform-specific optimizations
 
-- Enables [`alloc`](https://doc.rust-lang.org/stable/alloc/) crate functionality
-- Automatically enabled with `std` feature
-- Compatible with most `no_std` targets
+**Note**: This feature is incompatible with `no_std` targets.
 
-### Portable Atomics (`portable-atomic`)
+### `alloc` (default)
 
-- Uses [`portable-atomic`](https://docs.rs/portable-atomic/latest/portable_atomic/) for atomic operations
-- Essential for platforms with limited atomic operation support
-- Provides consistent atomic behavior across platforms
+Provides support for heap allocation through the [`alloc`](https://doc.rust-lang.org/stable/alloc/) crate. Features include:
 
-### Critical Section Support (`critical-section`)
+- Dynamic memory allocation
+- Collection types (Vec, String, etc.)
+- Smart pointers (Box, Rc, Arc)
 
-- Implements synchronization using [`critical-section`](https://docs.rs/critical-section/latest/critical_section/)
-- Ideal for platforms with minimal atomic operation support
-- Often used in conjunction with `portable-atomic`
+**Note**: This feature is automatically enabled with `std` and works on most `no_std` targets.
 
-## No-std Configuration
+### `portable-atomic`
 
-To use on generic(`no_std`) platforms, disable default features but enable `other` feature in your `Cargo.toml`:
+Implements atomic operations using [`portable-atomic`](https://docs.rs/portable-atomic/latest/portable_atomic/) as the backend. Essential for:
 
-```toml
-obel_platform = { version = "x.y.z", default-features = false, features = ["generic"]  }
-```
+- Platforms lacking native atomic operations
+- Consistent atomic behavior across different architectures
+- Support for atomic types like `Arc`, `AtomicU8`, etc.
+
+Enable this feature when targeting platforms with limited atomic operation support or requiring [atomic CAS](https://en.wikipedia.org/wiki/Compare-and-swap) operations.
+
+### `critical-section`
+
+Provides synchronization primitives using [`critical-section`](https://docs.rs/critical-section/latest/critical_section/). Useful for:
+
+- Platforms with minimal atomic operation support
+- Embedded systems requiring careful resource management
+- Synchronization in interrupt-heavy environments
+
+Often used in conjunction with the `portable-atomic` feature for comprehensive synchronization support.
+
+## Platform Support
+
+This crate supports a wide range of platforms:
+
+- Desktop (Windows, macOS, Linux)
+- Mobile (iOS, Android)
+- Web (WebAssembly)
+- Embedded systems
+- Custom platforms
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Atomic Operations Not Available**
+   - Enable the `portable-atomic` feature
+   - Ensure target platform is supported
+
+2. **Allocation Errors in No-STD**
+   - Verify `alloc` feature configuration
+   - Check for proper allocator setup
+
+3. **Synchronization Problems**
+   - Consider using `critical-section` feature
+   - Review atomic operation requirements
+
+For more help, visit our [Discord community](https://discord.gg/3jq8js8u) or file an issue on GitHub.

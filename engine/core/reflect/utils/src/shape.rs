@@ -1,5 +1,5 @@
 use proc_macro2::Span;
-use syn::{punctuated::Punctuated, token::Comma, Data, DataStruct, Error, Field, Fields};
+use syn::{Data, DataStruct, Error, Field, Fields, punctuated::Punctuated, token::Comma};
 
 /// Get the fields of a data structure if that structure is a struct with named fields;
 /// otherwise, return a compile error that points to the site of the macro invocation.
@@ -27,7 +27,7 @@ pub fn get_struct_fields(data: &Data) -> syn::Result<&Punctuated<Field, Comma>> 
 mod tests {
     use super::*;
     use quote::ToTokens;
-    use syn::{parse_quote, DeriveInput};
+    use syn::{DeriveInput, parse_quote};
 
     #[test]
     fn test_struct() {

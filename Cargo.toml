@@ -61,8 +61,8 @@ members = [
 ]
 
 [workspace.package]
-edition = "2021"
-rust-version = "1.82.0"
+edition = "2024"
+rust-version = "1.85.0"
 homepage = "https://takulatech.net"
 license = "MIT OR Apache-2.0"
 categories = ["game-engines", "graphics", "gui", "rendering"]

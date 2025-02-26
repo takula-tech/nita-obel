@@ -756,10 +756,6 @@ assert_eq!(*d,s.r, 10);
 ```
 Valid lifetime range `s'a` = s.r'a = ['(s.r)='s='d, 'x] = ['d, 'x] = `['d, 'static]`; Obviously, the actual lifetime `s'static` is in the range of `['d, 'static]`, so `valid`
 
-
-
-
-
 ### 2.5.6 Distinct Lifetime Parameters
 
 `Invalid lifetime case: `
@@ -792,9 +788,38 @@ struct S<'a,'b> {
   y: &'b i32
 }
 ```
-s'a = `s.x'a` = r'a = ['(s.x)='s='r, 'x] = ['r, 'x] = 'r;
-s'b = `s.y'b` = y'b = ['(s.y)='s, 'x] = ['s, 'x] = 's;
+'a = s'a = `s.x'a` = r'a = ['(s.x)='s='r, 'x] = ['r, 'x] = 'r;
+'b = s'b = `s.y'b` = y'b = ['(s.y)='s, 'x] = ['s, 'x] = 's;
 As 'a != 'b => `invalid`
+
+### `2.5.6 Lifetime Bound with PhantomData`
+
+```rust
+pub struct Iter<'a, T: 'a> {
+    head: Option<NonNull<Node<T>>>,
+    tail: Option<NonNull<Node<T>>>,
+    len: usize,
+    marker: PhantomData<&'a Node<T>>,
+}
+```
+
+'a = Iter'a = T'a =T(any ref)'a = &Node<T>'a = marker'a =   
+min['Iter, 'T(any referent)] where 'Iter <= 'T(any referent)
+
+1 `Why is T: 'a Needed?`
+ - In Rust, a type T might contain `references` with their own lifetimes.
+ - T: 'a ensures that if T contains any references, those references must be 'a.
+
+2 `Why is PhantomData<&'a Node<T>> Needed?`
+Rust’s compiler only considers fields that are actually used
+when determining lifetimes and ownership. However, in this struct:
+
+ - head and tail are of type Option<NonNull<Node<T>>>, which are `raw pointers`.
+ - Raw pointers do not affect Rust’s `borrow checker` (since they don’t enforce ownership rules).
+ - Without an explicit `lifetime marker`, Rust wouldn’t know that this struct is tied to 'a.
+   PhantomData<&'a Node<T>> explicitly tells the Rust compiler that this struct holds references tied to 'a.
+
+Together, these ensure that Iter can safely access `Node<T>` and any values pointed by the references in the `T`.
 
 ## 2.6 Share & Mutation
 

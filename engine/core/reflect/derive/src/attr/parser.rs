@@ -40,7 +40,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use syn::{parse::Parser, Token};
+    use syn::{Token, parse::Parser};
 
     #[test]
     fn test_terminated_parser_empty_input() {

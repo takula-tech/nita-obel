@@ -1,9 +1,9 @@
 use obel_platform::{
-    collections::HashSet, string::format, string::String, string::ToString, vec::Vec,
+    collections::HashSet, string::String, string::ToString, string::format, vec::Vec,
 };
 use proc_macro2::{TokenStream, TokenTree};
 use quote::{quote, quote_spanned};
-use syn::{spanned::Spanned, Ident};
+use syn::{Ident, spanned::Spanned};
 
 /// Finds an identifier that will not conflict with the specified set of tokens.
 ///
@@ -156,7 +156,10 @@ mod tests {
         let dyn_eq_path: syn::Path = parse_quote!(DynEq);
 
         let result = derive_label(input, trait_name, &trait_path, &dyn_eq_path);
-        assert!(result.to_string() == "const _ : () = { extern crate alloc ; impl TestLabel for TestStruct where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;");
+        assert!(
+            result.to_string()
+                == "const _ : () = { extern crate alloc ; impl TestLabel for TestStruct where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;"
+        );
 
         // Test case 2: Union type (should return compile error)
         let union_input: syn::DeriveInput = parse_quote! {
@@ -176,6 +179,9 @@ mod tests {
             }
         };
         let result = derive_label(generic_input, trait_name, &trait_path, &dyn_eq_path);
-        assert!(result.to_string() == "const _ : () = { extern crate alloc ; impl < T : Clone > TestLabel for GenericStruct < T > where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;");
+        assert!(
+            result.to_string()
+                == "const _ : () = { extern crate alloc ; impl < T : Clone > TestLabel for GenericStruct < T > where Self : 'static + Send + Sync + Clone + Eq + :: core :: fmt :: Debug + :: core :: hash :: Hash { fn dyn_clone (& self) -> alloc :: boxed :: Box < dyn TestLabel > { alloc :: boxed :: Box :: new (:: core :: clone :: Clone :: clone (self)) } fn as_dyn_eq (& self) -> & dyn DynEq { self } fn dyn_hash (& self , mut state : & mut dyn :: core :: hash :: Hasher) { let ty_id = :: core :: any :: TypeId :: of :: < Self > () ; :: core :: hash :: Hash :: hash (& ty_id , & mut state) ; :: core :: hash :: Hash :: hash (self , & mut state) ; } } } ;"
+        );
     }
 }

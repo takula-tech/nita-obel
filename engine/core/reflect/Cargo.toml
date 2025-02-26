@@ -61,9 +61,6 @@ platform_std = ["obel_platform/std", "obel_platform/serialize"]
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["obel_platform/critical-section"]
-## `portable-atomic` provides additional platform support for atomic types and
-## operations, even on targets without native support.
-portable-atomic = ["obel_platform/portable-atomic"]
 
 [dependencies]
 obel_reflect_utils = { workspace = true }
