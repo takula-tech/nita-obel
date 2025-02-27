@@ -7,4 +7,5 @@ extern crate proc_macro;
 mod attr;
 mod ident;
 mod meta;
+mod result_sifter;
 mod string_expr;
