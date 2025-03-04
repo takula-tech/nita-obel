@@ -6,8 +6,10 @@ pub use hash_map::HashMap;
 pub use hash_set::HashSet;
 pub use hash_table::HashTable;
 pub use hashbrown::Equivalent;
+/// A specialized hashmap type with Key of [`TypeId`]
+/// Iteration order only depends on the order of insertions and deletions.
+pub type TypeIdMap<V> = HashMap<core::any::TypeId, V, crate::hash::NoOpHash>;
 
-#[cfg(feature = "alloc")]
 pub mod hash_map {
     //! Provides [`HashMap`]
 
@@ -36,7 +38,6 @@ pub mod hash_map {
     pub type Entry<'a, K, V, S = FixedHasher> = hb::Entry<'a, K, V, S>;
 }
 
-#[cfg(feature = "alloc")]
 pub mod hash_set {
     //! Provides [`HashSet`]
 
@@ -56,7 +57,6 @@ pub mod hash_set {
     pub type Entry<'a, T, S = FixedHasher> = hb::Entry<'a, T, S>;
 }
 
-#[cfg(feature = "alloc")]
 pub mod hash_table {
     //! Provides [`HashTable`]
 

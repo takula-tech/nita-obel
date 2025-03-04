@@ -31,3 +31,11 @@ obel_reflect_derive = { workspace = true, features = ["functions"] }
 [[test]]
 name = "derive"
 harness = false
+
+[[test]]
+name = "func"
+harness = false
+
+[[test]]
+name = "remote"
+harness = false
