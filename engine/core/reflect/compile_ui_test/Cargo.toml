@@ -26,7 +26,7 @@ obel_ui_test_runner = { workspace = true }
 static_assertions = { workspace = true }
 
 [dependencies]
-obel_reflect_derive = { workspace = true, features = ["functions"] }
+obel_reflect = { workspace = true, default-features = true }
 
 [[test]]
 name = "derive"

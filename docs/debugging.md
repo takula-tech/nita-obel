@@ -14,9 +14,9 @@ When a suspected wgpu error occurs, you should capture a wgpu trace so that Bevy
 To capture a wgpu trace:
 
 1. Create a new folder in which to store your wgpu trace.
-2. Pass the path to the folder you created for your wgpu trace to `bevy_render::RenderPlugin`, using the `render_creation` field.
+2. Pass the path to the folder you created for your wgpu trace to `obel_render::RenderPlugin`, using the `render_creation` field.
    * If you're manually creating the renderer resources, pass the path to wgpu when creating the `RenderDevice` and `RenderQueue`.
-   * Otherwise, pass the path to Bevy via the `trace_path` field in `bevy_render::settings::WgpuSettings`.
+   * Otherwise, pass the path to Bevy via the `trace_path` field in `obel_render::settings::WgpuSettings`.
 3. Add `wgpu = { version = "*", features = ["trace"]}` to your Cargo.toml.
    * `version = "*"` tells Rust that this can be *any* version of the wgpu crate, so it will not try to pull in a different version of wgpu than what is already pulled in by Bevy.
 4. Compile and run your application, performing any in-app actions necessary to replicate the wgpu error.
