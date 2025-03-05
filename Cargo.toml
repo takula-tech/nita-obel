@@ -58,6 +58,7 @@ members = [
   "engine/core/*",
   # Several crates with macros have `compile tests` nested inside them.
   "engine/**/compile_ui_test",
+  "engine/core/reflect/derive",
 ]
 
 [workspace.package]
@@ -133,8 +134,8 @@ smallvec = { version = "1.11", default-features = false }
 glam = { version = "0.29", default-features = false }
 petgraph = { version = "0.6" }
 smol_str = { version = "0.2.0", default-features = false }
-uuid = { version = "1.0", default-features = false }
-wgpu-types = { version = "23", default-features = false }
+uuid = { version = "1.13.1", default-features = false }
+wgpu-types = { version = "24", default-features = false }
 critical-section = { version = "1.2.0", default-features = false }
 portable-atomic = { version = "1", default-features = false }
 portable-atomic-util = { version = "0.2.4", default-features = false }

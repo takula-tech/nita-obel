@@ -13,13 +13,13 @@ documentation = { workspace = true }
 readme = "README.md"
 
 [features]
-default = ["std", "smallvec", "debug"]
+default = ["std", "smallvec", "debug", "functions", "documentation"]
 
 # Features
 ## When enabled, allows documentation comments to be accessed via reflection
-documentation = []
+documentation = ["obel_reflect_derive/documentation"]
 ## Enables function reflection
-functions = []
+functions = ["obel_reflect_derive/functions"]
 
 # When enabled, provides Bevy-related reflection implementations
 obel = ["smallvec", "smol_str"]
@@ -40,7 +40,7 @@ smallvec = ["dep:smallvec"]
 ## Adds reflection support to `uuid` types.
 uuid = ["dep:uuid"]
 ## Adds reflection support to `wgpu-types` types.
-wgpu-types = ["dep:wgpu-types", "std"]
+wgpu-types = ["dep:wgpu-types"]
 
 # Platform Compatibility
 ## Allows access to the `std` crate. Enabling this feature will prevent compilation
@@ -48,16 +48,17 @@ wgpu-types = ["dep:wgpu-types", "std"]
 ## supported platforms.
 std = [
   "alloc",
-  "platform_std",
   "erased-serde/std",
   "downcast-rs/std",
   "serde/std",
   "glam?/std",
   "smol_str?/std",
   "uuid?/std",
+  "wgpu-types?/std",
+  "obel_platform/std",
+  "obel_platform/serialize",
 ]
 alloc = []
-platform_std = ["obel_platform/std", "obel_platform/serialize"]
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["obel_platform/critical-section"]
@@ -66,10 +67,6 @@ critical-section = ["obel_platform/critical-section"]
 obel_reflect_utils = { workspace = true }
 obel_reflect_derive = { workspace = true }
 obel_platform = { workspace = true, features = ["alloc", "serialize"] }
-# toml_edit = { workspace = true, features = ["parse"] }
-# syn = { workspace = true, features = ["full"] }
-# quote = { workspace = true }
-# proc-macro2 = { workspace = true }
 foldhash = { workspace = true }
 erased-serde = { workspace = true, features = ["alloc"] }
 disqualified = { workspace = true }
@@ -87,12 +84,15 @@ smol_str = { workspace = true, optional = true, features = ["serde"] }
 uuid = { workspace = true, optional = true, features = ["v4", "serde"] }
 wgpu-types = { workspace = true, optional = true, features = ["serde"] }
 
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+uuid = { workspace = true, features = ["js"] }
+
 [dev-dependencies]
 ron = { workspace = true }
 rmp-serde = { workspace = true }
 bincode = { workspace = true }
 serde_json = { workspace = true }
-serde = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
 static_assertions = { workspace = true }
 
 [lints]

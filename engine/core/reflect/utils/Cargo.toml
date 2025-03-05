@@ -20,7 +20,7 @@ documentation = { workspace = true }
 readme = "README.md"
 
 [dependencies]
-obel_platform = { workspace = true, features = ["std"] }
+obel_platform = { workspace = true, features = ["std", "serialize"] }
 syn = { workspace = true, features = ["full"] }
 quote = { workspace = true }
 proc-macro2 = { workspace = true }

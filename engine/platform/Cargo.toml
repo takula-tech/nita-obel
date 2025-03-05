@@ -28,9 +28,8 @@ foldhash = { workspace = true }
 hashbrown = { workspace = true, optional = true, features = [
   "equivalent",
   "raw-entry",
-  "inline-more",
+  # "inline-more",
 ] }
-getrandom = { workspace = true, features = ["js"] }
 thread_local = { workspace = true, optional = true }
 critical-section = { workspace = true, optional = true }
 spin = { workspace = true, features = [
@@ -40,17 +39,18 @@ spin = { workspace = true, features = [
   "once",
   "lazy",
   "barrier",
-  "portable_atomic",
 ] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 web-time = { workspace = true }
+getrandom = { workspace = true, features = ["js"] }
 
 [target.'cfg(not(all(target_has_atomic = "8", target_has_atomic = "16", target_has_atomic = "32", target_has_atomic = "64", target_has_atomic = "ptr")))'.dependencies]
 portable-atomic = { workspace = true, optional = true, features = ["fallback"] }
+spin = { workspace = true, features = ["portable_atomic"] }
 
 [target.'cfg(not(target_has_atomic = "ptr"))'.dependencies]
-portable-atomic-util = { workspace = true, optional = true }
+portable-atomic-util = { workspace = true }
 
 [features]
 default = ["std"]
