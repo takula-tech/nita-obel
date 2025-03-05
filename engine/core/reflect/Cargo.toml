@@ -14,6 +14,8 @@ readme = "README.md"
 
 [features]
 default = ["std", "smallvec", "debug", "functions", "documentation"]
+# somehow this fails the cargo test --workspace
+# default = ["std", "smallvec", "debug"]
 
 # Features
 ## When enabled, allows documentation comments to be accessed via reflection
