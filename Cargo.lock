@@ -568,6 +568,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "obel_ecs"
+version = "0.0.9"
+dependencies = [
+ "static_assertions",
+]
+
+[[package]]
 name = "obel_editor"
 version = "0.0.9"
 dependencies = [
@@ -578,6 +585,7 @@ dependencies = [
 name = "obel_platform"
 version = "0.0.9"
 dependencies = [
+ "cfg-if",
  "critical-section",
  "foldhash",
  "getrandom 0.2.15",

@@ -24,11 +24,12 @@ maintenance = { status = "actively-developed" }
 static_assertions = { workspace = true }
 
 [dependencies]
+cfg-if = { workspace = true }
 foldhash = { workspace = true }
 hashbrown = { workspace = true, optional = true, features = [
   "equivalent",
   "raw-entry",
-  # "inline-more",
+  "inline-more",
 ] }
 thread_local = { workspace = true, optional = true }
 critical-section = { workspace = true, optional = true }
@@ -42,8 +43,8 @@ spin = { workspace = true, features = [
 ] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-web-time = { workspace = true }
-getrandom = { workspace = true, features = ["js"] }
+web-time = { workspace = true, optional = true }
+getrandom = { workspace = true, optional = true, features = ["js"] }
 
 [target.'cfg(not(all(target_has_atomic = "8", target_has_atomic = "16", target_has_atomic = "32", target_has_atomic = "64", target_has_atomic = "ptr")))'.dependencies]
 portable-atomic = { workspace = true, optional = true, features = ["fallback"] }
@@ -54,9 +55,11 @@ portable-atomic-util = { workspace = true }
 
 [features]
 default = ["std"]
+
 # Functionality
 ## Adds serialization support through `serde`.
 serialize = ["hashbrown/serde"]
+
 # Platform Compatibility
 ## Allows access to the `std` crate. Enabling this feature will prevent compilation
 ## on `no_std` targets, but provides access to certain additional features on
@@ -70,7 +73,13 @@ std = [
   "foldhash/std",
   "dep:thread_local",
 ]
+
 alloc = ["portable-atomic-util/alloc", "dep:hashbrown"]
+
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["dep:critical-section", "portable-atomic/critical-section"]
+
+## Enables use of browser APIs.
+## Note this is currently only applicable on `wasm32` architectures.
+web = ["dep:web-time", "dep:getrandom"]
