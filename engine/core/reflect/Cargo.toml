@@ -22,7 +22,6 @@ default = ["std", "smallvec", "debug", "functions", "documentation"]
 documentation = ["obel_reflect_derive/documentation"]
 ## Enables function reflection
 functions = ["obel_reflect_derive/functions"]
-
 # When enabled, provides Bevy-related reflection implementations
 obel = ["smallvec", "smol_str"]
 
@@ -64,6 +63,9 @@ alloc = []
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.
 critical-section = ["obel_platform/critical-section"]
+## Enables use of browser APIs.
+## Note this is currently only applicable on `wasm32` architectures.
+web = ["obel_platform/web", "uuid?/js"]
 
 [dependencies]
 obel_reflect_utils = { workspace = true }
@@ -85,9 +87,6 @@ petgraph = { workspace = true, optional = true, features = ["serde-1"] }
 smol_str = { workspace = true, optional = true, features = ["serde"] }
 uuid = { workspace = true, optional = true, features = ["v4", "serde"] }
 wgpu-types = { workspace = true, optional = true, features = ["serde"] }
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-uuid = { workspace = true, features = ["js"] }
 
 [dev-dependencies]
 ron = { workspace = true }
