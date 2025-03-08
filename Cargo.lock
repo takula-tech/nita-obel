@@ -571,7 +571,19 @@ dependencies = [
 name = "obel_ecs"
 version = "0.0.9"
 dependencies = [
+ "obel_ecs_macros",
  "static_assertions",
+]
+
+[[package]]
+name = "obel_ecs_macros"
+version = "0.0.9"
+dependencies = [
+ "obel_reflect_utils",
+ "proc-macro2",
+ "quote",
+ "static_assertions",
+ "syn",
 ]
 
 [[package]]

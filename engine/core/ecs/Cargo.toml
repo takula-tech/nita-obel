@@ -13,6 +13,7 @@ documentation = { workspace = true }
 readme = "README.md"
 
 [dependencies]
+obel_ecs_macros = { workspace = true }
 
 [dev-dependencies]
 static_assertions = { workspace = true }

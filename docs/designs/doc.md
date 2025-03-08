@@ -352,3 +352,73 @@ Here’s a simplified example of how a fire effect might be developed using shad
 ---
 
 By combining these techniques, developers can create stunning virtual effects that enhance the visual quality and immersion of digital experiences. Shaders, in particular, are a powerful tool for achieving real-time, high-quality effects on modern GPUs.
+
+# double-buffering
+
+Certainly! The concept you're describing is a **double-buffering** or **pipelining** technique used in game engines and rendering systems to improve throughput (Frames Per Second, or FPS). Let me break it down step by step and explain why this design increases throughput.
+
+---
+
+## **1. The Problem: Serial Execution**
+
+In a naive rendering system, the simulation and rendering of a frame happen **sequentially**:
+1. **Simulate Frame N**: Update game logic, physics, AI, etc.
+2. **Render Frame N**: Draw the results of the simulation to the screen.
+3. **Repeat for Frame N+1**.
+
+This approach has a bottleneck: the CPU and GPU are not fully utilized because they are often waiting for each other to finish their tasks. For example:
+- The CPU might be idle while the GPU is rendering.
+- The GPU might be idle while the CPU is simulating the next frame.
+
+This results in lower throughput (FPS) because the system is not fully leveraging the available hardware resources.
+
+---
+
+## **2. The Solution: Parallel Execution with Double-Buffering**
+
+To address this, modern game engines use a **double-buffering** or **pipelining** approach. Here's how it works:
+
+### **2.1 Two Worlds: Simulation World and Render World**
+- **Simulation World (MainWorld)**: Handles game logic, physics, AI, and other calculations.
+- **Render World**: Handles rendering tasks, such as preparing draw calls, managing GPU resources, and displaying the final image.
+
+### **2.2 ExtractSchedule**
+- The **ExtractSchedule** is a system that **moves data** from the **Simulation World** to the **Render World**.
+- This happens **asynchronously**, allowing the Simulation World to start working on the next frame while the Render World is still processing the current frame.
+
+---
+
+## **3. How It Increases Throughput (FPS)**
+- By decoupling simulation and rendering, the system can achieve lower latency. For example:
+  - Input from the player can be processed immediately in the Simulation World, and the results can be rendered in the next frame.
+
+---
+
+## **5. Benefits of This Design**
+
+### **5.1 Higher FPS**
+- By overlapping simulation and rendering, the system can achieve higher FPS because the CPU and GPU are utilized more efficiently.
+
+### **5.2 Better Hardware Utilization**
+- The CPU and GPU are kept busy most of the time, reducing idle periods and improving overall performance.
+
+### **5.3 Scalability**
+- This design scales well with multi-core CPUs and modern GPUs, as it allows for parallel execution of tasks.
+
+### **5.4 Flexibility**
+- The decoupling of simulation and rendering makes it easier to optimize each part independently. For example:
+  - The Simulation World can focus on game logic and physics.
+  - The Render World can focus on graphics optimizations.
+
+---
+
+## **6. Real-World Example: Bevy Engine**
+
+In the **Bevy Engine** (a Rust-based game engine), this design is implemented using the **ExtractSchedule**:
+- The **Simulation World** handles game logic and physics.
+- The **Render World** handles rendering tasks.
+- The **ExtractSchedule** moves data from the Simulation World to the Render World, enabling parallel execution of simulation and rendering.
+
+---
+
+By using this double-buffering or pipelining approach, game engines can significantly increase throughput (FPS) and make better use of hardware resources. Let me know if you need further clarification or examples!
