@@ -1,21 +1,21 @@
-use std::vec::Vec;
-
 use proc_macro2::{Ident, TokenStream};
 use quote::quote;
+use std::vec::Vec;
 use syn::{Attribute, Fields, ImplGenerics, TypeGenerics, Visibility, WhereClause};
 
+#[allow(clippy::too_many_arguments, renamed_and_removed_lints)]
 pub fn item_struct(
     path: &syn::Path,
     fields: &Fields,
-    derive_macro_call: &proc_macro2::TokenStream,
+    derive_macro_call: &TokenStream,
     struct_name: &Ident,
     visibility: &Visibility,
     item_struct_name: &Ident,
-    field_types: &Vec<proc_macro2::TokenStream>,
+    field_types: &Vec<TokenStream>,
     user_impl_generics_with_world: &ImplGenerics,
     field_attrs: &Vec<Vec<Attribute>>,
     field_visibilities: &Vec<Visibility>,
-    field_idents: &Vec<proc_macro2::TokenStream>,
+    field_idents: &Vec<TokenStream>,
     user_ty_generics: &TypeGenerics,
     user_ty_generics_with_world: &TypeGenerics,
     user_where_clauses_with_world: Option<&WhereClause>,
@@ -53,12 +53,13 @@ pub fn item_struct(
     }
 }
 
+#[allow(clippy::too_many_arguments, renamed_and_removed_lints)]
 pub fn world_query_impl(
     path: &syn::Path,
     struct_name: &Ident,
     visibility: &Visibility,
     fetch_struct_name: &Ident,
-    field_types: &Vec<proc_macro2::TokenStream>,
+    field_types: &Vec<TokenStream>,
     user_impl_generics: &ImplGenerics,
     user_impl_generics_with_world: &ImplGenerics,
     user_ty_generics: &TypeGenerics,

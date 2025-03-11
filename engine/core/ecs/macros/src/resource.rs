@@ -26,7 +26,6 @@ mod tests {
     use super::*;
     use quote::quote;
     use std::string::ToString;
-    use syn::parse_quote;
 
     #[test]
     fn test_derive_resource() {
