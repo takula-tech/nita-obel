@@ -30,16 +30,15 @@ mod tests {
 
     #[test]
     fn test_derive_resource() {
-        let input = parse_quote! {
-            struct MyResource;
-        };
-
-        let output = derive_resource_impl(input);
-        let expected = quote! {
-            impl obel_ecs::resource::Resource for MyResource where Self : Send + Sync + 'static {
-            }
-        };
-
-        assert_eq!(output.to_string(), expected.to_string());
+        assert_eq!(
+            derive_resource_impl(quote! {
+                struct MyResource;
+            })
+            .to_string(),
+            quote! {
+              impl obel_ecs::resource::Resource for MyResource where Self : Send + Sync + 'static {
+              }
+          }.to_string()
+        );
     }
 }

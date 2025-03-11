@@ -57,32 +57,36 @@ mod tests {
 
     #[test]
     fn test_derive_event() {
-        let input = parse_quote! {
-            struct MyEvent;
-        };
-        let output = derive_event_impl(input);
-        let expected = quote! {
-            impl obel_ecs::event::Event for MyEvent where Self : Send + Sync + 'static {
-                type Traversal = ();
-                const AUTO_PROPAGATE: bool = false;
+        assert_eq!(
+            derive_event_impl(quote! {
+                struct MyEvent;
+            })
+            .to_string(),
+            quote! {
+                impl obel_ecs::event::Event for MyEvent where Self : Send + Sync + 'static {
+                    type Traversal = ();
+                    const AUTO_PROPAGATE: bool = false;
+                }
             }
-        };
-        assert_eq!(output.to_string(), expected.to_string());
+            .to_string()
+        );
     }
 
     #[test]
     fn test_derive_event_auto_propagate_and_traversal() {
-        let input = quote! {
-            #[event(auto_propagate, traversal = MyTraversal)]
-            struct MyEvent;
-        };
-        let expected_output = quote! {
-            impl obel_ecs::event::Event for MyEvent where Self : Send + Sync + 'static {
-                type Traversal = MyTraversal;
-                const AUTO_PROPAGATE: bool = true;
+        assert_eq!(
+            derive_event_impl(quote! {
+                #[event(auto_propagate, traversal = MyTraversal)]
+                struct MyEvent;
+            })
+            .to_string(),
+            quote! {
+                impl obel_ecs::event::Event for MyEvent where Self : Send + Sync + 'static {
+                    type Traversal = MyTraversal;
+                    const AUTO_PROPAGATE: bool = true;
+                }
             }
-        };
-        let output = derive_event_impl(input);
-        assert_eq!(output.to_string(), expected_output.to_string());
+            .to_string()
+        );
     }
 }

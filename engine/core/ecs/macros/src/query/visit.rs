@@ -105,3 +105,93 @@ fn derive_visit_entities_base(
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use indoc::indoc;
+    use proc_macro2::TokenStream;
+    use quote::quote;
+    use std::string::ToString;
+
+    #[track_caller]
+    fn assert_formatted_eq(actual: TokenStream, expected: &str) {
+        let syntax_tree: syn::File = parse2(actual).unwrap();
+        let pretty = prettyplease::unparse(&syntax_tree);
+        assert_eq!(pretty, expected, "\n === Pretty Please ===\n{}", pretty);
+    }
+
+    #[test]
+    fn test_derive_visit_entities_impl() {
+        let expected = indoc! {r#"
+          impl obel_ecs::entity::VisitEntities for MyStruct {
+              fn visit_entities<F: FnMut(Entity)>(&self, mut f: F) {
+                  self.field1.visit_entities(&mut f);
+                  self.field3.visit_entities(&mut f);
+              }
+          }
+        "#};
+
+        let actual = derive_visit_entities_impl(quote! {
+            #[derive(VisitEntities)]
+            struct MyStruct {
+                field1: Entity,
+                #[visit_entities(ignore)]
+                field2: Entity,
+                field3: Entity,
+            }
+        });
+
+        assert_formatted_eq(actual, expected);
+    }
+
+    #[test]
+    fn test_derive_visit_entities_mut_impl() {
+        let expected = indoc! {r#"
+          impl obel_ecs::entity::VisitEntitiesMut for MyStruct {
+              fn visit_entities_mut<F: FnMut(&mut Entity)>(&mut self, mut f: F) {
+                  self.field1.visit_entities_mut(&mut f);
+                  self.field3.visit_entities_mut(&mut f);
+              }
+          }
+        "#};
+
+        let actual = derive_visit_entities_mut_impl(quote! {
+            #[derive(VisitEntities)]
+            struct MyStruct {
+                field1: Entity,
+                #[visit_entities(ignore)]
+                field2: Entity,
+                field3: Entity,
+            }
+        });
+
+        assert_formatted_eq(actual, expected);
+    }
+
+    #[test]
+    fn test_derive_visit_entities_base_empty_fields() {
+        assert!(
+            derive_visit_entities_impl(quote! {
+                struct MyStruct {}
+            })
+            .to_string()
+            .contains("Invalid `VisitEntities` type: at least one field")
+        );
+    }
+
+    #[test]
+    fn test_derive_visit_entities_base_invalid_attribute() {
+        assert!(
+            derive_visit_entities_impl(quote! {
+                struct MyStruct {
+                    field1: Entity,
+                    #[visit_entities(invalid)]
+                    field2: Entity,
+                }
+            })
+            .to_string()
+            .contains("Invalid visit_entities attribute")
+        );
+    }
+}
