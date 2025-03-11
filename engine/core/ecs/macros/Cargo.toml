@@ -29,6 +29,8 @@ proc-macro2 = { workspace = true }
 
 [dev-dependencies]
 static_assertions = { workspace = true }
+indoc = { workspace = true }
+prettyplease = { workspace = true }
 
 [lints]
 workspace = true

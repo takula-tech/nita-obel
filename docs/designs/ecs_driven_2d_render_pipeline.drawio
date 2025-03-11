@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="OBBd6NsxkmT4sHoRkoNz" name="introduction">
-        <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1216" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -67,217 +67,217 @@
                 <mxCell id="33" value="React mixed up ui, states and event handler, hard to test and&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" parent="1" vertex="1">
                     <mxGeometry x="50" y="950" width="130" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="NetworkEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="34" value="NetworkEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1290" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="UserEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="35" value="UserEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1170" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="TimerEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="36" value="TimerEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1210" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="EntityEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="37" value="EntityEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1250" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="&lt;h1&gt;Event Categories&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="38" value="&lt;h1&gt;Event Categories&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="40" y="1120" width="240" height="220" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="&lt;h1&gt;System&lt;/h1&gt;&lt;p&gt;Data Select (similar to SQL)&lt;br&gt;Select all renderable entities&lt;br&gt;with the cmpts of position &amp;amp; value&lt;br&gt;where the value&amp;nbsp;&lt;br&gt;Invoke Trigger&lt;/p&gt;&lt;p&gt;But can have configuration,&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="39" value="&lt;h1&gt;System&lt;/h1&gt;&lt;p&gt;Data Select (similar to SQL)&lt;br&gt;Select all renderable entities&lt;br&gt;with the cmpts of position &amp;amp; value&lt;br&gt;where the value&amp;nbsp;&lt;br&gt;Invoke Trigger&lt;/p&gt;&lt;p&gt;But can have configuration,&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="477" y="1130" width="233" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="UserEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="40" value="UserEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="370" y="980" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="StatelessSytem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="41" value="StatelessSytem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="370" y="1170" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="StatefulSytem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="42" value="StatefulSytem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="370" y="1210" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="44" value="+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2220" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="52" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="120" y="2175" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="53" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2170" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="55" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="590" y="790" width="170" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;" vertex="1" parent="1">
+                <mxCell id="56" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;" parent="1" vertex="1">
                     <mxGeometry x="120" y="1445" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="57" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1440" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="60" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="50" y="1395" width="165" height="95" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="61" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="360" y="790" width="190" height="95" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="&lt;h1&gt;Edit mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="62" value="&lt;h1&gt;Edit mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="40" y="2120" width="190" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="-" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="64" value="-" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="140" y="2220" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="75" value="&lt;b&gt;RenderableEntity&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;containerFalg&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;marginXY, paddingXY&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;width, height&lt;br&gt;visibilityFlag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" vertex="1" parent="1">
+                <mxCell id="75" value="&lt;b&gt;RenderableEntity&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;containerFalg&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;marginXY, paddingXY&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;width, height&lt;br&gt;visibilityFlag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">
                     <mxGeometry x="587" y="962.5" width="130" height="97.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="81" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="65" y="1706.2500000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:[2,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="83" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:[2,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="65" y="1790" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility: bool&lt;br&gt;opacity: number&lt;br&gt;shadow: RGBA&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="84" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility: bool&lt;br&gt;opacity: number&lt;br&gt;shadow: RGBA&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="780" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: Vec2D&lt;br&gt;scale: number&lt;br&gt;rotation: Vec2D&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="85" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: Vec2D&lt;br&gt;scale: number&lt;br&gt;rotation: Vec2D&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="866.25" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="86" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="1040" width="130" height="67.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:int[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="87" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:int[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="1119" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="Entity with id 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="88" value="Entity with id 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="450" y="1100" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="90" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="65" y="1525" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="93" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="93" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="195" y="1705.0000000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="96" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="195" y="1525" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="97" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="97" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="195" y="1555" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="101" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="101" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="65" y="1556.25" width="130" height="68.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="102" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="102" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="962.5" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="103" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="103" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="65" y="1626.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="104" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="104" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="195" y="1623.75" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="105" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility: bool&lt;br&gt;opacity: number&lt;br&gt;shadow: RGBA&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="105" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility: bool&lt;br&gt;opacity: number&lt;br&gt;shadow: RGBA&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="1180" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="110" style="edgeStyle=entityRelationEdgeStyle;html=1;" edge="1" parent="1" source="106" target="107">
+                <mxCell id="110" style="edgeStyle=entityRelationEdgeStyle;html=1;" parent="1" source="106" target="107" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="106" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="106" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="270" y="1405" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="107" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="107" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="270" y="1463.75" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="111" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="111" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2551.25" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="113" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds: [2,3,4,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="113" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds: [2,3,4,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2635" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="114" value="&lt;b&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="114" value="&lt;b&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2370" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="115" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="115" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="2550" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="116" value="&lt;b&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="116" value="&lt;b&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="190" y="2370" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="117" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="117" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="2400" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="118" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="118" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2401.25" width="130" height="68.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="119" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="119" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="2471.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="120" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="120" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="2468.75" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="121" style="edgeStyle=entityRelationEdgeStyle;html=1;" edge="1" parent="1" source="122" target="123">
+                <mxCell id="121" style="edgeStyle=entityRelationEdgeStyle;html=1;" parent="1" source="122" target="123" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="126" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="122" target="124">
+                <mxCell id="126" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="122" target="124" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="127" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="122" target="125">
+                <mxCell id="127" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="122" target="125" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="122" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="122" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="2123.12" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="123" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="123" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="2181.87" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="124" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="124" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="2240" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="125" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="125" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="2295.87" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="132" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="132" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="2551.25" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="133" value="&lt;b&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="133" value="&lt;b&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="320" y="2370" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="134" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="134" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="2400" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="137" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="137" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="2471.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="142" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="142" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2550" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="143" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="143" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2370" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="144" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="144" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2400" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="145" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="145" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2468.75" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="148" value="Update UILayout System&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFCC;" vertex="1" parent="1">
+                <mxCell id="148" value="Update UILayout System&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFCC;" parent="1" vertex="1">
                     <mxGeometry x="110" y="1880" width="150" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="149" value="&lt;b&gt;StatechartBundle&lt;br&gt;&lt;br&gt;&lt;/b&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;ActorCmpt&lt;br&gt;&lt;/span&gt;StatechartCmpt&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="149" value="&lt;b&gt;StatechartBundle&lt;br&gt;&lt;br&gt;&lt;/b&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;ActorCmpt&lt;br&gt;&lt;/span&gt;StatechartCmpt&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="1500" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="IMzDRxW2CpGJXFzr-ES7-149" value="&lt;b&gt;TypedActorCmpt&amp;lt;Event, Data&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Event[]&lt;br&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="IMzDRxW2CpGJXFzr-ES7-149" value="&lt;b&gt;TypedActorCmpt&amp;lt;Event, Data&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Event[]&lt;br&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="520" y="1395" width="210" height="75" as="geometry"/>
                 </mxCell>
-                <mxCell id="IMzDRxW2CpGJXFzr-ES7-150" value="&lt;b&gt;StatechartCmpt&lt;/b&gt;&lt;br&gt;&lt;br&gt;currState: State;&lt;br&gt;transitions:Transition[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="IMzDRxW2CpGJXFzr-ES7-150" value="&lt;b&gt;StatechartCmpt&lt;/b&gt;&lt;br&gt;&lt;br&gt;currState: State;&lt;br&gt;transitions:Transition[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="810" y="1290" width="140" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="IMzDRxW2CpGJXFzr-ES7-153" value="&lt;b&gt;TypedEventActorCmpt&amp;lt;Event&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Event[]&lt;br&gt;contextData: Json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="IMzDRxW2CpGJXFzr-ES7-153" value="&lt;b&gt;TypedEventActorCmpt&amp;lt;Event&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Event[]&lt;br&gt;contextData: Json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="760" y="1395" width="210" height="75" as="geometry"/>
                 </mxCell>
-                <mxCell id="IMzDRxW2CpGJXFzr-ES7-154" value="&lt;b&gt;TypedDataActorCmpt&amp;lt;Data&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Json[]&lt;br&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="IMzDRxW2CpGJXFzr-ES7-154" value="&lt;b&gt;TypedDataActorCmpt&amp;lt;Data&amp;gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Json[]&lt;br&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="1000" y="1395" width="210" height="75" as="geometry"/>
                 </mxCell>
-                <mxCell id="IMzDRxW2CpGJXFzr-ES7-155" value="&lt;b&gt;NonTypedDataActorCmpt&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Json[]&lt;br&gt;contextData: Json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="IMzDRxW2CpGJXFzr-ES7-155" value="&lt;b&gt;NonTypedDataActorCmpt&lt;/b&gt;&lt;br&gt;&lt;br&gt;priorityMailBox: Json[]&lt;br&gt;contextData: Json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="1241" y="1395" width="210" height="75" as="geometry"/>
                 </mxCell>
-                <mxCell id="l_mIEAFERaxw_FY8SRHK-151" value="&lt;h1&gt;Page Route&lt;/h1&gt;&lt;p&gt;make the whole render tree invisible. and shit to another&lt;/p&gt;&lt;p&gt;just add link cmpt together with renderable cmpt so thatwe traval forward and backward the page&lt;/p&gt;&lt;p&gt;&lt;br&gt;also need consider cache and resource loading&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="l_mIEAFERaxw_FY8SRHK-151" value="&lt;h1&gt;Page Route&lt;/h1&gt;&lt;p&gt;make the whole render tree invisible. and shit to another&lt;/p&gt;&lt;p&gt;just add link cmpt together with renderable cmpt so thatwe traval forward and backward the page&lt;/p&gt;&lt;p&gt;&lt;br&gt;also need consider cache and resource loading&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="499" y="1705" width="190" height="235" as="geometry"/>
                 </mxCell>
             </root>
@@ -288,100 +288,100 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-1" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-1" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;" parent="1" vertex="1">
                     <mxGeometry x="110" y="1250" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-2" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-2" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="50" y="1245" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-3" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-3" value="&lt;h1&gt;View mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="40" y="1200" width="165" height="95" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-4" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-4" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1511.2500000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-5" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:[2,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-5" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds:[2,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1849.06" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-6" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-6" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1330" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-8" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-8" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1330" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-9" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-9" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1360" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-10" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-10" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1361.25" width="130" height="68.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-11" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-11" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1431.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1431.25" width="130" height="81.25" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-13" style="edgeStyle=entityRelationEdgeStyle;html=1;" edge="1" parent="1" source="LEEEhXKwH9UsU7SmqXjM-14" target="LEEEhXKwH9UsU7SmqXjM-15">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-13" style="edgeStyle=entityRelationEdgeStyle;html=1;" parent="1" source="LEEEhXKwH9UsU7SmqXjM-14" target="LEEEhXKwH9UsU7SmqXjM-15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-14" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-14" value="&lt;b&gt;Entity with id 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1210" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="LEEEhXKwH9UsU7SmqXjM-15" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="LEEEhXKwH9UsU7SmqXjM-15" value="&lt;b&gt;Entity with id 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1268.75" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-28" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VrysMmYxQne76w22Nizg-4" target="v3hH-QgN93H32NzANw3S-8">
+                <mxCell id="v3hH-QgN93H32NzANw3S-28" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VrysMmYxQne76w22Nizg-4" target="v3hH-QgN93H32NzANw3S-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="VrysMmYxQne76w22Nizg-4" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Update Loop Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="VrysMmYxQne76w22Nizg-4" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Update Loop Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="600" y="1330" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-20" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VrysMmYxQne76w22Nizg-5" target="v3hH-QgN93H32NzANw3S-12">
+                <mxCell id="v3hH-QgN93H32NzANw3S-20" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="VrysMmYxQne76w22Nizg-5" target="v3hH-QgN93H32NzANw3S-12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="VrysMmYxQne76w22Nizg-5" value="&lt;b&gt;System&lt;br&gt;Handle actor events&lt;/b&gt;&lt;br&gt;&lt;br&gt;Select entity with ActorCmpt&lt;br&gt;but without StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="VrysMmYxQne76w22Nizg-5" value="&lt;b&gt;System&lt;br&gt;Handle actor events&lt;/b&gt;&lt;br&gt;&lt;br&gt;Select entity with ActorCmpt&lt;br&gt;but without StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="600" y="1601.56" width="200" height="76.25" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-3" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;StatechartBundle&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/b&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;ActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/span&gt;StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-3" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;StatechartBundle&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/b&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;ActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/span&gt;StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1681.56" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-21" style="edgeStyle=entityRelationEdgeStyle;html=1;" edge="1" parent="1" source="v3hH-QgN93H32NzANw3S-6" target="v3hH-QgN93H32NzANw3S-3">
+                <mxCell id="v3hH-QgN93H32NzANw3S-21" style="edgeStyle=entityRelationEdgeStyle;html=1;" parent="1" source="v3hH-QgN93H32NzANw3S-6" target="v3hH-QgN93H32NzANw3S-3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-6" value="&lt;b&gt;System&lt;br&gt;Tick State chart&lt;br&gt;&lt;/b&gt;Select entity with ActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;and StatechartCmpt&lt;b&gt;&amp;nbsp;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-6" value="&lt;b&gt;System&lt;br&gt;Tick State chart&lt;br&gt;&lt;/b&gt;Select entity with ActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;and StatechartCmpt&lt;b&gt;&amp;nbsp;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="600" y="1684.69" width="200" height="80.62" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-8" value="&lt;b&gt;Destory Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-8" value="&lt;b&gt;Destory Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="840" y="1330" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-11" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-11" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1512.5000000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;TypedActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;lt;Event, Data&amp;gt;&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;priorityMailBox: Event[]&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;TypedActorCmpt&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;lt;Event, Data&amp;gt;&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;priorityMailBox: Event[]&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;contextData: Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1597.8100000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-27" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="v3hH-QgN93H32NzANw3S-14" target="VrysMmYxQne76w22Nizg-4">
+                <mxCell id="v3hH-QgN93H32NzANw3S-27" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="v3hH-QgN93H32NzANw3S-14" target="VrysMmYxQne76w22Nizg-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-14" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Init Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-14" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Init Stage&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="360" y="1330" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-17" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="v3hH-QgN93H32NzANw3S-15" target="LEEEhXKwH9UsU7SmqXjM-8">
+                <mxCell id="v3hH-QgN93H32NzANw3S-17" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="v3hH-QgN93H32NzANw3S-15" target="LEEEhXKwH9UsU7SmqXjM-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-15" value="&lt;b&gt;InitCounterUIEntitiesSystem&lt;/b&gt;&lt;br&gt;Spawn counter related ui enties 1and 2 with pre-defined cmpt values" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-15" value="&lt;b&gt;InitCounterUIEntitiesSystem&lt;/b&gt;&lt;br&gt;Spawn counter related ui enties 1and 2 with pre-defined cmpt values" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="360" y="1361.25" width="200" height="73.13" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-26" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="v3hH-QgN93H32NzANw3S-22" target="v3hH-QgN93H32NzANw3S-24">
+                <mxCell id="v3hH-QgN93H32NzANw3S-26" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="v3hH-QgN93H32NzANw3S-22" target="v3hH-QgN93H32NzANw3S-24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-22" value="&lt;b&gt;System&lt;br&gt;Collect user input&lt;/b&gt;&lt;br&gt;Select entity with ActorCmpt&lt;br&gt;but without StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-22" value="&lt;b&gt;System&lt;br&gt;Collect user input&lt;/b&gt;&lt;br&gt;Select entity with ActorCmpt&lt;br&gt;but without StatechartCmpt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="600" y="1770.62" width="200" height="73.13" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-23" value="&lt;b&gt;UserInteractableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;userAction: number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-23" value="&lt;b&gt;UserInteractableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;userAction: number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="55" y="1765.3100000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="v3hH-QgN93H32NzANw3S-24" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;UserInteractableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;userAction: number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="v3hH-QgN93H32NzANw3S-24" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;UserInteractableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;userAction: number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="185" y="1765.3100000000002" width="130" height="83.75" as="geometry"/>
                 </mxCell>
             </root>
@@ -392,92 +392,160 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-1" value="+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-1" value="+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1300" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-2" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-2" value="123" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="120" y="1255" width="80" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-3" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-3" value="Counter:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1250" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-4" value="&lt;h1&gt;Edit mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-4" value="&lt;h1&gt;Edit mode&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="40" y="1200" width="190" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-5" value="-" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-5" value="-" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
                     <mxGeometry x="140" y="1300" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-6" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-6" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1631.25" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-7" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds: [2,3,4,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-7" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;EntityLinkCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;linkedEntityIds: [2,3,4,]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1715" width="130" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-8" value="&lt;b&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-8" value="&lt;b&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1450" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-9" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-9" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="1630" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-10" value="&lt;b&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-10" value="&lt;b&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="190" y="1450" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-11" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-11" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;InputUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;label: String&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="1480" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-12" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;ContainerUICmpt&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1481.25" width="130" height="68.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-13" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-13" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="60" y="1551.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-14" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-14" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="190" y="1548.75" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-15" style="edgeStyle=entityRelationEdgeStyle;html=1;" edge="1" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-19">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-15" style="edgeStyle=entityRelationEdgeStyle;html=1;" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-19" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-16" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-20">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-16" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-20" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-17" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-21">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-17" style="edgeStyle=entityRelationEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="BtBG2mAOApnR4xEZPuCx-18" target="BtBG2mAOApnR4xEZPuCx-21" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-18" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-18" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Container Entity 1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1203.12" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-19" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-19" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Counter Entity 2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1261.87" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-20" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-20" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1320" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-21" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-21" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="260" y="1375.87" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-22" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-22" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="1631.25" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-23" value="&lt;b&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-23" value="&lt;b&gt;Plus Entity 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="320" y="1450" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-24" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-24" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="1480" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-25" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-25" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="320" y="1551.25" width="130" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-26" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-26" value="&lt;b&gt;TransformCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;position: [x,y]&lt;br&gt;scale: 1&lt;br&gt;rotation:[x,y]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="1630" width="130" height="83.75" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-27" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-27" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Minus Entity 4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="450" y="1450" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-28" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-28" value="&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;b&gt;ButtonUICmpt&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;value: Enum&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="1480" width="130" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="BtBG2mAOApnR4xEZPuCx-29" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" vertex="1" parent="1">
+                <mxCell id="BtBG2mAOApnR4xEZPuCx-29" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;RenderableCmpt&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;visibility:true&lt;br&gt;opacity:1&lt;br&gt;shadow: [r,g,b,a]&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFFCC;" parent="1" vertex="1">
                     <mxGeometry x="450" y="1548.75" width="130" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="z2JoRzE1cgLROvAvaXq4" name="Task-pool">
+        <mxGraphModel dx="973" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-1" value="Task 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="1325" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-2" value="Task 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="1365" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-3" value="Task ...." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="1405" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-4" value="Task 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="1445" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-2" value="&lt;b&gt;System 2&lt;br&gt;&lt;/b&gt;partition for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="1275" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-7" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="1325" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-8" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="1365" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-9" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="1405" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-10" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="1445" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-12" value="&lt;b&gt;System 1&lt;br&gt;&lt;/b&gt;Task/Job Pool&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="1275" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-14" value="&lt;b&gt;System 3&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="1275" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-15" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="1325" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-16" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="1365" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-17" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="1405" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-18" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="1445" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-19" value="&lt;b&gt;System 4&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                    <mxGeometry x="630" y="1275" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-20" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="630" y="1325" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-27" value="All 4 systems run in parallels" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="1270" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-62" value="dynamic number of tasks" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="165" y="1220" width="85" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-66" value="&lt;h1&gt;&lt;font face=&quot;Tahoma&quot;&gt;System Schedule&amp;nbsp;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 14px;&quot;&gt;if 1 cp core, run systems sequentially&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Tahoma&quot;&gt;run all single for loop systems in parallels as possible,&lt;br&gt;then partition loop systems in parallels as possible,&lt;br&gt;finally task pool systems&lt;/font&gt;&lt;/p&gt;&lt;font face=&quot;Tahoma&quot;&gt;&amp;nbsp;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="1050" width="560" height="150" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
