@@ -397,13 +397,281 @@ mod tests {
         "#};
 
         let actual = derive_component_impl(quote! {
-            #[component(storage = "Table")]
+            #[derive(Component)]
             #[component(
-              on_add = view::add_visibility_class::<LightVisibilityClass>,
-              on_insert = ord_a_hook_on_insert,
-              on_replace = ord_a_hook_on_replace,
-              on_remove = ord_a_hook_on_remove)]
+            storage = "Table",
+            on_add = view::add_visibility_class::<LightVisibilityClass>,
+            on_insert = ord_a_hook_on_insert,
+            on_replace = ord_a_hook_on_replace,
+            on_remove = ord_a_hook_on_remove)]
             struct MyComponent;
+        });
+
+        assert_formatted_eq(actual, expected);
+    }
+
+    #[test]
+    fn test_derive_component_relationship() {
+        let expected = indoc! {r#"
+          #[doc = "**Required Components**: [`ColorGrading`], [`Exposure`]. \n\n A component's Required Components are inserted whenever it is inserted. Note that this will also insert the required components _of_ the required components, recursively, in depth-first order."]
+          impl obel_ecs::component::Component for ChildOf
+          where
+              Self: Send + Sync + 'static,
+          {
+              const STORAGE_TYPE: obel_ecs::component::StorageType = obel_ecs::component::StorageType::Table;
+              type Mutability = obel_ecs::component::Immutable;
+              fn register_required_components(
+                  requiree: obel_ecs::component::ComponentId,
+                  components: &mut obel_ecs::component::ComponentsRegistrator,
+                  required_components: &mut obel_ecs::component::RequiredComponents,
+                  inheritance_depth: u16,
+                  recursion_check_stack: &mut obel_ecs::__macro_exports::Vec<
+                      obel_ecs::component::ComponentId,
+                  >,
+              ) {
+                  obel_ecs::component::enforce_no_required_components_recursion(
+                      components,
+                      recursion_check_stack,
+                  );
+                  let self_id = components.register_component::<Self>();
+                  recursion_check_stack.push(self_id);
+                  components
+                      .register_required_components_manual::<
+                          Self,
+                          ColorGrading,
+                      >(
+                          required_components,
+                          <ColorGrading as Default>::default,
+                          inheritance_depth,
+                          recursion_check_stack,
+                      );
+                  components
+                      .register_required_components_manual::<
+                          Self,
+                          Exposure,
+                      >(
+                          required_components,
+                          <Exposure as Default>::default,
+                          inheritance_depth,
+                          recursion_check_stack,
+                      );
+                  <ColorGrading as obel_ecs::component::Component>::register_required_components(
+                      requiree,
+                      components,
+                      required_components,
+                      inheritance_depth + 1,
+                      recursion_check_stack,
+                  );
+                  <Exposure as obel_ecs::component::Component>::register_required_components(
+                      requiree,
+                      components,
+                      required_components,
+                      inheritance_depth + 1,
+                      recursion_check_stack,
+                  );
+                  recursion_check_stack.pop();
+              }
+              fn on_add() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(view::add_visibility_class::<LightVisibilityClass>)
+              }
+              fn on_insert() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(
+                      <Self as obel_ecs::relationship::Relationship>::on_insert,
+                  )
+              }
+              fn on_replace() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(
+                      <Self as obel_ecs::relationship::Relationship>::on_replace,
+                  )
+              }
+              fn on_remove() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(ord_a_hook_on_remove)
+              }
+              fn clone_behavior() -> obel_ecs::component::ComponentCloneBehavior {
+                  use obel_ecs::component::{
+                      DefaultCloneBehaviorBase, DefaultCloneBehaviorViaClone,
+                  };
+                  (&&&obel_ecs::component::DefaultCloneBehaviorSpecialization::<Self>::default())
+                      .default_clone_behavior()
+              }
+              fn visit_entities(this: &Self, mut func: impl FnMut(obel_ecs::entity::Entity)) {
+                  use obel_ecs::entity::VisitEntities;
+                  this.parent.visit_entities(&mut func);
+                  this.a.visit_entities(&mut func);
+              }
+              fn visit_entities_mut(
+                  this: &mut Self,
+                  mut func: impl FnMut(&mut obel_ecs::entity::Entity),
+              ) {
+                  use obel_ecs::entity::VisitEntitiesMut;
+                  this.parent.visit_entities_mut(&mut func);
+                  this.a.visit_entities_mut(&mut func);
+              }
+          }
+          impl obel_ecs::relationship::Relationship for ChildOf {
+              type RelationshipTarget = Children;
+              #[inline(always)]
+              fn get(&self) -> obel_ecs::entity::Entity {
+                  self.parent
+              }
+              #[inline]
+              fn from(entity: obel_ecs::entity::Entity) -> Self {
+                  Self {
+                      a: core::default::Default::default(),
+                      parent: entity,
+                  }
+              }
+          }
+        "#};
+
+        let actual = derive_component_impl(quote! {
+            #[derive(Component)]
+            #[component(
+              storage = "Table",
+              on_add = view::add_visibility_class::<LightVisibilityClass>,
+              // on_replace = ord_a_hook_on_replace,
+              // on_insert = ord_a_hook_on_insert,
+              on_remove = ord_a_hook_on_remove
+            )]
+            #[relationship(relationship_target = Children)]
+            #[require(ColorGrading, Exposure)]
+            pub struct ChildOf {
+                #[relationship]
+                pub parent: Entity,
+                #[entities]
+                a: Entity,
+            }
+        });
+
+        assert_formatted_eq(actual, expected);
+    }
+
+    #[test]
+    fn test_derive_component_relationship_target() {
+        let expected = indoc! {r#"
+          #[doc = "**Required Components**: [`Camera`], [`DebandDither`]. \n\n A component's Required Components are inserted whenever it is inserted. Note that this will also insert the required components _of_ the required components, recursively, in depth-first order."]
+          impl obel_ecs::component::Component for Children
+          where
+              Self: Send + Sync + 'static,
+          {
+              const STORAGE_TYPE: obel_ecs::component::StorageType = obel_ecs::component::StorageType::Table;
+              type Mutability = obel_ecs::component::Mutable;
+              fn register_required_components(
+                  requiree: obel_ecs::component::ComponentId,
+                  components: &mut obel_ecs::component::ComponentsRegistrator,
+                  required_components: &mut obel_ecs::component::RequiredComponents,
+                  inheritance_depth: u16,
+                  recursion_check_stack: &mut obel_ecs::__macro_exports::Vec<
+                      obel_ecs::component::ComponentId,
+                  >,
+              ) {
+                  obel_ecs::component::enforce_no_required_components_recursion(
+                      components,
+                      recursion_check_stack,
+                  );
+                  let self_id = components.register_component::<Self>();
+                  recursion_check_stack.push(self_id);
+                  components
+                      .register_required_components_manual::<
+                          Self,
+                          Camera,
+                      >(
+                          required_components,
+                          <Camera as Default>::default,
+                          inheritance_depth,
+                          recursion_check_stack,
+                      );
+                  components
+                      .register_required_components_manual::<
+                          Self,
+                          DebandDither,
+                      >(
+                          required_components,
+                          || {
+                              let x: DebandDither = (|| DebandDither::Enabled)().into();
+                              x
+                          },
+                          inheritance_depth,
+                          recursion_check_stack,
+                      );
+                  <Camera as obel_ecs::component::Component>::register_required_components(
+                      requiree,
+                      components,
+                      required_components,
+                      inheritance_depth + 1,
+                      recursion_check_stack,
+                  );
+                  <DebandDither as obel_ecs::component::Component>::register_required_components(
+                      requiree,
+                      components,
+                      required_components,
+                      inheritance_depth + 1,
+                      recursion_check_stack,
+                  );
+                  recursion_check_stack.pop();
+              }
+              fn on_add() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(view::add_visibility_class::<LightVisibilityClass>)
+              }
+              fn on_insert() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(ord_a_hook_on_insert)
+              }
+              fn on_replace() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(
+                      <Self as obel_ecs::relationship::RelationshipTarget>::on_replace,
+                  )
+              }
+              fn on_remove() -> ::core::option::Option<obel_ecs::component::ComponentHook> {
+                  ::core::option::Option::Some(ord_a_hook_on_remove)
+              }
+              fn clone_behavior() -> obel_ecs::component::ComponentCloneBehavior {
+                  obel_ecs::component::ComponentCloneBehavior::Custom(
+                      obel_ecs::relationship::clone_relationship_target::<Self>,
+                  )
+              }
+              fn visit_entities(this: &Self, mut func: impl FnMut(obel_ecs::entity::Entity)) {
+                  use obel_ecs::entity::VisitEntities;
+                  this.0.visit_entities(&mut func);
+              }
+              fn visit_entities_mut(
+                  this: &mut Self,
+                  mut func: impl FnMut(&mut obel_ecs::entity::Entity),
+              ) {
+                  use obel_ecs::entity::VisitEntitiesMut;
+                  this.0.visit_entities_mut(&mut func);
+              }
+          }
+          impl obel_ecs::relationship::RelationshipTarget for Children {
+              const LINKED_SPAWN: bool = false;
+              type Relationship = ChildOf;
+              type Collection = Vec<Entity>;
+              #[inline]
+              fn collection(&self) -> &Self::Collection {
+                  &self.0
+              }
+              #[inline]
+              fn collection_mut_risky(&mut self) -> &mut Self::Collection {
+                  &mut self.0
+              }
+              #[inline]
+              fn from_collection_risky(collection: Self::Collection) -> Self {
+                  Self { 0: collection }
+              }
+          }
+        "#};
+
+        let actual = derive_component_impl(quote! {
+            #[derive(Component)]
+            #[component(
+              storage = "Table",
+              on_add = view::add_visibility_class::<LightVisibilityClass>,
+              // on_replace = ord_a_hook_on_replace,
+              on_insert = ord_a_hook_on_insert,
+              on_remove = ord_a_hook_on_remove
+            )]
+            #[relationship_target(relationship = ChildOf)]
+            #[require(Camera, DebandDither(|| DebandDither::Enabled))]
+            pub struct Children(Vec<Entity>);
         });
 
         assert_formatted_eq(actual, expected);
