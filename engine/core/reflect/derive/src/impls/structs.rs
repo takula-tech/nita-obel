@@ -47,6 +47,7 @@ pub(crate) fn impl_struct(reflect_struct: &ReflectStruct) -> proc_macro2::TokenS
         || Some(quote!(#obel_reflect_path::struct_partial_eq)),
         || None,
     );
+    let clone_fn = reflect_struct.get_clone_impl();
 
     #[cfg(not(feature = "functions"))]
     let function_impls = None::<proc_macro2::TokenStream>;
@@ -176,6 +177,8 @@ pub(crate) fn impl_struct(reflect_struct: &ReflectStruct) -> proc_macro2::TokenS
             }
 
             #common_methods
+
+            #clone_fn
         }
     }
 }

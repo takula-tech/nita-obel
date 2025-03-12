@@ -4,8 +4,9 @@ use variadics_please::all_tuples;
 use crate::generics::impl_generic_info_methods;
 use crate::{
     ApplyError, FromReflect, Generics, GetTypeRegistration, MaybeTyped, PartialReflect, Reflect,
-    ReflectKind, ReflectMut, ReflectOwned, ReflectRef, Type, TypeInfo, TypePath, TypeRegistration,
-    TypeRegistry, Typed, UnnamedField, type_info::impl_type_methods, utility::GenericTypePathCell,
+    ReflectCloneError, ReflectKind, ReflectMut, ReflectOwned, ReflectRef, Type, TypeInfo, TypePath,
+    TypeRegistration, TypeRegistry, Typed, UnnamedField, type_info::impl_type_methods,
+    utility::GenericTypePathCell,
 };
 use alloc::{boxed::Box, vec, vec::Vec};
 use core::{
@@ -586,6 +587,16 @@ macro_rules! impl_reflect_tuple {
 
             fn try_apply(&mut self, value: &dyn PartialReflect) -> Result<(), ApplyError> {
                 crate::tuple_try_apply(self, value)
+            }
+
+            fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
+                Ok(Box::new((
+                    $(
+                        self.$index.reflect_clone()?
+                            .take::<$name>()
+                            .expect("`Reflect::reflect_clone` should return the same type"),
+                    )*
+                )))
             }
         }
 

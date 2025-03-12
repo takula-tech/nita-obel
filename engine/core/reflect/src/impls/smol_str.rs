@@ -1,7 +1,15 @@
 use crate::{ReflectDeserialize, ReflectSerialize, std_traits::ReflectDefault};
 use obel_reflect_derive::impl_reflect_opaque;
 
-impl_reflect_opaque!(::smol_str::SmolStr(Debug, Hash, PartialEq, Default, Serialize, Deserialize,));
+impl_reflect_opaque!(::smol_str::SmolStr(
+    Clone,
+    Debug,
+    Hash,
+    PartialEq,
+    Default,
+    Serialize,
+    Deserialize,
+));
 
 #[cfg(test)]
 mod tests {

@@ -45,7 +45,7 @@ impl StringExpr {
     ///
     /// [already owned]: StringExpr::Owned
     pub fn into_owned(self) -> TokenStream {
-        let obel_reflect_path = crate::meta::get_path_to_obel_reflect();
+        let obel_reflect_path = crate::meta::get_obel_reflect_path();
 
         match self {
             Self::Const(tokens) | Self::Borrowed(tokens) => quote! {

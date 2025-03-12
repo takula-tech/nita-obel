@@ -1,7 +1,8 @@
+use syn::{Attribute, Generics, Path, parenthesized, parse::ParseStream, token::Paren};
+
 use crate::{
     attr::container::ContainerAttributes, derive_data::ReflectTraitToImpl, type_path::CustomPathDef,
 };
-use syn::{Attribute, Generics, Path, parenthesized, parse::ParseStream, token::Paren};
 
 /// A struct used to define a simple reflection-opaque types (including primitives).
 ///

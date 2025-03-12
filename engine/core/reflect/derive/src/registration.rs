@@ -1,11 +1,12 @@
 //! Contains code related specifically to Obel's type registration.
 
+use quote::quote;
+use syn::Type;
+
 use crate::{
     derive_data::ReflectMeta, serialization::SerializationDataDef,
     where_clause_options::WhereClauseOptions,
 };
-use quote::quote;
-use syn::Type;
 
 /// Creates the `GetTypeRegistration` impl for the given type data.
 pub(crate) fn impl_get_type_registration<'a>(

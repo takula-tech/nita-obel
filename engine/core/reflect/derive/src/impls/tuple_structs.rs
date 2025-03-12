@@ -37,6 +37,7 @@ pub(crate) fn impl_tuple_struct(reflect_struct: &ReflectStruct) -> proc_macro2::
         || Some(quote!(#obel_reflect_path::tuple_struct_partial_eq)),
         || None,
     );
+    let clone_fn = reflect_struct.get_clone_impl();
 
     #[cfg(not(feature = "functions"))]
     let function_impls = None::<proc_macro2::TokenStream>;
@@ -141,6 +142,8 @@ pub(crate) fn impl_tuple_struct(reflect_struct: &ReflectStruct) -> proc_macro2::
             }
 
             #common_methods
+
+            #clone_fn
         }
     }
 }

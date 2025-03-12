@@ -1,12 +1,3 @@
-use crate::{
-    REFLECT_ATTRIBUTE_NAME, ReflectDerive,
-    derive_data::{ReflectImplSource, ReflectProvenance, ReflectTraitToImpl},
-    from_reflect,
-    ident::ident_or_index,
-    impls,
-    impls::impl_assertions,
-};
-use obel_reflect_utils::FQOption;
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, Span};
 use quote::{format_ident, quote, quote_spanned};
@@ -17,6 +8,16 @@ use syn::{
     spanned::Spanned,
     token::PathSep,
 };
+
+use crate::{
+    REFLECT_ATTRIBUTE_NAME, ReflectDerive,
+    derive_data::{ReflectImplSource, ReflectProvenance, ReflectTraitToImpl},
+    from_reflect,
+    ident::ident_or_index,
+    impls,
+    impls::impl_assertions,
+};
+use obel_reflect_utils::FQOption;
 
 /// Generates the remote wrapper type and implements all the necessary traits.
 pub(crate) fn reflect_remote(args: TokenStream, input: TokenStream) -> TokenStream {

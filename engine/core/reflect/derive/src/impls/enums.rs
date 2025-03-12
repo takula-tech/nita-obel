@@ -67,6 +67,7 @@ pub(crate) fn impl_enum(reflect_enum: &ReflectEnum) -> proc_macro2::TokenStream 
         || Some(quote!(#obel_reflect_path::enum_partial_eq)),
         || Some(quote!(#obel_reflect_path::enum_hash)),
     );
+    let clone_fn = reflect_enum.get_clone_impl();
 
     #[cfg(not(feature = "functions"))]
     let function_impls = None::<proc_macro2::TokenStream>;
@@ -258,6 +259,8 @@ pub(crate) fn impl_enum(reflect_enum: &ReflectEnum) -> proc_macro2::TokenStream 
             }
 
             #common_methods
+
+            #clone_fn
         }
     }
 }
@@ -373,11 +376,11 @@ fn generate_impls(reflect_enum: &ReflectEnum, ref_index: &Ident, ref_name: &Iden
                     let value_mut = process_field_value(&__value, field, true, obel_reflect_path);
 
                     enum_field_at.push(quote! {
-                        #unit { #declare_field : #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_ref)
-                    });
+                      #unit { #declare_field : #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_ref)
+                  });
                     enum_field_at_mut.push(quote! {
-                        #unit { #declare_field : #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_mut)
-                    });
+                      #unit { #declare_field : #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_mut)
+                  });
                 });
 
                 enum_field_len.push(quote! {
@@ -397,23 +400,23 @@ fn generate_impls(reflect_enum: &ReflectEnum, ref_index: &Ident, ref_name: &Iden
                     let value_mut = process_field_value(&__value, field, true, obel_reflect_path);
 
                     enum_field.push(quote! {
-                        #unit{ #field_ident: #__value, .. } if #ref_name == #field_name => #FQOption::Some(#value_ref)
-                    });
+                      #unit{ #field_ident: #__value, .. } if #ref_name == #field_name => #FQOption::Some(#value_ref)
+                  });
                     enum_field_mut.push(quote! {
-                        #unit{ #field_ident: #__value, .. } if #ref_name == #field_name => #FQOption::Some(#value_mut)
-                    });
+                      #unit{ #field_ident: #__value, .. } if #ref_name == #field_name => #FQOption::Some(#value_mut)
+                  });
                     enum_field_at.push(quote! {
-                        #unit{ #field_ident: #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_ref)
-                    });
+                      #unit{ #field_ident: #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_ref)
+                  });
                     enum_field_at_mut.push(quote! {
-                        #unit{ #field_ident: #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_mut)
-                    });
+                      #unit{ #field_ident: #__value, .. } if #ref_index == #reflection_index => #FQOption::Some(#value_mut)
+                  });
                     enum_index_of.push(quote! {
-                        #unit{ .. } if #ref_name == #field_name => #FQOption::Some(#reflection_index)
-                    });
+                      #unit{ .. } if #ref_name == #field_name => #FQOption::Some(#reflection_index)
+                  });
                     enum_name_at.push(quote! {
-                        #unit{ .. } if #ref_index == #reflection_index => #FQOption::Some(#field_name)
-                    });
+                      #unit{ .. } if #ref_index == #reflection_index => #FQOption::Some(#field_name)
+                  });
                 });
 
                 enum_field_len.push(quote! {

@@ -1,8 +1,9 @@
-use crate::derive_data::ReflectMeta;
-use obel_reflect_utils::{FQAny, FQSend, FQSync};
 use proc_macro2::TokenStream;
 use quote::{ToTokens, quote};
 use syn::{Token, Type, WhereClause, punctuated::Punctuated};
+
+use crate::derive_data::ReflectMeta;
+use obel_reflect_utils::{FQAny, FQSend, FQSync};
 
 /// Options defining how to extend the `where` clause for reflection.
 pub(crate) struct WhereClauseOptions<'a, 'b> {

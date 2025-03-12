@@ -1,11 +1,13 @@
+use std::collections::HashMap;
+
+use quote::quote;
+use syn::{Path, spanned::Spanned};
+
 use crate::{
-    attr::field::{DefaultBehavior, IgnoreBehavior},
+    attr::field::{DefaultBehavior, ReflectIgnoreBehavior},
     derive_data::StructField,
 };
 use obel_reflect_utils::FQDefault;
-use quote::quote;
-use std::collections::HashMap;
-use syn::{Path, spanned::Spanned};
 
 type ReflectionIndex = usize;
 
@@ -28,7 +30,7 @@ impl SerializationDataDef {
 
         for field in fields {
             match field.attrs.ignore {
-                IgnoreBehavior::IgnoreSerialization => {
+                ReflectIgnoreBehavior::IgnoreSerialization => {
                     skipped.insert(
                         field.reflection_index.ok_or_else(|| {
                             syn::Error::new(

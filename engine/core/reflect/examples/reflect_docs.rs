@@ -6,6 +6,8 @@
 //!
 //! These scenarios can readily be achieved by using `obel_reflect` with the `documentation` feature.
 
+#![expect(clippy::print_stdout, reason = "Allowed in examples.")]
+
 use obel_reflect::{Reflect, TypeInfo, Typed};
 
 fn main() {

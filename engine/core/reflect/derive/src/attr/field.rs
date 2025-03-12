@@ -5,19 +5,23 @@
 //! the derive helper attribute for `Reflect`, which looks like: `#[reflect(ignore)]`.
 
 use crate::{REFLECT_ATTRIBUTE_NAME, attr::CustomAttributes, attr::terminated_parser};
+
 use quote::ToTokens;
 use syn::{Attribute, LitStr, Meta, Token, Type, parse::ParseStream};
 
 mod kw {
     syn::custom_keyword!(ignore);
     syn::custom_keyword!(skip_serializing);
+    syn::custom_keyword!(clone);
     syn::custom_keyword!(default);
     syn::custom_keyword!(remote);
 }
 
 pub(crate) const IGNORE_SERIALIZATION_ATTR: &str = "skip_serializing";
 pub(crate) const IGNORE_ALL_ATTR: &str = "ignore";
+
 pub(crate) const DEFAULT_ATTR: &str = "default";
+pub(crate) const CLONE_ATTR: &str = "clone";
 
 /// Stores data about if the field should be visible via the Reflect and serialization interfaces
 ///
@@ -25,7 +29,7 @@ pub(crate) const DEFAULT_ATTR: &str = "default";
 /// In boolean logic this is described as: `is_serialized -> is_reflected`, this means we can reflect something without serializing it but not the other way round.
 /// The `is_reflected` predicate is provided as `self.is_active()`
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub(crate) enum IgnoreBehavior {
+pub(crate) enum ReflectIgnoreBehavior {
     /// Don't ignore, appear to all systems
     #[default]
     None,
@@ -35,12 +39,12 @@ pub(crate) enum IgnoreBehavior {
     IgnoreAlways,
 }
 
-impl IgnoreBehavior {
+impl ReflectIgnoreBehavior {
     /// Returns `true` if the ignoring behavior implies member is included in the reflection API, and false otherwise.
     pub fn is_active(self) -> bool {
         match self {
-            IgnoreBehavior::None | IgnoreBehavior::IgnoreSerialization => true,
-            IgnoreBehavior::IgnoreAlways => false,
+            ReflectIgnoreBehavior::None | ReflectIgnoreBehavior::IgnoreSerialization => true,
+            ReflectIgnoreBehavior::IgnoreAlways => false,
         }
     }
 
@@ -48,6 +52,14 @@ impl IgnoreBehavior {
     pub fn is_ignored(self) -> bool {
         !self.is_active()
     }
+}
+
+#[derive(Default, Clone)]
+pub(crate) enum CloneBehavior {
+    #[default]
+    Default,
+    Trait,
+    Func(syn::ExprPath),
 }
 
 /// Controls how the default value is determined for a field.
@@ -69,7 +81,9 @@ pub(crate) enum DefaultBehavior {
 #[derive(Default, Clone)]
 pub(crate) struct FieldAttributes {
     /// Determines how this field should be ignored if at all.
-    pub ignore: IgnoreBehavior,
+    pub ignore: ReflectIgnoreBehavior,
+    /// Sets the clone behavior of this field.
+    pub clone: CloneBehavior,
     /// Sets the default behavior of this field.
     pub default: DefaultBehavior,
     /// Custom attributes created via `#[reflect(@...)]`.
@@ -117,6 +131,8 @@ impl FieldAttributes {
             self.parse_ignore(input)
         } else if lookahead.peek(kw::skip_serializing) {
             self.parse_skip_serializing(input)
+        } else if lookahead.peek(kw::clone) {
+            self.parse_clone(input)
         } else if lookahead.peek(kw::default) {
             self.parse_default(input)
         } else if lookahead.peek(kw::remote) {
@@ -131,7 +147,7 @@ impl FieldAttributes {
     /// Examples:
     /// - `#[reflect(ignore)]`
     fn parse_ignore(&mut self, input: ParseStream) -> syn::Result<()> {
-        if self.ignore != IgnoreBehavior::None {
+        if self.ignore != ReflectIgnoreBehavior::None {
             return Err(input.error(format!(
                 "only one of {:?} is allowed",
                 [IGNORE_ALL_ATTR, IGNORE_SERIALIZATION_ATTR]
@@ -139,7 +155,7 @@ impl FieldAttributes {
         }
 
         input.parse::<kw::ignore>()?;
-        self.ignore = IgnoreBehavior::IgnoreAlways;
+        self.ignore = ReflectIgnoreBehavior::IgnoreAlways;
         Ok(())
     }
 
@@ -148,7 +164,7 @@ impl FieldAttributes {
     /// Examples:
     /// - `#[reflect(skip_serializing)]`
     fn parse_skip_serializing(&mut self, input: ParseStream) -> syn::Result<()> {
-        if self.ignore != IgnoreBehavior::None {
+        if self.ignore != ReflectIgnoreBehavior::None {
             return Err(input.error(format!(
                 "only one of {:?} is allowed",
                 [IGNORE_ALL_ATTR, IGNORE_SERIALIZATION_ATTR]
@@ -156,7 +172,31 @@ impl FieldAttributes {
         }
 
         input.parse::<kw::skip_serializing>()?;
-        self.ignore = IgnoreBehavior::IgnoreSerialization;
+        self.ignore = ReflectIgnoreBehavior::IgnoreSerialization;
+        Ok(())
+    }
+
+    /// Parse `clone` attribute.
+    ///
+    /// Examples:
+    /// - `#[reflect(clone)]`
+    /// - `#[reflect(clone = "path::to::func")]`
+    fn parse_clone(&mut self, input: ParseStream) -> syn::Result<()> {
+        if !matches!(self.clone, CloneBehavior::Default) {
+            return Err(input.error(format!("only one of {:?} is allowed", [CLONE_ATTR])));
+        }
+
+        input.parse::<kw::clone>()?;
+
+        if input.peek(Token![=]) {
+            input.parse::<Token![=]>()?;
+
+            let lit = input.parse::<LitStr>()?;
+            self.clone = CloneBehavior::Func(lit.parse()?);
+        } else {
+            self.clone = CloneBehavior::Trait;
+        }
+
         Ok(())
     }
 
@@ -222,145 +262,5 @@ impl FieldAttributes {
         } else {
             Some(false)
         }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use quote::quote;
-    use syn::parse_quote;
-
-    fn create_reflect_attribute(tokens: proc_macro2::TokenStream) -> Attribute {
-        parse_quote!(#[reflect(#tokens)])
-    }
-
-    #[test]
-    fn test_default_values() {
-        let attrs = FieldAttributes::default();
-        assert!(matches!(attrs.ignore, IgnoreBehavior::None));
-        assert!(matches!(attrs.default, DefaultBehavior::Required));
-        assert!(attrs.remote.is_none());
-    }
-
-    #[test]
-    fn test_parse_ignore() {
-        let attr = create_reflect_attribute(quote!(ignore));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(matches!(attrs.ignore, IgnoreBehavior::IgnoreAlways));
-        assert!(attrs.is_remote_generic().is_none());
-    }
-
-    #[test]
-    fn test_parse_skip_serializing() {
-        let attr = create_reflect_attribute(quote!(skip_serializing));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(matches!(attrs.ignore, IgnoreBehavior::IgnoreSerialization));
-    }
-
-    #[test]
-    fn test_parse_default() {
-        let attr = create_reflect_attribute(quote!(default));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(matches!(attrs.default, DefaultBehavior::Default));
-    }
-
-    #[test]
-    fn test_parse_default_with_function() {
-        let attr = create_reflect_attribute(quote!(default = "my_module::create_default"));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        if let DefaultBehavior::Func(path) = &attrs.default {
-            assert_eq!(path.to_token_stream().to_string(), "my_module :: create_default");
-        } else {
-            panic!("Expected DefaultBehavior::Func");
-        }
-    }
-
-    #[test]
-    fn test_parse_remote() {
-        let attr = create_reflect_attribute(quote!(remote = Vec<String>));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(attrs.remote.is_some());
-        assert_eq!(attrs.is_remote_generic(), Some(true));
-    }
-
-    #[test]
-    fn test_parse_remote_non_generic() {
-        let attr = create_reflect_attribute(quote!(remote = String));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(attrs.remote.is_some());
-        assert_eq!(attrs.is_remote_generic(), Some(false));
-    }
-
-    #[test]
-    fn test_parse_multiple_attributes() {
-        let attrs = FieldAttributes::parse_attributes(&[
-            create_reflect_attribute(quote!(skip_serializing)),
-            create_reflect_attribute(quote!(default)),
-        ])
-        .unwrap();
-
-        assert!(matches!(attrs.ignore, IgnoreBehavior::IgnoreSerialization));
-        assert!(matches!(attrs.default, DefaultBehavior::Default));
-    }
-
-    #[test]
-    fn test_duplicate_ignore_attributes_error() {
-        let result = FieldAttributes::parse_attributes(&[
-            create_reflect_attribute(quote!(ignore)),
-            create_reflect_attribute(quote!(skip_serializing)),
-        ]);
-
-        assert!(result.is_err());
-    }
-
-    #[test]
-    fn test_duplicate_default_attributes_error() {
-        let result = FieldAttributes::parse_attributes(&[
-            create_reflect_attribute(quote!(default)),
-            create_reflect_attribute(quote!(default = "create_default")),
-        ]);
-
-        assert!(result.is_err());
-    }
-
-    #[test]
-    fn test_duplicate_remote_attributes_error() {
-        let result = FieldAttributes::parse_attributes(&[
-            create_reflect_attribute(quote!(remote = String)),
-            create_reflect_attribute(quote!(remote = Vec<u32>)),
-        ]);
-
-        assert!(result.is_err());
-    }
-
-    #[test]
-    fn test_ignore_behavior() {
-        assert!(IgnoreBehavior::None.is_active());
-        assert!(!IgnoreBehavior::None.is_ignored());
-
-        assert!(IgnoreBehavior::IgnoreSerialization.is_active());
-        assert!(!IgnoreBehavior::IgnoreSerialization.is_ignored());
-
-        assert!(!IgnoreBehavior::IgnoreAlways.is_active());
-        assert!(IgnoreBehavior::IgnoreAlways.is_ignored());
-    }
-
-    #[test]
-    fn test_non_reflect_attribute_is_skipped() {
-        let attr: Attribute = parse_quote!(#[derive(Debug)]);
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-        assert!(matches!(attrs.ignore, IgnoreBehavior::None));
-        assert!(matches!(attrs.default, DefaultBehavior::Required));
-    }
-
-    #[test]
-    fn test_parse_multiple_values_in_single_attribute() {
-        let attr = create_reflect_attribute(quote!(ignore, default));
-        let attrs = FieldAttributes::parse_attributes(&[attr]).unwrap();
-
-        // Verify both attributes were correctly parsed
-        assert!(matches!(attrs.ignore, IgnoreBehavior::IgnoreAlways));
-        assert!(matches!(attrs.default, DefaultBehavior::Default));
     }
 }

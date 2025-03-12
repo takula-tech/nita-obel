@@ -1,3 +1,7 @@
+use proc_macro2::Span;
+use quote::{ToTokens, quote};
+use syn::{Field, Ident, Lit, LitInt, LitStr, Member};
+
 use crate::{
     ReflectMeta, ReflectStruct,
     attr::container::REFLECT_DEFAULT,
@@ -8,9 +12,6 @@ use crate::{
     where_clause_options::WhereClauseOptions,
 };
 use obel_reflect_utils::{FQClone, FQDefault, FQOption};
-use proc_macro2::Span;
-use quote::{ToTokens, quote};
-use syn::{Field, Ident, Lit, LitInt, LitStr, Member};
 
 /// Implements `FromReflect` for the given struct
 pub(crate) fn impl_struct(reflect_struct: &ReflectStruct) -> proc_macro2::TokenStream {
