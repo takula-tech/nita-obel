@@ -7,18 +7,18 @@
  - **`Component`**:
    - Stored in continuous memory that is cache-line friendly
    - In-memory Database:
-     - Entity Id ~ Primary Key !usually integer
-     - Entity Id ~ Foreigner Key !rust borrow rule,sea of objects,entityId as pointer to other entity
+     - Entity Id ~ Primary Key
+     - Entity Id ~ Foreigner Key (rust borrow rule cyclic reference is difficult to use)
      - Component ~ Partition Key
      - Component ~ Table Column
      - Component ~ Field Index
 
     ```sql
-    SELECT hp,mp,amor from entitiesTable
-    WHERE alignment = 'team_mate' AND (hp <100 OR mp >= 100)
-    ORDER BY hp DESC
-    GROUP BY alignment
-    LIMIT 10
+      SELECT hp,mp,amor from entitiesTable
+      WHERE alignment = 'team_mate' AND (hp <100 OR mp >= 100)
+      ORDER BY hp DESC
+      GROUP BY alignment
+      LIMIT 10
     ```
 
     ```rust
@@ -114,13 +114,14 @@
            - await will break the ordering constraint between systems
              and is not suitable for this case as we already been using ThreadPool Executor
           
-        - what if we need make animation that need yield&re-enter system ?
+        - what if we need make animation that need yield&await system ?
 
         - what if event handling logics vary when:
           - they're different entity archetypes
-          - even though same archetype, but still depend on on-the-fly conditions
+          - even though same archetype, but still depend on on-the-fly conditions/context
           - in other words, instead of simply stateless sequential logics,
             we have complex stateful orchestration logics 
+            eg, in early local dev loop, we do not know wjat exactly 
           ```rust
           struct UIClickedEvent<Payload> {
             eventType: u32,
@@ -155,13 +156,21 @@
              - Event driven state transitions (State Machine Cmpt)
              - Event driven intra-chart communications (Mailbox Cmpt)
            
-          - Designated for complex Sync/Async logics and interactions
+          - Designated for complex Sync/Async logics
             eg, `yield` and `awaiting` features that are must-have high level  
             construct in dev loop for 2d UI, animation & Game Plays  
             which are essentially state machines.
+98
+             - animation of cascading dropdown menu that requires controls the timeline  
+               for each individual dropdown item
+             - game skill
+
             yield=> historical statechart
             awaiting 
 
+          - Designated for complex interactions across entities 
+            - publish subscription
+            - direct messaging
           - Good readability & testability and usability
 
 

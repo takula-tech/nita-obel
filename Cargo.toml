@@ -89,6 +89,7 @@ obel_platform = { path = "engine/platform", default-features = false, version = 
 obel_ui_test_runner = { path = "tools/ui_test_runner", default-features = false, version = "0.0.9" }
 obel_ecs = { path = "engine/core/ecs", default-features = false, version = "0.0.9" }
 obel_ecs_macros = { path = "engine/core/ecs/macros", default-features = false, version = "0.0.9" }
+obel_tasks = { path = "engine/core/tasks", default-features = false, version = "0.0.9" }
 
 # [dev-dependencies]
 ron = "0.8.0"
@@ -99,6 +100,8 @@ static_assertions = "1.1.0"
 tempfile = "3"
 indoc = "2"
 prettyplease = "0.2.30"
+serde_test = "1.0"
+rand = "0.8"
 
 # [dependencies]
 cfg-if = "1.0.0"
@@ -118,7 +121,6 @@ tikv-jemallocator = "0.6.0"
 #[global_allocator]
 # static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 mimalloc = "0.1.43"
-# [target.'cfg(target_arch = "wasm32")'.dependencies]
 getrandom = { version = "0.2.0", default-features = false }
 web-time = { version = "1.1", default-features = false }
 sysinfo = { version = "0.33.0", default-features = false }
@@ -144,6 +146,27 @@ critical-section = { version = "1.2.0", default-features = false }
 portable-atomic = { version = "1", default-features = false }
 portable-atomic-util = { version = "0.2.4", default-features = false }
 spin = { version = "0.9.8", default-features = false }
+bitflags = { version = "2.3", default-features = false }
+concurrent-queue = { version = "2.5.0", default-features = false }
+fixedbitset = { version = "0.5", default-features = false }
+nonmax = { version = "0.5", default-features = false }
+arrayvec = { version = "0.7.4", default-features = false }
+indexmap = { version = "2.5.0", default-features = false }
+log = { version = "0.4", default-features = false }
+bumpalo = "3"
+futures-lite = { version = "2.0.1", default-features = false }
+async-task = { version = "4.4.0", default-features = false }
+async-executor = { version = "1.11" }
+async-channel = { version = "2.3.0" }
+async-io = { version = "2.0.0" }
+atomic-waker = { version = "1", default-features = false }
+once_cell = { version = "1.18", default-features = false }
+crossbeam-queue = { version = "0.3", default-features = false }
+heapless = { version = "0.8", default-features = false }
+wasm-bindgen-futures = { version = "0.4" }
+pin-project = { version = "1" }
+futures-channel = { version = "0.3" }
+
 
 [workspace.lints.rust]
 missing_docs = "warn"

@@ -4,5 +4,5 @@
 #![no_std] // tells the compiler "don't automatically link std"
 
 extern crate alloc;
-// #[cfg(feature = "std")]
+#[cfg(feature = "std")]
 extern crate std;

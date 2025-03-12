@@ -1,0 +1,83 @@
+[package]
+name = "obel_tasks"
+description = "task executor"
+keywords = ["obel", "obel_tasks"]
+version = "0.0.9"
+categories = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+documentation = { workspace = true }
+readme = "README.md"
+
+[lints]
+workspace = true
+[package.metadata.docs.rs]
+workspace = true
+[badges]
+maintenance = { status = "actively-developed" }
+
+[dependencies]
+obel_platform = { workspace = true, features = ["alloc"] }
+
+derive_more = { workspace = true, features = ["deref", "deref_mut"] }
+once_cell = { workspace = true, features = ["critical-section"] }
+cfg-if = { workspace = true }
+async-task = { workspace = true }
+async-executor = { workspace = true, optional = true }
+async-channel = { workspace = true, optional = true }
+async-io = { workspace = true, optional = true }
+concurrent-queue = { workspace = true, optional = true }
+atomic-waker = { workspace = true }
+crossbeam-queue = { workspace = true, features = ["alloc"] }
+futures-lite = { workspace = true, features = ["alloc"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = { workspace = true, optional = true }
+pin-project = { workspace = true, optional = true }
+futures-channel = { workspace = true, optional = true }
+
+[target.'cfg(not(all(target_has_atomic = "8", target_has_atomic = "16", target_has_atomic = "32", target_has_atomic = "64", target_has_atomic = "ptr")))'.dependencies]
+async-task = { workspace = true, features = ["portable-atomic"] }
+heapless = { workspace = true, features = ["portable-atomic"] }
+atomic-waker = { workspace = true, features = ["portable-atomic"] }
+
+[dev-dependencies]
+static_assertions = { workspace = true }
+
+[features]
+default = ["std", "async_executor"]
+
+# Functionality
+## Enables multi-threading support.
+## Without this feature, all tasks will be run on a single thread.
+multi_threaded = ["std", "dep:async-channel", "dep:concurrent-queue"]
+## Uses `async-executor` as a task execution backend.
+## This backend is incompatible with `no_std` targets.
+async_executor = ["std", "dep:async-executor"]
+
+# Platform Compatibility
+## Allows access to the `std` crate. Enabling this feature will prevent compilation
+## on `no_std` targets, but provides access to certain additional features on
+## supported platforms.
+std = [
+  "obel_platform/std",
+  "futures-lite/std",
+  "async-task/std",
+  "once_cell/std",
+]
+
+## `critical-section` provides the building blocks for synchronization primitives
+## on all platforms, including `no_std`.
+critical-section = ["obel_platform/critical-section"]
+
+## Enables use of browser APIs.
+## Note this is currently only applicable on `wasm32` architectures.
+web = [
+  "obel_platform/web",
+  "dep:wasm-bindgen-futures",
+  "dep:pin-project",
+  "dep:futures-channel",
+]
