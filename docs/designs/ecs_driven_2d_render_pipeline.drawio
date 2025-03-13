@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="OBBd6NsxkmT4sHoRkoNz" name="introduction">
-        <mxGraphModel dx="1216" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1216" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -284,7 +284,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="RGVQQd1h1GmIcMprXFD9" name="counter-in-view-mode">
-        <mxGraphModel dx="1216" dy="-510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1216" dy="-634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -388,7 +388,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="zwXJOajR3ny2hZM8rUfT" name="counter-in-edit-mode">
-        <mxGraphModel dx="1216" dy="-510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1216" dy="-634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -482,70 +482,127 @@
             </root>
         </mxGraphModel>
     </diagram>
-    <diagram id="z2JoRzE1cgLROvAvaXq4" name="Task-pool">
-        <mxGraphModel dx="973" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <diagram id="z2JoRzE1cgLROvAvaXq4" name="system-scheduler">
+        <mxGraphModel dx="1216" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="_GI1oGH6d2T6fn5_49j9-1" value="Task 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-1" value="Task 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="150" y="1325" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="_GI1oGH6d2T6fn5_49j9-2" value="Task 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-2" value="Task 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="150" y="1365" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="_GI1oGH6d2T6fn5_49j9-3" value="Task ...." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-3" value="Task ...." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="150" y="1405" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="_GI1oGH6d2T6fn5_49j9-4" value="Task 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="_GI1oGH6d2T6fn5_49j9-4" value="Task 100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="150" y="1445" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-2" value="&lt;b&gt;System 2&lt;br&gt;&lt;/b&gt;partition for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-2" value="&lt;b&gt;System 2&lt;br&gt;&lt;/b&gt;partition for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1275" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-7" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-7" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1325" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-8" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-8" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1365" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-9" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-9" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1405" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-10" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-10" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1445" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-12" value="&lt;b&gt;System 1&lt;br&gt;&lt;/b&gt;Task/Job Pool&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-12" value="&lt;b&gt;System 1&lt;br&gt;&lt;/b&gt;Task/Job Pool&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="150" y="1275" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-14" value="&lt;b&gt;System 3&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-14" value="&lt;b&gt;System 3&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="470" y="1275" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-15" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-15" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="470" y="1325" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-16" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-16" value="Entity 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="470" y="1365" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-17" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-17" value="Entity 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="470" y="1405" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-18" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-18" value="Entity 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="470" y="1445" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-19" value="&lt;b&gt;System 4&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-19" value="&lt;b&gt;System 4&lt;br&gt;&lt;/b&gt;for loop&lt;b&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" parent="1" vertex="1">
                     <mxGeometry x="630" y="1275" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-20" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-20" value="Entity 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" parent="1" vertex="1">
                     <mxGeometry x="630" y="1325" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-27" value="All 4 systems run in parallels" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-27" value="All 4 systems run in parallels" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="40" y="1270" width="90" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-62" value="dynamic number of tasks" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="vGOfjkvgODNXJCDv27Yr-62" value="dynamic number of tasks" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="165" y="1220" width="85" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="vGOfjkvgODNXJCDv27Yr-66" value="&lt;h1&gt;&lt;font face=&quot;Tahoma&quot;&gt;System Schedule&amp;nbsp;&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 14px;&quot;&gt;if 1 cp core, run systems sequentially&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Tahoma&quot;&gt;run all single for loop systems in parallels as possible,&lt;br&gt;then partition loop systems in parallels as possible,&lt;br&gt;finally task pool systems&lt;/font&gt;&lt;/p&gt;&lt;font face=&quot;Tahoma&quot;&gt;&amp;nbsp;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="160" y="1050" width="560" height="150" as="geometry"/>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-1" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Stealing Task Pool &lt;br&gt;(10 chunks + 100 systems = 110 tasks)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="310" width="550" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-2" value="&lt;h1&gt;Task Pool&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="90" width="190" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-3" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Task Executor&lt;br&gt;1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="370" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-4" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Task Executor&lt;br&gt;2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="370" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-5" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Task Executor&amp;nbsp;&lt;br&gt;3&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="370" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-6" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Task Executor&lt;br&gt;4&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="370" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-7" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Thread 1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="430" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-8" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Thread 1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="430" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-9" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Thread 3&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="430" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-10" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;Thread 4&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="430" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-14" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;System 1&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;loop 500 entities&lt;br&gt;10 chunks&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="220" width="130" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-17" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=18;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="754.5" y="360" as="sourcePoint"/>
+                        <mxPoint x="754.5" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-20" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;System 2&lt;/span&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;loop 10 enties&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="250" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-25" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;System ...&lt;/span&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;loop 20 enties&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="250" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-26" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;System 100&lt;/span&gt;&lt;br&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;loop 500 enties&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="250" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-28" value="Tokio&lt;br&gt;Smol&lt;br&gt;Async-executor" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="690" y="420" width="130" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-29" value="Prefer to single loop&lt;br&gt;if system logicis quite simple" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="180" width="130" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-30" value="Prefer to partition&amp;nbsp; loop&lt;br&gt;if system logicis complex" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="150" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="D8rM0wcQHGgVuDxWC1wY-31" value="&lt;h1&gt;System Acyclic Graph&amp;nbsp;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="565" width="270" height="45" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

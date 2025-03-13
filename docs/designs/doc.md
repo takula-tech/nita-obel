@@ -422,3 +422,55 @@ In the **Bevy Engine** (a Rust-based game engine), this design is implemented us
 ---
 
 By using this double-buffering or pipelining approach, game engines can significantly increase throughput (FPS) and make better use of hardware resources. Let me know if you need further clarification or examples!
+
+# Tokio runtime ticked in Game Loop
+```rust
+use tokio::runtime::Builder;
+use tokio::sync::mpsc;
+use std::time::Duration;
+
+fn main() {
+    // Create a single-threaded runtime
+    let rt = Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap();
+
+    // Create an MPSC channel
+    let (tx, mut rx) = mpsc::channel(32);
+
+    // Spawn an async task to emit events
+    rt.spawn(async move {
+        for i in 0..5 {
+            println!("Async task emitting event: {}", i);
+            tx.send(i).await.unwrap(); // Send event through the channel
+            tokio::time::sleep(Duration::from_secs(1)).await; // Simulate work
+        }
+    });
+
+    // Main loop to receive events
+    let mut tick_count = 0;
+    loop {
+        println!("Main loop iteration: {}", tick_count);
+        tick_count += 1;
+
+        // Poll the channel for events
+        if let Ok(event) = rx.try_recv() {
+            println!("Main loop received event: {}", event);
+        }
+
+        // Tick the runtime to drive async tasks forward
+        rt.turn(None); // `None` means no timeout; it will return immediately if no progress can be made
+
+        // Simulate other work in the main loop
+        std::thread::sleep(Duration::from_millis(500)); // Simulate non-async work
+
+        // Exit condition for the loop (optional)
+        if tick_count >= 10 {
+            break;
+        }
+    }
+
+    println!("Main loop finished");
+}
+```
