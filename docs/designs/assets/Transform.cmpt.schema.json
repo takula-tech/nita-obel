@@ -1,0 +1,16 @@
+{
+  "Transform": {
+    "type": "object",
+    "properties": {
+      "position": {
+        "type": "Vec3"
+      },
+      "rotation": {
+        "type": "Quat"
+      },
+      "scale": {
+        "type": "Vec3"
+      }
+    }
+  }
+}

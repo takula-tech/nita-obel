@@ -107,8 +107,6 @@
           `Invoke System via event on the fly`
         - Helps workload peak
          
-        - function call cannot remeber thecall stack
-          with class scope, still not easy to shared the variables cross object boundary 
         -  what if we need to get something returned from the system ?
            - await helps here ? -> No unfortunately
            - await will break the ordering constraint between systems
@@ -244,7 +242,7 @@
    - Update: 
  
  - **`Data Flow`**:
-   - Event driven render treecreate/update app logics in state chart cmpt to react to UI/Application events
+   - Event driven render tree create/update app logics in state chart cmpt to react to UI/Application events
   
 - **`UI Layout Recalculation`**
   - [taffy-low-level-api](https://docs.rs/taffy/latest/taffy/#low-level-api)

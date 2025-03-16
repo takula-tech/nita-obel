@@ -1,0 +1,7 @@
+{
+  "entryScene": "home.scene",
+  "game_parameters": {
+    "targetPlatform": "windows",
+    "buildVersion": "v1.0.0"
+  }
+}
