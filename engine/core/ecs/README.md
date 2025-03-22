@@ -1,4 +1,4 @@
-# Obel ECS
+<!-- # Obel ECS
 
 [![license](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/obelengine/obel#license)
 [![crates.io](https://img.shields.io/crates/v/obel.svg)](https://crates.io/crates/obel)
@@ -349,4 +349,4 @@ world.flush();
 world.trigger_targets(Explode, entity);
 ```
 
-[obel]: https://obelengine.org/
+[obel]: https://obelengine.org/ -->

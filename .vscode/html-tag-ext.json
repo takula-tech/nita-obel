@@ -1,0 +1,94 @@
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "scene",
+      "description": "custom tag as root node in the entity tree structure",
+      "attributes": []
+    },
+    {
+      "name": "camera",
+      "description": "custom tag used to represent the Camera entity in the scene.\n",
+      "attributes": [
+        {
+          "name": "order",
+          "description": "order determines the rendering order of cameras.\n Cameras with a higher order value are rendered on top of those with a lower order value."
+        },
+        {
+          "name": "viewPort",
+          "description": "viewPort defines the visible area size. render elements outside the viewport will be clipped."
+        },
+        {
+          "name": "scale",
+          "description": "scale: zoom-in/out the view sight"
+        },
+        {
+          "name": "translation",
+          "description": "translation: scrolling of screen view"
+        },
+        {
+          "name": "translation",
+          "description": "translation: scrolling of screen view"
+        },
+        {
+          "name": "rotation",
+          "description": "rotation: ajust lookat angle"
+        }
+      ]
+    },
+    {
+      "name": "UIButton",
+      "description": "A custom tag used to represent 2D UI Button",
+      "attributes": [
+        {
+          "name": "id",
+          "description": "A unique identifier for the button."
+        },
+        {
+          "name": "className",
+          "description": "CSS class names to apply to the button."
+        },
+        {
+          "name": "style",
+          "description": "Inline CSS styles to apply to the button."
+        },
+        {
+          "name": "type",
+          "description": "button type"
+        },
+        {
+          "name": "onClick",
+          "description": "rust function to execute when the button is clicked."
+        }
+      ]
+    },
+    {
+      "name": "UIContainer",
+      "description": "A custom tag used to represent 2D UI Text",
+      "attributes": [
+        {
+          "name": "id",
+          "description": "A unique identifier for the button."
+        },
+        {
+          "name": "class",
+          "description": "CSS class names to apply to the button."
+        },
+        {
+          "name": "style",
+          "description": "Inline CSS styles to apply to the button."
+        }
+      ]
+    },
+    {
+      "name": "UIHead1",
+      "description": "A custom tag used to represent 2D UI Text",
+      "attributes": []
+    },
+    {
+      "name": "Statechart",
+      "description": "A custom tag used to represent herichrical finite state machine for complex orchestration logics",
+      "attributes": []
+    }
+  ]
+}

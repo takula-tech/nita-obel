@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <title>TypeScript in Script Tag</title>
+</head>
+
+<style>
+  .best-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+</style>
+
+<body>
+  <scene>
+    <camera order="10000" viewPort="${props.currCameraViewport}" translation="${props.currCameraTranslation}"
+      scale="${props.currCameraScale}" rotation="${props.currCameraRotation}">
+      <button type="button" class="best-btn" aria-pressed="${props.isPressed}" onclick="hello">
+        <span className="visually-hidden">Show </span>
+        <span>{props.name}</span>
+        <span class="visually-hidden"> tasks</span>
+      </button>
+    </camera>
+  </scene>
+</body>
+
+</html>
+<!--
+Reflection
+-->
+
+<!-- <SceneEntity entityID="1">
+  <CameraEntity entityID="2">
+    <CameraComponent viewPort="123.0 325.0" order="10000"/>
+    <TransformComponent translation="${props.currCameraTranslation}" scale="${props.currCameraScale}" rotation="${props.currCameraRotation}" />
+  </Camera>
+  <UIButton type="button" className="btn toggle-btn" aria-pressed="${props.isPressed}" onClick="onClicked">
+    <UISpan className="visually-hidden">Show </UISpan>
+    <UISpan>{props.name}</UISpan>
+    <UISpan className="visually-hidden"> tasks</UISpan>
+  </UIButton>
+</Camera>
+</Scene> -->

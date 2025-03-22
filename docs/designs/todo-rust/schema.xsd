@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Scene">
+  </xs:element>
+
+  <xs:element name="Camera">
+    <xs:annotation>
+      <xs:documentation>
+        A custom tag used to represent the Camera entity in the scene.
+        visit: https://example.com/book-docs
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="order" type="xs:integer" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            order determines the rendering order of cameras.
+            Cameras with a higher order value are rendered on top of those with a lower order value
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="viewPort" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            viewPort defines the visible area size. render elements outside the viewport will be clipped.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

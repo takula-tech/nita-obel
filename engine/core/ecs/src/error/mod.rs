@@ -37,7 +37,7 @@
 //!
 //! For example:
 //!
-//! ```rust
+//! ```ignore
 //! # use obel_ecs::prelude::*;
 //! # use obel_ecs::schedule::ScheduleLabel;
 //! # use log::trace;

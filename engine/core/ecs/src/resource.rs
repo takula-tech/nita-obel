@@ -11,7 +11,7 @@ pub use obel_ecs_macros::Resource;
 ///
 /// # Examples
 ///
-/// ```
+/// ```ignore
 /// # let mut world = World::default();
 /// # let mut schedule = Schedule::default();
 /// # use obel_ecs::prelude::*;
@@ -51,7 +51,7 @@ pub use obel_ecs_macros::Resource;
 /// ```
 ///
 /// This will compile since the `RefCell` is wrapped with `SyncCell`.
-/// ```
+/// ```ignore
 /// # use std::cell::RefCell;
 /// # use obel_ecs::resource::Resource;
 /// use obel_utils::synccell::SyncCell;

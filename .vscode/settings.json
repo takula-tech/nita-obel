@@ -26,5 +26,12 @@
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
-  "cSpell.words": ["reimplementation"]
+  "cSpell.words": ["reimplementation"],
+  "html.customData": ["./.vscode/html-tag-ext.json"],
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }

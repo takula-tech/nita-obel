@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+  <Camera order="10000" viewPort="${props.currCameraViewport}"/>
+</Scene>
+<!--
+  Scene is Root Node in the entity tree structure
+  - event/message propagation across children entities
+ -->
+<!-- <Scene>
+  <Camera order="10000" viewPort="${props.currCameraViewport}" translation="${props.currCameraTranslation}" scale="${props.currCameraScale}" rotation="${props.currCameraRotation}">
+    <UIButton type="button" className="btn toggle-btn" aria-pressed="${props.isPressed}" onClick="onClicked">
+      <UISpan className="visually-hidden">Show </UISpan>
+      <UISpan>{props.name}</UISpan>
+      <UISpan className="visually-hidden"> tasks</UISpan>
+    </UIButton>
+  </Camera>
+</Scene> -->
+
+<!--
+Reflection
+-->
+
+<!-- <SceneEntity entityID="1">
+  <CameraEntity entityID="2">
+    <CameraComponent viewPort="123.0 325.0" order="10000"/>
+    <TransformComponent translation="${props.currCameraTranslation}" scale="${props.currCameraScale}" rotation="${props.currCameraRotation}" />
+  </Camera>
+    <UIButton type="button" className="btn toggle-btn" aria-pressed="${props.isPressed}" onClick="onClicked">
+      <UISpan className="visually-hidden">Show </UISpan>
+      <UISpan>{props.name}</UISpan>
+      <UISpan className="visually-hidden"> tasks</UISpan>
+    </UIButton>
+  </Camera>
+</Scene> -->
