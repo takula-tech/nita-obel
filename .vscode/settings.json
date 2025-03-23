@@ -17,7 +17,6 @@
   // "rust-analyzer.check.extraArgs": ["--all", "--all-features", "--", "-D", "warnings"],
   // "rust-analyzer.check.extraArgs": ["--no-deps", "--all-features", "--all-targets"],
   "rust-analyzer.check.extraArgs": ["--no-deps", "--all-features"],
-  // "rust-analyzer.check.extraArgs": ["--no-deps"],
   "terminal.integrated.defaultProfile.linux": "bash",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.defaultProfile.osx": "zsh",
