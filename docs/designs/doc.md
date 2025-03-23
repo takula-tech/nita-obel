@@ -1287,3 +1287,139 @@ For example, in a shader:
 - This approach is efficient, accurate, and flexible, and it works seamlessly with SDFs for preserving sharp edges.
 
 Let me know if you have further questions! 😊
+
+# `2d ui and 3d camera render results composition`
+Great question! Let’s dive into how the **UI camera** and **3D world camera** interact in Bevy, and why the UI doesn’t completely cover the 3D world.
+
+---
+
+### **1. How the UI Camera and 3D World Camera Work Together**
+- The **UI camera** and **3D world camera** render into the **same final frame buffer**.
+- The **order of rendering** is determined by the cameras' **priority**:
+  - The 3D world camera (with a lower priority, e.g., `priority: 0`) renders first.
+  - The UI camera (with a higher priority, e.g., `priority: 1`) renders last.
+
+- When the UI camera renders, it only draws its **UI elements** (e.g., buttons, text) on top of the existing contents of the frame buffer.
+- The **uncovered parts of the frame buffer** (where the UI doesn’t draw anything) remain **unchanged**, so the 3D world is still visible in those areas.
+
+---
+
+### **2. Transparency and Blending**
+- The UI camera doesn’t "erase" or "cover" the entire frame buffer. Instead, it only modifies the pixels where UI elements are drawn.
+- If a UI element has **transparency** (e.g., a semi-transparent button), the underlying 3D world will be partially visible through the UI element.
+- This is achieved using **blending**:
+  - The UI camera blends its output with the existing contents of the frame buffer.
+  - The blending behavior depends on the **alpha value** of the UI elements.
+
+---
+
+### **3. Why the 3D World Isn’t Fully Covered**
+- The UI camera doesn’t clear the frame buffer before rendering. It only draws its UI elements on top of the existing contents.
+- If a UI element doesn’t cover a pixel, the pixel retains its previous value (from the 3D world camera).
+
+---
+
+### **4. Example: Rendering Order and Blending**
+Let’s break down the rendering process step by step:
+
+#### **Step 1: 3D World Camera Renders**
+- The 3D world camera renders the play world into the **final frame buffer**.
+- The frame buffer now contains the 3D world.
+
+#### **Step 2: UI Camera Renders**
+- The UI camera renders the UI elements into the **same frame buffer**.
+- For each pixel:
+  - If the UI element is **opaque**, it overwrites the pixel.
+  - If the UI element is **transparent**, it blends with the existing pixel (from the 3D world).
+  - If there is **no UI element**, the pixel remains unchanged (showing the 3D world).
+
+---
+
+### **5. Visualizing the Process**
+Here’s a table to illustrate the rendering process:
+
+| Step | Camera          | Action                                     | Frame Buffer Contents                |
+| ---- | --------------- | ------------------------------------------ | ------------------------------------ |
+| 1    | 3D World Camera | Renders the play world                     | 3D World                             |
+| 2    | UI Camera       | Renders UI elements on top of the 3D world | 3D World + UI (blended where needed) |
+
+---
+
+### **6. Example Code**
+Here’s how you can set up a 3D world camera and a UI camera in Bevy:
+
+```rust
+use bevy::prelude::*;
+
+fn setup_cameras(mut commands: Commands) {
+    // 3D World Camera (renders first)
+    commands.spawn(Camera3dBundle {
+        transform: Transform::from_xyz(0.0, 0.0, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
+        ..default()
+    });
+
+    // UI Camera (renders last)
+    commands.spawn(Camera2dBundle::default());
+}
+
+fn setup_ui(mut commands: Commands, asset_server: Res<AssetServer>) {
+    // Root node for the UI
+    commands.spawn(NodeBundle {
+        style: Style {
+            size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
+            justify_content: JustifyContent::Center,
+            align_items: AlignItems::Center,
+            ..default()
+        },
+        ..default()
+    })
+    .with_children(|parent| {
+        // Add a button
+        parent.spawn(ButtonBundle {
+            style: Style {
+                size: Size::new(Val::Px(150.0), Val::Px(65.0)),
+                justify_content: JustifyContent::Center,
+                align_items: AlignItems::Center,
+                ..default()
+            },
+            background_color: Color::rgba(0.1, 0.5, 0.1, 0.5).into(), // Semi-transparent
+            ..default()
+        })
+        .with_children(|parent| {
+            // Add text to the button
+            parent.spawn(TextBundle::from_section(
+                "Start",
+                TextStyle {
+                    font: asset_server.load("fonts/FiraSans-Bold.ttf"),
+                    font_size: 40.0,
+                    color: Color::rgb(1.0, 1.0, 1.0),
+                },
+            ));
+        });
+    });
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_startup_system(setup_cameras)
+        .add_startup_system(setup_ui)
+        .run();
+}
+```
+
+---
+
+### **7. Key Points**
+- The **UI camera** doesn’t clear the frame buffer. It only draws its UI elements on top of the existing contents.
+- The **uncovered parts of the frame buffer** (where the UI doesn’t draw anything) remain unchanged, so the 3D world is still visible.
+- If a UI element has **transparency**, the underlying 3D world will be partially visible through it.
+
+---
+
+### **8. Conclusion**
+- The UI camera and 3D world camera work together seamlessly in Bevy.
+- The UI camera only modifies the pixels where UI elements are drawn, leaving the rest of the frame buffer unchanged.
+- Transparency and blending allow the 3D world to show through the UI where needed.
+
+This approach ensures that the 3D world and UI are properly layered and composited in the final frame buffer!
