@@ -925,7 +925,6 @@ dependencies = [
  "futures-lite",
  "heapless",
  "obel_platform",
- "once_cell",
  "pin-project",
  "static_assertions",
  "wasm-bindgen-futures",
@@ -952,10 +951,6 @@ name = "once_cell"
 version = "1.20.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "945462a4b81e43c4e3ba96bd7b49d834c6f61198356aa858733bc4acf3cbe62e"
-dependencies = [
- "critical-section",
- "portable-atomic",
-]
 
 [[package]]
 name = "owo-colors"

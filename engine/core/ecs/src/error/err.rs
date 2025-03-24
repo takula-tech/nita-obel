@@ -4,7 +4,7 @@ use core::{
     fmt::{Debug, Display},
 };
 
-/// The built in "universal" Bevy error type. This has a blanket [`From`] impl for any type that implements Rust's [`Error`],
+/// The built in "universal" Obel error type. This has a blanket [`From`] impl for any type that implements Rust's [`Error`],
 /// meaning it can be used as a "catch all" error.
 ///
 /// # Backtraces

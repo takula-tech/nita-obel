@@ -1,10 +1,10 @@
 //! Error handling for "fallible" systems.
 //!
-//! When a system is added to a [`Schedule`], and its return type is that of [`Result`], then Bevy
+//! When a system is added to a [`Schedule`], and its return type is that of [`Result`], then Obel
 //! considers those systems to be "fallible", and the ECS scheduler will special-case the [`Err`]
 //! variant of the returned `Result`.
 //!
-//! All [`BevyError`]s returned by a system are handled by an "error handler". By default, the
+//! All [`ObelError`]s returned by a system are handled by an "error handler". By default, the
 //! [`panic`] error handler function is used, resulting in a panic with the error message attached.
 //!
 //! You can change the default behavior by registering a custom error handler, either globally or
@@ -14,7 +14,7 @@
 //!   current [`World`].
 //! - [`Schedule::set_error_handler`] sets the error handler for all systems of that schedule.
 //!
-//! Bevy provides a number of pre-built error-handlers for you to use:
+//! Obel provides a number of pre-built error-handlers for you to use:
 //!
 //! - [`panic`] – panics with the system error
 //! - [`error`] – logs the system error at the `error` level
@@ -29,7 +29,7 @@
 //! signature:
 //!
 //! ```rust,ignore
-//! fn(BevyError, SystemErrorContext)
+//! fn(ObelError, SystemErrorContext)
 //! ```
 //!
 //! The [`SystemErrorContext`] allows you to access additional details relevant to providing
@@ -58,7 +58,7 @@
 //! # }
 //! ```
 //!
-//! If you need special handling of individual fallible systems, you can use Bevy's [`system piping
+//! If you need special handling of individual fallible systems, you can use Obel's [`system piping
 //! feature`] to capture the `Result` output of the system and handle it accordingly.
 //!
 //! [`Schedule`]: crate::schedule::Schedule

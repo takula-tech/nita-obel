@@ -23,7 +23,6 @@ maintenance = { status = "actively-developed" }
 obel_platform = { workspace = true, features = ["alloc"] }
 
 derive_more = { workspace = true, features = ["deref", "deref_mut"] }
-once_cell = { workspace = true, features = ["critical-section"] }
 cfg-if = { workspace = true }
 async-task = { workspace = true }
 async-executor = { workspace = true, optional = true }
@@ -62,12 +61,7 @@ async_executor = ["std", "dep:async-executor"]
 ## Allows access to the `std` crate. Enabling this feature will prevent compilation
 ## on `no_std` targets, but provides access to certain additional features on
 ## supported platforms.
-std = [
-  "obel_platform/std",
-  "futures-lite/std",
-  "async-task/std",
-  "once_cell/std",
-]
+std = ["obel_platform/std", "futures-lite/std", "async-task/std"]
 
 ## `critical-section` provides the building blocks for synchronization primitives
 ## on all platforms, including `no_std`.

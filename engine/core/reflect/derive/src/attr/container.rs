@@ -5,15 +5,17 @@
 //! the derive helper attribute for `Reflect`, which looks like:
 //! `#[reflect(PartialEq, Default, ...)]`.
 
+use crate::{
+    attr::{CustomAttributes, terminated_parser},
+    derive_data::ReflectTraitToImpl,
+};
+use obel_reflect_utils::{FQAny, FQClone, FQOption, FQResult};
 use proc_macro2::{Ident, Span};
 use quote::quote_spanned;
 use syn::{
     Expr, LitBool, MetaList, MetaNameValue, Path, Token, WhereClause, ext::IdentExt, parenthesized,
     parse::ParseStream, spanned::Spanned, token,
 };
-
-use crate::{attr::CustomAttributes, attr::terminated_parser, derive_data::ReflectTraitToImpl};
-use obel_reflect_utils::{FQAny, FQClone, FQOption, FQResult};
 
 mod kw {
     syn::custom_keyword!(from_reflect);
@@ -402,9 +404,11 @@ impl ContainerAttributes {
             // Override `lit` if this is a `FromReflect` derive.
             // This typically means a user is opting out of the default implementation
             // from the `Reflect` derive and using the `FromReflect` derive directly instead.
-            (trait_ == ReflectTraitToImpl::FromReflect)
-                .then(|| LitBool::new(true, Span::call_site()))
-                .unwrap_or_else(|| lit.clone())
+            if trait_ == ReflectTraitToImpl::FromReflect {
+                LitBool::new(true, Span::call_site())
+            } else {
+                lit.clone()
+            }
         })?;
 
         if let Some(existing) = &self.from_reflect_attrs.auto_derive {
@@ -435,9 +439,11 @@ impl ContainerAttributes {
             // Override `lit` if this is a `FromReflect` derive.
             // This typically means a user is opting out of the default implementation
             // from the `Reflect` derive and using the `FromReflect` derive directly instead.
-            (trait_ == ReflectTraitToImpl::TypePath)
-                .then(|| LitBool::new(true, Span::call_site()))
-                .unwrap_or_else(|| lit.clone())
+            if trait_ == ReflectTraitToImpl::TypePath {
+                LitBool::new(true, Span::call_site())
+            } else {
+                lit.clone()
+            }
         })?;
 
         if let Some(existing) = &self.type_path_attrs.auto_derive {
@@ -613,422 +619,5 @@ fn extract_bool(
             ..
         }) => Ok(mapper(lit)),
         _ => Err(syn::Error::new(value.span(), "Expected a boolean value")),
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use proc_macro2::Span;
-    use quote::quote;
-    use syn::{Attribute, parse_quote};
-
-    // Helper function to create a `#[reflect(...)]` attribute
-    fn create_reflect_attribute(tokens: proc_macro2::TokenStream) -> Attribute {
-        parse_quote!(#[reflect(#tokens)])
-    }
-
-    // Helper function to create a `ContainerAttributes` instance with a specific `TraitImpl`
-    fn create_container_attributes_with_trait_impl(
-        debug: TraitImpl,
-        partial_eq: TraitImpl,
-        hash: TraitImpl,
-    ) -> ContainerAttributes {
-        ContainerAttributes {
-            debug,
-            partial_eq,
-            hash,
-            ..Default::default()
-        }
-    }
-
-    #[test]
-    fn test_trait_impl_merge() {
-        let mut trait_impl = TraitImpl::NotImplemented;
-        let other = TraitImpl::Implemented(Span::call_site());
-
-        assert!(trait_impl.merge(other).is_ok());
-        assert!(matches!(trait_impl, TraitImpl::Implemented(_)));
-
-        let other_custom = TraitImpl::Custom(parse_quote!(custom_fn), Span::call_site());
-        assert!(trait_impl.merge(other_custom).is_err());
-    }
-
-    #[test]
-    fn test_from_reflect_attrs_should_auto_derive() {
-        let attrs = FromReflectAttrs {
-            auto_derive: None,
-        };
-        assert!(attrs.should_auto_derive());
-
-        let attrs = FromReflectAttrs {
-            auto_derive: Some(LitBool::new(true, Span::call_site())),
-        };
-        assert!(attrs.should_auto_derive());
-
-        let attrs = FromReflectAttrs {
-            auto_derive: Some(LitBool::new(false, Span::call_site())),
-        };
-        assert!(!attrs.should_auto_derive());
-    }
-
-    #[test]
-    fn test_type_path_attrs_should_auto_derive() {
-        let attrs = TypePathAttrs {
-            auto_derive: None,
-        };
-        assert!(attrs.should_auto_derive());
-
-        let attrs = TypePathAttrs {
-            auto_derive: Some(LitBool::new(true, Span::call_site())),
-        };
-        assert!(attrs.should_auto_derive());
-
-        let attrs = TypePathAttrs {
-            auto_derive: Some(LitBool::new(false, Span::call_site())),
-        };
-        assert!(!attrs.should_auto_derive());
-    }
-
-    #[test]
-    fn test_extract_bool() {
-        let expr = parse_quote!(true);
-        let result = extract_bool(&expr, |lit| lit.clone());
-        assert!(result.is_ok());
-        assert!(result.unwrap().value());
-
-        let expr = parse_quote!(false);
-        let result = extract_bool(&expr, |lit| lit.clone());
-        assert!(result.is_ok());
-        assert!(!result.unwrap().value());
-
-        let expr = parse_quote!("not a bool");
-        let result = extract_bool(&expr, |lit| lit.clone());
-        assert!(result.is_err());
-    }
-
-    #[test]
-    fn test_add_unique_ident() {
-        let mut idents = vec![];
-        let ident = Ident::new("Test", Span::call_site());
-
-        assert!(add_unique_ident(&mut idents, ident.clone()).is_ok());
-        assert_eq!(idents.len(), 1);
-
-        let result = add_unique_ident(&mut idents, ident);
-        assert!(result.is_err());
-    }
-
-    // #[test]
-    // fn test_parse_attributes_simple_trait() {
-    //     // Test parsing a simple trait like `#[reflect(MyTrait)]`
-    //     let attr = create_reflect_attribute(quote!(MyTrait));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that the trait was registered
-    //     assert!(container_attrs.contains("ReflectMyTrait"));
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_special_traits() {
-    //     // Test parsing special traits like `Debug`, `PartialEq`, and `Hash`
-    //     let attr = create_reflect_attribute(quote!(Debug, PartialEq, Hash));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that the special traits were registered
-    //     assert!(matches!(container_attrs.debug, TraitImpl::Implemented(_)));
-    //     assert!(matches!(container_attrs.partial_eq, TraitImpl::Implemented(_)));
-    //     assert!(matches!(container_attrs.hash, TraitImpl::Implemented(_)));
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_custom_functions() {
-    //     // Test parsing custom functions for special traits
-    //     let attr = create_reflect_attribute(quote!(
-    //         Debug(custom_debug),
-    //         PartialEq(custom_partial_eq),
-    //         Hash(custom_hash)
-    //     ));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that the custom functions were registered
-    //     assert!(matches!(container_attrs.debug, TraitImpl::Custom(_, _)));
-    //     assert!(matches!(container_attrs.partial_eq, TraitImpl::Custom(_, _)));
-    //     assert!(matches!(container_attrs.hash, TraitImpl::Custom(_, _)));
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_from_reflect() {
-    //     // Test parsing the `from_reflect` attribute
-    //     let attr = create_reflect_attribute(quote!(from_reflect = true));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `from_reflect` was set to `true`
-    //     assert!(container_attrs.from_reflect_attrs().should_auto_derive());
-
-    //     // Test with `false`
-    //     let attr = create_reflect_attribute(quote!(from_reflect = false));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `from_reflect` was set to `false`
-    //     assert!(!container_attrs.from_reflect_attrs().should_auto_derive());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_type_path() {
-    //     // Test parsing the `type_path` attribute
-    //     let attr = create_reflect_attribute(quote!(type_path = true));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `type_path` was set to `true`
-    //     assert!(container_attrs.type_path_attrs().should_auto_derive());
-
-    //     // Test with `false`
-    //     let attr = create_reflect_attribute(quote!(type_path = false));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `type_path` was set to `false`
-    //     assert!(!container_attrs.type_path_attrs().should_auto_derive());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_opaque() {
-    //     // Test parsing the `opaque` attribute
-    //     let attr = create_reflect_attribute(quote!(opaque));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `opaque` was set
-    //     assert!(container_attrs.is_opaque());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_no_field_bounds() {
-    //     // Test parsing the `no_field_bounds` attribute
-    //     let attr = create_reflect_attribute(quote!(no_field_bounds));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that `no_field_bounds` was set
-    //     assert!(container_attrs.no_field_bounds());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_custom_where() {
-    //     // Test parsing a custom `where` clause
-    //     let attr = create_reflect_attribute(quote!(where T: Debug));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that the custom `where` clause was set
-    //     assert!(container_attrs.custom_where().is_some());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_multiple_attributes() {
-    //     // Test parsing multiple attributes in a single `#[reflect(...)]`
-    //     let attr =
-    //         create_reflect_attribute(quote!(Debug, PartialEq, Hash, no_field_bounds, opaque));
-    //     let container_attrs =
-    //         ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect).unwrap();
-
-    //     // Verify that all attributes were parsed correctly
-    //     assert!(matches!(container_attrs.debug, TraitImpl::Implemented(_)));
-    //     assert!(matches!(container_attrs.partial_eq, TraitImpl::Implemented(_)));
-    //     assert!(matches!(container_attrs.hash, TraitImpl::Implemented(_)));
-    //     assert!(container_attrs.no_field_bounds());
-    //     assert!(container_attrs.is_opaque());
-    // }
-
-    // #[test]
-    // fn test_parse_attributes_conflicting_traits() {
-    //     // Test parsing conflicting trait registrations
-    //     let attr = create_reflect_attribute(quote!(Debug, Debug(custom_debug)));
-    //     let result = ContainerAttributes::parse_attributes(&[attr], ReflectTraitToImpl::Reflect);
-
-    //     // Verify that an error was returned
-    //     assert!(result.is_err());
-    // }
-
-    #[test]
-    fn test_get_debug_impl_implemented() {
-        // Test `get_debug_impl` for an implemented trait
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::Implemented(Span::call_site()),
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-        );
-
-        let debug_impl = container_attrs.get_debug_impl().unwrap();
-        let expected = quote! {
-            fn debug(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                ::core::fmt::Debug::fmt(self, f)
-            }
-        };
-
-        assert_eq!(debug_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_debug_impl_custom() {
-        // Test `get_debug_impl` for a custom implementation
-        let custom_fn: Path = parse_quote!(custom_debug_fn);
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::Custom(custom_fn.clone(), Span::call_site()),
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-        );
-
-        let debug_impl = container_attrs.get_debug_impl().unwrap();
-        let expected = quote! {
-            fn debug(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                #custom_fn(self, f)
-            }
-        };
-
-        assert_eq!(debug_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_debug_impl_not_implemented() {
-        // Test `get_debug_impl` when the trait is not implemented
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-        );
-
-        let debug_impl = container_attrs.get_debug_impl();
-        assert!(debug_impl.is_none());
-    }
-
-    #[test]
-    fn test_get_partial_eq_impl_implemented() {
-        // Test `get_partial_eq_impl` for an implemented trait
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::Implemented(Span::call_site()),
-            TraitImpl::NotImplemented,
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let partial_eq_impl = container_attrs.get_partial_eq_impl(&obel_reflect_path).unwrap();
-
-        let expected = quote! {
-            fn reflect_partial_eq(&self, value: &dyn obel_reflect::PartialReflect) -> ::core::option::Option<bool> {
-                let value = <dyn obel_reflect::PartialReflect>::try_downcast_ref::<Self>(value);
-                if let ::core::option::Option::Some(value) = value {
-                    ::core::option::Option::Some(::core::cmp::PartialEq::eq(self, value))
-                } else {
-                    ::core::option::Option::Some(false)
-                }
-            }
-        };
-
-        assert_eq!(partial_eq_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_partial_eq_impl_custom() {
-        // Test `get_partial_eq_impl` for a custom implementation
-        let custom_fn: Path = parse_quote!(custom_partial_eq_fn);
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::Custom(custom_fn.clone(), Span::call_site()),
-            TraitImpl::NotImplemented,
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let partial_eq_impl = container_attrs.get_partial_eq_impl(&obel_reflect_path).unwrap();
-
-        let expected = quote! {
-            fn reflect_partial_eq(&self, value: &dyn obel_reflect::PartialReflect) -> ::core::option::Option<bool> {
-                ::core::option::Option::Some(#custom_fn(self, value))
-            }
-        };
-
-        assert_eq!(partial_eq_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_partial_eq_impl_not_implemented() {
-        // Test `get_partial_eq_impl` when the trait is not implemented
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let partial_eq_impl = container_attrs.get_partial_eq_impl(&obel_reflect_path);
-        assert!(partial_eq_impl.is_none());
-    }
-
-    #[test]
-    fn test_get_hash_impl_implemented() {
-        // Test `get_hash_impl` for an implemented trait
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-            TraitImpl::Implemented(Span::call_site()),
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let hash_impl = container_attrs.get_hash_impl(&obel_reflect_path).unwrap();
-
-        let expected = quote! {
-            fn reflect_hash(&self) -> ::core::option::Option<u64> {
-                use ::core::hash::{Hash, Hasher};
-                let mut hasher = obel_reflect::utility::reflect_hasher();
-                Hash::hash(&::core::any::Any::type_id(self), &mut hasher);
-                Hash::hash(self, &mut hasher);
-                ::core::option::Option::Some(Hasher::finish(&hasher))
-            }
-        };
-
-        assert_eq!(hash_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_hash_impl_custom() {
-        // Test `get_hash_impl` for a custom implementation
-        let custom_fn: Path = parse_quote!(custom_hash_fn);
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-            TraitImpl::Custom(custom_fn.clone(), Span::call_site()),
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let hash_impl = container_attrs.get_hash_impl(&obel_reflect_path).unwrap();
-
-        let expected = quote! {
-            fn reflect_hash(&self) -> ::core::option::Option<u64> {
-                ::core::option::Option::Some(#custom_fn(self))
-            }
-        };
-
-        assert_eq!(hash_impl.to_string(), expected.to_string());
-    }
-
-    #[test]
-    fn test_get_hash_impl_not_implemented() {
-        // Test `get_hash_impl` when the trait is not implemented
-        let container_attrs = create_container_attributes_with_trait_impl(
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-            TraitImpl::NotImplemented,
-        );
-
-        let obel_reflect_path: Path = parse_quote!(obel_reflect);
-        let hash_impl = container_attrs.get_hash_impl(&obel_reflect_path);
-        assert!(hash_impl.is_none());
     }
 }

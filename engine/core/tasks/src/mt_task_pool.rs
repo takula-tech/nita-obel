@@ -116,7 +116,7 @@ impl TaskPoolBuilder {
 
 /// A thread pool for executing tasks.
 ///
-/// While futures usually need to be polled to be executed, Bevy tasks are being
+/// While futures usually need to be polled to be executed, Obel tasks are being
 /// automatically driven by the pool on threads owned by the pool. The [`Task`]
 /// future only needs to be polled in order to receive the result. (For that
 /// purpose, it is often stored in a component or resource, see the

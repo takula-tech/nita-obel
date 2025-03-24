@@ -4,7 +4,7 @@
 #![no_std] // tells the compiler "don't automatically link std"
 
 #[cfg(target_pointer_width = "16")]
-compile_error!("bevy_ecs cannot safely compile for a 16-bit platform.");
+compile_error!("obel_ecs cannot safely compile for a 16-bit platform.");
 
 extern crate alloc;
 #[cfg(feature = "std")]

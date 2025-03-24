@@ -78,7 +78,7 @@ reflect_functions = ["obel_reflect", "obel_reflect/functions"]
 ## This may be useful for production builds,
 ## but can result in a measurable performance impact, especially for commands.
 configurable_error_handler = []
-## Enables automatic backtrace capturing in BevyError
+## Enables automatic backtrace capturing in ObelError
 backtrace = ["std"]
 
 # Debugging Features
