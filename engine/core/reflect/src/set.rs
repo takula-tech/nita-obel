@@ -1,14 +1,12 @@
-use alloc::{boxed::Box, format, vec::Vec};
-use core::fmt::{Debug, Formatter};
-
-use obel_platform::collections::{HashTable, hash_table::OccupiedEntry as HashTableOccupiedEntry};
-use obel_reflect_derive::impl_type_path;
-
 use crate::{
     ApplyError, Generics, PartialReflect, Reflect, ReflectKind, ReflectMut, ReflectOwned,
     ReflectRef, Type, TypeInfo, TypePath, generics::impl_generic_info_methods, hash_error,
     type_info::impl_type_methods,
 };
+use alloc::{boxed::Box, format, vec::Vec};
+use core::fmt::{Debug, Formatter};
+use obel_platform::collections::{HashTable, hash_table::OccupiedEntry as HashTableOccupiedEntry};
+use obel_reflect_derive::impl_type_path;
 
 /// A trait used to power [set-like] operations via [reflection].
 ///
@@ -68,7 +66,20 @@ pub trait Set: PartialReflect {
     fn drain(&mut self) -> Vec<Box<dyn PartialReflect>>;
 
     /// Clones the set, producing a [`DynamicSet`].
-    fn clone_dynamic(&self) -> DynamicSet;
+    #[deprecated(since = "0.16.0", note = "use `to_dynamic_set` instead")]
+    fn clone_dynamic(&self) -> DynamicSet {
+        self.to_dynamic_set()
+    }
+
+    /// Creates a new [`DynamicSet`] from this set.
+    fn to_dynamic_set(&self) -> DynamicSet {
+        let mut set = DynamicSet::default();
+        set.set_represented_type(self.get_represented_type_info());
+        for value in self.iter() {
+            set.insert_boxed(value.to_dynamic());
+        }
+        set
+    }
 
     /// Inserts a value into the set.
     ///
@@ -202,20 +213,6 @@ impl Set for DynamicSet {
         self.hash_table.drain().collect::<Vec<_>>()
     }
 
-    fn clone_dynamic(&self) -> DynamicSet {
-        let mut hash_table = HashTable::new();
-        self.hash_table.iter().map(|value| value.clone_value()).for_each(|value| {
-            hash_table.insert_unique(Self::internal_hash(value.as_ref()), value, |boxed| {
-                Self::internal_hash(boxed.as_ref())
-            });
-        });
-
-        DynamicSet {
-            represented_type: self.represented_type,
-            hash_table,
-        }
-    }
-
     fn insert_boxed(&mut self, value: Box<dyn PartialReflect>) -> bool {
         assert_eq!(
             value.reflect_partial_eq(&*value),
@@ -308,10 +305,6 @@ impl PartialReflect for DynamicSet {
 
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Set(self)
-    }
-
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone_dynamic())
     }
 
     fn reflect_partial_eq(&self, value: &dyn PartialReflect) -> Option<bool> {
@@ -460,7 +453,7 @@ pub fn set_apply<M: Set>(a: &mut M, b: &dyn PartialReflect) {
     if let ReflectRef::Set(set_value) = b.reflect_ref() {
         for b_value in set_value.iter() {
             if a.get(b_value).is_none() {
-                a.insert_boxed(b_value.clone_value());
+                a.insert_boxed(b_value.to_dynamic());
             }
         }
     } else {
@@ -483,7 +476,7 @@ pub fn set_try_apply<S: Set>(a: &mut S, b: &dyn PartialReflect) -> Result<(), Ap
 
     for b_value in set_value.iter() {
         if a.get(b_value).is_none() {
-            a.insert_boxed(b_value.clone_value());
+            a.insert_boxed(b_value.to_dynamic());
         }
     }
 

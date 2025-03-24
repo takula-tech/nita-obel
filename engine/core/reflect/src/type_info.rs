@@ -72,7 +72,6 @@ use thiserror::Error;
 /// #     fn reflect_ref(&self) -> ReflectRef { todo!() }
 /// #     fn reflect_mut(&mut self) -> ReflectMut { todo!() }
 /// #     fn reflect_owned(self: Box<Self>) -> ReflectOwned { todo!() }
-/// #     fn clone_value(&self) -> Box<dyn PartialReflect> { todo!() }
 /// # }
 /// # impl Reflect for MyStruct {
 /// #     fn into_any(self: Box<Self>) -> Box<dyn Any> { todo!() }
@@ -310,19 +309,19 @@ impl TypeInfo {
 }
 
 macro_rules! impl_cast_method {
-    ($name:ident : $kind:ident => $info:ident) => {
-        #[doc = concat!("Attempts a cast to [`", stringify!($info), "`].")]
-        #[doc = concat!("\n\nReturns an error if `self` is not [`TypeInfo::", stringify!($kind), "`].")]
-        pub fn $name(&self) -> Result<&$info, TypeInfoError> {
-            match self {
-                Self::$kind(info) => Ok(info),
-                _ => Err(TypeInfoError::KindMismatch {
-                    expected: ReflectKind::$kind,
-                    received: self.kind(),
-                }),
-            }
-        }
-    };
+  ($name:ident : $kind:ident => $info:ident) => {
+      #[doc = concat!("Attempts a cast to [`", stringify!($info), "`].")]
+      #[doc = concat!("\n\nReturns an error if `self` is not [`TypeInfo::", stringify!($kind), "`].")]
+      pub fn $name(&self) -> Result<&$info, TypeInfoError> {
+          match self {
+              Self::$kind(info) => Ok(info),
+              _ => Err(TypeInfoError::KindMismatch {
+                  expected: ReflectKind::$kind,
+                  received: self.kind(),
+              }),
+          }
+      }
+  };
 }
 
 /// Conversion convenience methods for [`TypeInfo`].
@@ -481,59 +480,59 @@ impl Hash for Type {
 }
 
 macro_rules! impl_type_methods {
-    // Generates the type methods based off a single field.
-    ($field:ident) => {
-        $crate::type_info::impl_type_methods!(self => {
-            &self.$field
-        });
-    };
-    // Generates the type methods based off a custom expression.
-    ($self:ident => $expr:expr) => {
-        /// The underlying Rust [type].
-        ///
-        /// [type]: crate::type_info::Type
-        pub fn ty(&$self) -> &$crate::type_info::Type {
-            $expr
-        }
+  // Generates the type methods based off a single field.
+  ($field:ident) => {
+      $crate::type_info::impl_type_methods!(self => {
+          &self.$field
+      });
+  };
+  // Generates the type methods based off a custom expression.
+  ($self:ident => $expr:expr) => {
+      /// The underlying Rust [type].
+      ///
+      /// [type]: crate::type_info::Type
+      pub fn ty(&$self) -> &$crate::type_info::Type {
+          $expr
+      }
 
-        /// The [`TypeId`] of this type.
-        ///
-        /// [`TypeId`]: core::any::TypeId
-        pub fn type_id(&self) -> ::core::any::TypeId {
-            self.ty().id()
-        }
+      /// The [`TypeId`] of this type.
+      ///
+      /// [`TypeId`]: core::any::TypeId
+      pub fn type_id(&self) -> ::core::any::TypeId {
+          self.ty().id()
+      }
 
-        /// The [stable, full type path] of this type.
-        ///
-        /// Use [`type_path_table`] if you need access to the other methods on [`TypePath`].
-        ///
-        /// [stable, full type path]: TypePath
-        /// [`type_path_table`]: Self::type_path_table
-        pub fn type_path(&self) -> &'static str {
-            self.ty().path()
-        }
+      /// The [stable, full type path] of this type.
+      ///
+      /// Use [`type_path_table`] if you need access to the other methods on [`TypePath`].
+      ///
+      /// [stable, full type path]: TypePath
+      /// [`type_path_table`]: Self::type_path_table
+      pub fn type_path(&self) -> &'static str {
+          self.ty().path()
+      }
 
-        /// A representation of the type path of this type.
-        ///
-        /// Provides dynamic access to all methods on [`TypePath`].
-        ///
-        /// [`TypePath`]: crate::type_path::TypePath
-        pub fn type_path_table(&self) -> &$crate::type_path::TypePathTable {
-            &self.ty().type_path_table()
-        }
+      /// A representation of the type path of this type.
+      ///
+      /// Provides dynamic access to all methods on [`TypePath`].
+      ///
+      /// [`TypePath`]: crate::type_path::TypePath
+      pub fn type_path_table(&self) -> &$crate::type_path::TypePathTable {
+          &self.ty().type_path_table()
+      }
 
-        /// Check if the given type matches this one.
-        ///
-        /// This only compares the [`TypeId`] of the types
-        /// and does not verify they share the same [`TypePath`]
-        /// (though it implies they do).
-        ///
-        /// [`TypeId`]: core::any::TypeId
-        /// [`TypePath`]: crate::type_path::TypePath
-        pub fn is<T: ::core::any::Any>(&self) -> bool {
-            self.ty().is::<T>()
-        }
-    };
+      /// Check if the given type matches this one.
+      ///
+      /// This only compares the [`TypeId`] of the types
+      /// and does not verify they share the same [`TypePath`]
+      /// (though it implies they do).
+      ///
+      /// [`TypeId`]: core::any::TypeId
+      /// [`TypePath`]: crate::type_path::TypePath
+      pub fn is<T: ::core::any::Any>(&self) -> bool {
+          self.ty().is::<T>()
+      }
+  };
 }
 
 use crate::generics::impl_generic_info_methods;

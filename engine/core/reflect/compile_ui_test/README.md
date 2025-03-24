@@ -1,6 +1,6 @@
 # Compile UI Test
 
-This crate is separate from `obel_reflect` and not part of the Bevy workspace in order to not fail `crater` tests for
+This crate is separate from `obel_reflect` and not part of the Obel workspace in order to not fail `crater` tests for
 Obel.
 The tests assert on the exact compiler errors and can easily fail for new Rust versions due to updated compiler errors (e.g. changes in spans).
 

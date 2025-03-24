@@ -1,20 +1,10 @@
-use core::fmt;
-use proc_macro2::Span;
-use quote::{ToTokens, format_ident, quote};
-use syn::{
-    Data, DeriveInput, Field, Fields, GenericParam, Generics, Ident, LitStr, Member, Meta, Path,
-    PathSegment, Type, TypeParam, Variant, parse_str, punctuated::Punctuated, spanned::Spanned,
-    token::Comma,
-};
-
+use crate::attr::field::CloneBehavior;
 use crate::enum_utility::{EnumVariantOutputData, ReflectCloneVariantBuilder, VariantBuilder};
 use crate::generics::generate_generics;
 use crate::{
     REFLECT_ATTRIBUTE_NAME, TYPE_NAME_ATTRIBUTE_NAME, TYPE_PATH_ATTRIBUTE_NAME,
-    attr::{
-        container::{ContainerAttributes, FromReflectAttrs, TypePathAttrs},
-        field::{CloneBehavior, FieldAttributes},
-    },
+    attr::container::{ContainerAttributes, FromReflectAttrs, TypePathAttrs},
+    attr::field::FieldAttributes,
     remote::RemoteType,
     result_sifter::ResultSifter,
     serialization::SerializationDataDef,
@@ -22,7 +12,15 @@ use crate::{
     type_path::parse_path_no_leading_colon,
     where_clause_options::WhereClauseOptions,
 };
+use core::fmt;
 use obel_reflect_utils::{FQClone, FQOption, FQResult};
+use proc_macro2::Span;
+use quote::{ToTokens, format_ident, quote};
+use syn::token::Comma;
+use syn::{
+    Data, DeriveInput, Field, Fields, GenericParam, Generics, Ident, LitStr, Member, Meta, Path,
+    PathSegment, Type, TypeParam, Variant, parse_str, punctuated::Punctuated, spanned::Spanned,
+};
 
 pub(crate) enum ReflectDerive<'a> {
     Struct(ReflectStruct<'a>),
@@ -505,7 +503,7 @@ impl<'a> ReflectMeta<'a> {
     }
 }
 
-impl StructField<'_> {
+impl<'a> StructField<'a> {
     /// Generates a `TokenStream` for `NamedField` or `UnnamedField` construction.
     pub fn to_info_tokens(&self, obel_reflect_path: &Path) -> proc_macro2::TokenStream {
         let name = match &self.data.ident {
@@ -928,7 +926,10 @@ impl<'a> ReflectEnum<'a> {
             }
         };
 
-        let body = if self.meta.is_remote_wrapper() {
+        let body = if variant_patterns.is_empty() {
+            // enum variant is empty, so &self will never exist
+            quote!(unreachable!())
+        } else if self.meta.is_remote_wrapper() {
             quote! {
                 let #this = <Self as #obel_reflect_path::ReflectRemote>::as_remote(self);
                 #FQResult::Ok(#obel_reflect_path::__macro_exports::alloc_utils::Box::new(<Self as #obel_reflect_path::ReflectRemote>::into_wrapper(#inner)))
@@ -1239,17 +1240,17 @@ impl<'a> ReflectTypePath<'a> {
         obel_reflect_path: &Path,
     ) -> StringExpr {
         let mut params = generics.params.iter().filter_map(|param| match param {
-          GenericParam::Type(type_param) => Some(ty_generic_fn(type_param)),
-          GenericParam::Const(const_param) => {
-              let ident = &const_param.ident;
-              let ty = &const_param.ty;
+            GenericParam::Type(type_param) => Some(ty_generic_fn(type_param)),
+            GenericParam::Const(const_param) => {
+                let ident = &const_param.ident;
+                let ty = &const_param.ty;
 
-              Some(StringExpr::Owned(quote! {
-                  <#ty as #obel_reflect_path::__macro_exports::alloc_utils::ToString>::to_string(&#ident)
-              }))
-          }
-          GenericParam::Lifetime(_) => None,
-      });
+                Some(StringExpr::Owned(quote! {
+                    <#ty as #obel_reflect_path::__macro_exports::alloc_utils::ToString>::to_string(&#ident)
+                }))
+            }
+            GenericParam::Lifetime(_) => None,
+        });
 
         params
             .next()
@@ -1439,7 +1440,7 @@ impl<'a> ReflectTypePath<'a> {
     }
 }
 
-impl ToTokens for ReflectTypePath<'_> {
+impl<'a> ToTokens for ReflectTypePath<'a> {
     fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
         match self {
             Self::Internal {

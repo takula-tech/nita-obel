@@ -22,7 +22,7 @@ default = ["std", "smallvec", "debug", "functions", "documentation"]
 documentation = ["obel_reflect_derive/documentation"]
 ## Enables function reflection
 functions = ["obel_reflect_derive/functions"]
-# When enabled, provides Bevy-related reflection implementations
+# When enabled, provides Obel-related reflection implementations
 obel = ["smallvec", "smol_str"]
 
 # Debugging Features

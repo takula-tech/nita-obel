@@ -1,6 +1,3 @@
-use obel_reflect_derive::impl_type_path;
-use variadics_please::all_tuples;
-
 use crate::generics::impl_generic_info_methods;
 use crate::{
     ApplyError, FromReflect, Generics, GetTypeRegistration, MaybeTyped, PartialReflect, Reflect,
@@ -14,6 +11,8 @@ use core::{
     fmt::{Debug, Formatter},
     slice::Iter,
 };
+use obel_reflect_derive::impl_type_path;
+use variadics_please::all_tuples;
 
 /// A trait used to power [tuple-like] operations via [reflection].
 ///
@@ -55,8 +54,19 @@ pub trait Tuple: PartialReflect {
     /// Drain the fields of this tuple to get a vector of owned values.
     fn drain(self: Box<Self>) -> Vec<Box<dyn PartialReflect>>;
 
-    /// Clones the struct into a [`DynamicTuple`].
-    fn clone_dynamic(&self) -> DynamicTuple;
+    /// Clones the tuple into a [`DynamicTuple`].
+    #[deprecated(since = "0.16.0", note = "use `to_dynamic_tuple` instead")]
+    fn clone_dynamic(&self) -> DynamicTuple {
+        self.to_dynamic_tuple()
+    }
+
+    /// Creates a new [`DynamicTuple`] from this tuple.
+    fn to_dynamic_tuple(&self) -> DynamicTuple {
+        DynamicTuple {
+            represented_type: self.get_represented_type_info(),
+            fields: self.iter_fields().map(PartialReflect::to_dynamic).collect(),
+        }
+    }
 
     /// Will return `None` if [`TypeInfo`] is not available.
     fn get_represented_tuple_info(&self) -> Option<&'static TupleInfo> {
@@ -269,14 +279,6 @@ impl Tuple for DynamicTuple {
     fn drain(self: Box<Self>) -> Vec<Box<dyn PartialReflect>> {
         self.fields
     }
-
-    #[inline]
-    fn clone_dynamic(&self) -> DynamicTuple {
-        DynamicTuple {
-            represented_type: self.represented_type,
-            fields: self.fields.iter().map(|value| value.clone_value()).collect(),
-        }
-    }
 }
 
 impl PartialReflect for DynamicTuple {
@@ -332,11 +334,6 @@ impl PartialReflect for DynamicTuple {
     #[inline]
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Tuple(self)
-    }
-
-    #[inline]
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone_dynamic())
     }
 
     fn try_apply(&mut self, value: &dyn PartialReflect) -> Result<(), ApplyError> {
@@ -513,18 +510,6 @@ macro_rules! impl_reflect_tuple {
                     $(Box::new(self.$index),)*
                 ]
             }
-
-            #[inline]
-            fn clone_dynamic(&self) -> DynamicTuple {
-                let info = self.get_represented_type_info();
-                DynamicTuple {
-                    represented_type: info,
-                    fields: self
-                        .iter_fields()
-                        .map(|value| value.clone_value())
-                        .collect(),
-                }
-            }
         }
 
         impl<$($name: Reflect + MaybeTyped + TypePath + GetTypeRegistration),*> PartialReflect for ($($name,)*) {
@@ -571,10 +556,6 @@ macro_rules! impl_reflect_tuple {
 
             fn reflect_owned(self: Box<Self>) -> ReflectOwned {
                 ReflectOwned::Tuple(self)
-            }
-
-            fn clone_value(&self) -> Box<dyn PartialReflect> {
-                Box::new(self.clone_dynamic())
             }
 
             fn reflect_partial_eq(&self, value: &dyn PartialReflect) -> Option<bool> {

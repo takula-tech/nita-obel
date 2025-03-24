@@ -164,7 +164,7 @@ mod tests {
             a: 123,
             b: 456,
         }
-        .clone_dynamic();
+        .to_dynamic_struct();
 
         let serializer = ReflectSerializer::new(&value, &registry);
 
@@ -175,7 +175,7 @@ mod tests {
         let mut deserializer = ron::de::Deserializer::from_str(&result).unwrap();
         let reflect_deserializer = ReflectDeserializer::new(&registry);
 
-        let expected = value.clone_value();
+        let expected = value.to_dynamic();
         let result = reflect_deserializer.deserialize(&mut deserializer).unwrap();
 
         assert!(expected.reflect_partial_eq(result.as_partial_reflect()).unwrap());
@@ -277,7 +277,7 @@ mod tests {
                     registry: &'a TypeRegistry,
                 }
 
-                impl<'de> Visitor<'de> for EnemyListVisitor<'_> {
+                impl<'a, 'de> Visitor<'de> for EnemyListVisitor<'a> {
                     type Value = Vec<Arc<dyn Enemy>>;
 
                     fn expecting(&self, formatter: &mut Formatter) -> core::fmt::Result {

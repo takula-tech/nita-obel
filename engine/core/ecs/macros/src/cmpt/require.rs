@@ -1,5 +1,6 @@
+use proc_macro2::TokenStream;
 use syn::{
-    ExprClosure, Path, Result, parenthesized,
+    ExprClosure, Ident, Path, Result, Token, parenthesized,
     parse::{Parse, ParseStream},
     token::Paren,
 };
@@ -26,6 +27,12 @@ impl Parse for Require {
                 let func = content.parse::<Path>()?;
                 Some(RequireFunc::Path(func))
             }
+        } else if input.peek(Token![=]) {
+            let _t: syn::Token![=] = input.parse()?;
+            let label: Ident = input.parse()?;
+            let tokens: TokenStream = quote::quote! (|| #path::#label);
+            let func = syn::parse2(tokens).unwrap();
+            Some(RequireFunc::Closure(func))
         } else {
             None
         };

@@ -6,4 +6,4 @@
 [![docs.rs](https://docs.rs/obel/badge.svg)](https://docs.rs/obel/latest/obel/)
 [![discord.online](https://img.shields.io/discord/1335036405788971020.svg?label=&logo=discord&logoColor=ffffff&color=7389D8)](https://discord.gg/3jq8js8u)
 
-A collection of helper types and functions for working on macros within the Bevy ecosystem.
+A collection of helper types and functions for working on macros within the Obel ecosystem.

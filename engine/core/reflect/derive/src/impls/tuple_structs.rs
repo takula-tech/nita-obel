@@ -84,10 +84,10 @@ pub(crate) fn impl_tuple_struct(reflect_struct: &ReflectStruct) -> proc_macro2::
                 #obel_reflect_path::TupleStructFieldIter::new(self)
             }
 
-            fn clone_dynamic(&self) -> #obel_reflect_path::DynamicTupleStruct {
+            fn to_dynamic_tuple_struct(&self) -> #obel_reflect_path::DynamicTupleStruct {
                 let mut dynamic: #obel_reflect_path::DynamicTupleStruct = #FQDefault::default();
                 dynamic.set_represented_type(#obel_reflect_path::PartialReflect::get_represented_type_info(self));
-                #(dynamic.insert_boxed(#obel_reflect_path::PartialReflect::clone_value(#fields_ref));)*
+                #(dynamic.insert_boxed(#obel_reflect_path::PartialReflect::to_dynamic(#fields_ref));)*
                 dynamic
             }
         }
@@ -96,10 +96,6 @@ pub(crate) fn impl_tuple_struct(reflect_struct: &ReflectStruct) -> proc_macro2::
             #[inline]
             fn get_represented_type_info(&self) -> #FQOption<&'static #obel_reflect_path::TypeInfo> {
                 #FQOption::Some(<Self as #obel_reflect_path::Typed>::type_info())
-            }
-            #[inline]
-            fn clone_value(&self) -> #obel_reflect_path::__macro_exports::alloc_utils::Box<dyn #obel_reflect_path::PartialReflect> {
-                #obel_reflect_path::__macro_exports::alloc_utils::Box::new(#obel_reflect_path::TupleStruct::clone_dynamic(self))
             }
 
             #[inline]

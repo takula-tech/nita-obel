@@ -3,7 +3,7 @@ use crate::{
     enum_utility::{EnumVariantOutputData, TryApplyVariantBuilder, VariantBuilder},
     impls::{common_partial_reflect_methods, impl_full_reflect, impl_type_path, impl_typed},
 };
-use obel_reflect_utils::{FQOption, FQResult};
+use obel_reflect_utils::{FQClone, FQOption, FQResult};
 use proc_macro2::{Ident, Span};
 use quote::quote;
 use syn::{Fields, Path};
@@ -172,7 +172,7 @@ pub(crate) fn impl_enum(reflect_enum: &ReflectEnum) -> proc_macro2::TokenStream 
                 }
             }
 
-            fn clone_dynamic(&self) -> #obel_reflect_path::DynamicEnum {
+            fn to_dynamic_enum(&self) -> #obel_reflect_path::DynamicEnum {
                 #obel_reflect_path::DynamicEnum::from_ref::<Self>(self)
             }
         }
@@ -181,11 +181,6 @@ pub(crate) fn impl_enum(reflect_enum: &ReflectEnum) -> proc_macro2::TokenStream 
             #[inline]
             fn get_represented_type_info(&self) -> #FQOption<&'static #obel_reflect_path::TypeInfo> {
                 #FQOption::Some(<Self as #obel_reflect_path::Typed>::type_info())
-            }
-
-            #[inline]
-            fn clone_value(&self) -> #obel_reflect_path::__macro_exports::alloc_utils::Box<dyn #obel_reflect_path::PartialReflect> {
-                #obel_reflect_path::__macro_exports::alloc_utils::Box::new(#obel_reflect_path::Enum::clone_dynamic(self))
             }
 
             #[inline]

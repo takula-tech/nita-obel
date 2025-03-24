@@ -78,7 +78,7 @@ pub(crate) fn impl_opaque(meta: &ReflectMeta) -> proc_macro2::TokenStream {
             }
 
             #[inline]
-            fn clone_value(&self) -> #obel_reflect_path::__macro_exports::alloc_utils::Box<dyn #obel_reflect_path::PartialReflect> {
+            fn to_dynamic(&self) -> #obel_reflect_path::__macro_exports::alloc_utils::Box<dyn #obel_reflect_path::PartialReflect> {
                 #obel_reflect_path::__macro_exports::alloc_utils::Box::new(#FQClone::clone(self))
             }
 

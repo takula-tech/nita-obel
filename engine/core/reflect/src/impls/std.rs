@@ -4,12 +4,12 @@
 )]
 
 use crate::{
-    ApplyError, Array, ArrayInfo, ArrayIter, DynamicMap, DynamicSet, DynamicTypePath, FromReflect,
-    FromType, Generics, GetTypeRegistration, List, ListInfo, ListIter, Map, MapInfo, MapIter,
-    MaybeTyped, OpaqueInfo, PartialReflect, Reflect, ReflectCloneError, ReflectDeserialize,
-    ReflectFromPtr, ReflectFromReflect, ReflectKind, ReflectMut, ReflectOwned, ReflectRef,
-    ReflectSerialize, Set, SetInfo, TypeInfo, TypeParamInfo, TypePath, TypeRegistration,
-    TypeRegistry, Typed, impl_type_path, map_apply, map_partial_eq, map_try_apply,
+    ApplyError, Array, ArrayInfo, ArrayIter, DynamicMap, DynamicTypePath, FromReflect, FromType,
+    Generics, GetTypeRegistration, List, ListInfo, ListIter, Map, MapInfo, MapIter, MaybeTyped,
+    OpaqueInfo, PartialReflect, Reflect, ReflectCloneError, ReflectDeserialize, ReflectFromPtr,
+    ReflectFromReflect, ReflectKind, ReflectMut, ReflectOwned, ReflectRef, ReflectSerialize, Set,
+    SetInfo, TypeInfo, TypeParamInfo, TypePath, TypeRegistration, TypeRegistry, Typed,
+    impl_type_path, map_apply, map_partial_eq, map_try_apply,
     prelude::ReflectDefault,
     reflect::impl_full_reflect,
     set_apply, set_partial_eq, set_try_apply,
@@ -259,10 +259,6 @@ macro_rules! impl_reflect_for_atomic {
               fn try_as_reflect_mut(&mut self) -> Option<&mut dyn Reflect> {
                   Some(self)
               }
-              #[inline]
-              fn clone_value(&self) -> Box<dyn PartialReflect> {
-                  Box::new(<$ty>::new(self.load($ordering)))
-              }
 
               #[inline]
               fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -443,10 +439,6 @@ macro_rules! impl_reflect_for_veclike {
               ReflectOwned::List(self)
           }
 
-          fn clone_value(&self) -> Box<dyn PartialReflect> {
-              Box::new(self.clone_dynamic())
-          }
-
           fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
               Ok(Box::new(
                   self.iter()
@@ -596,7 +588,7 @@ macro_rules! impl_reflect_for_hashmap {
                   .collect()
           }
 
-          fn clone_dynamic(&self) -> DynamicMap {
+          fn to_dynamic_map(&self) -> DynamicMap {
               let mut dynamic_map = DynamicMap::default();
               dynamic_map.set_represented_type(self.get_represented_type_info());
               for (k, v) in self {
@@ -606,7 +598,7 @@ macro_rules! impl_reflect_for_hashmap {
                           k.reflect_type_path()
                       )
                   });
-                  dynamic_map.insert_boxed(Box::new(key), v.clone_value());
+                  dynamic_map.insert_boxed(Box::new(key), v.to_dynamic());
               }
               dynamic_map
           }
@@ -695,10 +687,6 @@ macro_rules! impl_reflect_for_hashmap {
 
           fn reflect_owned(self: Box<Self>) -> ReflectOwned {
               ReflectOwned::Map(self)
-          }
-
-          fn clone_value(&self) -> Box<dyn PartialReflect> {
-              Box::new(self.clone_dynamic())
           }
 
           fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -860,15 +848,6 @@ macro_rules! impl_reflect_for_hashset {
                   .collect()
           }
 
-          fn clone_dynamic(&self) -> DynamicSet {
-              let mut dynamic_set = DynamicSet::default();
-              dynamic_set.set_represented_type(self.get_represented_type_info());
-              for v in self {
-                  dynamic_set.insert_boxed(v.clone_value());
-              }
-              dynamic_set
-          }
-
           fn insert_boxed(&mut self, value: Box<dyn PartialReflect>) -> bool {
               let value = V::take_from_reflect(value).unwrap_or_else(|value| {
                   panic!(
@@ -961,10 +940,6 @@ macro_rules! impl_reflect_for_hashset {
 
           fn reflect_owned(self: Box<Self>) -> ReflectOwned {
               ReflectOwned::Set(self)
-          }
-
-          fn clone_value(&self) -> Box<dyn PartialReflect> {
-              Box::new(self.clone_dynamic())
           }
 
           fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -1135,7 +1110,7 @@ where
             let key = K::from_reflect(k).unwrap_or_else(|| {
                 panic!("Attempted to clone invalid key of type {}.", k.reflect_type_path())
             });
-            dynamic_map.insert_boxed(Box::new(key), v.clone_value());
+            dynamic_map.insert_boxed(Box::new(key), v.to_dynamic());
         }
         dynamic_map
     }
@@ -1212,10 +1187,6 @@ where
 
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Map(self)
-    }
-
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone_dynamic())
     }
 
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -1392,11 +1363,6 @@ impl<T: Reflect + MaybeTyped + TypePath + GetTypeRegistration, const N: usize> P
     #[inline]
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Array(self)
-    }
-
-    #[inline]
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone_dynamic())
     }
 
     #[inline]
@@ -1593,10 +1559,6 @@ impl PartialReflect for Cow<'static, str> {
         ReflectOwned::Opaque(self)
     }
 
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone())
-    }
-
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
         Ok(Box::new(self.clone()))
     }
@@ -1772,10 +1734,6 @@ impl<T: FromReflect + MaybeTyped + Clone + TypePath + GetTypeRegistration> Parti
         ReflectOwned::List(self)
     }
 
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(List::clone_dynamic(self))
-    }
-
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
         Ok(Box::new(self.clone()))
     }
@@ -1883,10 +1841,6 @@ impl PartialReflect for &'static str {
 
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Opaque(self)
-    }
-
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(*self)
     }
 
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -2028,10 +1982,6 @@ impl PartialReflect for &'static Path {
         ReflectOwned::Opaque(self)
     }
 
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(*self)
-    }
-
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
         Ok(Box::new(*self))
     }
@@ -2169,10 +2119,6 @@ impl PartialReflect for Cow<'static, Path> {
 
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Opaque(self)
-    }
-
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(self.clone())
     }
 
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
@@ -2331,10 +2277,6 @@ impl PartialReflect for &'static Location<'static> {
 
     fn reflect_owned(self: Box<Self>) -> ReflectOwned {
         ReflectOwned::Opaque(self)
-    }
-
-    fn clone_value(&self) -> Box<dyn PartialReflect> {
-        Box::new(*self)
     }
 
     fn reflect_clone(&self) -> Result<Box<dyn Reflect>, ReflectCloneError> {
