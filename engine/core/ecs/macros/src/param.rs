@@ -212,7 +212,7 @@ pub fn derive_system_param_impl(input: TokenStream) -> TokenStream {
                     state: &'s Self::State,
                     system_meta: &#path::system::SystemMeta,
                     world: #path::world::unsafe_world_cell::UnsafeWorldCell<'w>,
-                ) -> bool {
+                ) -> #path::system::ValidationOutcome {
                     <(#(#tuple_types,)*) as #path::system::SystemParam>::validate_param(&state.state, system_meta, world)
                 }
 
@@ -258,139 +258,139 @@ mod tests {
     #[test]
     fn test_basic_struct() {
         let expected = indoc! {r#"
-          const _: () = {
-              type __StructFieldsAlias<'w, 's> = (Query<'w, 's, ()>, Local<'s, usize>);
-              #[doc(hidden)]
-              pub struct FetchState {
-                  state: <__StructFieldsAlias<
-                      'static,
-                      'static,
-                  > as obel_ecs::system::SystemParam>::State,
-              }
-              unsafe impl obel_ecs::system::SystemParam for CustomParam<'_, '_> {
-                  type State = FetchState;
-                  type Item<'w, 's> = CustomParam<'w, 's>;
-                  fn init_state(
-                      world: &mut obel_ecs::world::World,
-                      system_meta: &mut obel_ecs::system::SystemMeta,
-                  ) -> Self::State {
-                      FetchState {
-                          state: <__StructFieldsAlias<
-                              '_,
-                              '_,
-                          > as obel_ecs::system::SystemParam>::init_state(world, system_meta),
-                      }
-                  }
-                  unsafe fn new_archetype(
-                      state: &mut Self::State,
-                      archetype: &obel_ecs::archetype::Archetype,
-                      system_meta: &mut obel_ecs::system::SystemMeta,
-                  ) {
-                      unsafe {
-                          <__StructFieldsAlias<
-                              '_,
-                              '_,
-                          > as obel_ecs::system::SystemParam>::new_archetype(
-                              &mut state.state,
-                              archetype,
-                              system_meta,
-                          )
-                      }
-                  }
-                  fn apply(
-                      state: &mut Self::State,
-                      system_meta: &obel_ecs::system::SystemMeta,
-                      world: &mut obel_ecs::world::World,
-                  ) {
-                      <__StructFieldsAlias<
-                          '_,
-                          '_,
-                      > as obel_ecs::system::SystemParam>::apply(
-                          &mut state.state,
-                          system_meta,
-                          world,
-                      );
-                  }
-                  fn queue(
-                      state: &mut Self::State,
-                      system_meta: &obel_ecs::system::SystemMeta,
-                      world: obel_ecs::world::DeferredWorld,
-                  ) {
-                      <__StructFieldsAlias<
-                          '_,
-                          '_,
-                      > as obel_ecs::system::SystemParam>::queue(
-                          &mut state.state,
-                          system_meta,
-                          world,
-                      );
-                  }
-                  #[inline]
-                  unsafe fn validate_param<'w, 's>(
-                      state: &'s Self::State,
-                      system_meta: &obel_ecs::system::SystemMeta,
-                      world: obel_ecs::world::unsafe_world_cell::UnsafeWorldCell<'w>,
-                  ) -> bool {
-                      <(
-                          Query<'w, 's, ()>,
-                          Local<'s, usize>,
-                      ) as obel_ecs::system::SystemParam>::validate_param(
-                          &state.state,
-                          system_meta,
-                          world,
-                      )
-                  }
-                  #[inline]
-                  unsafe fn get_param<'w, 's>(
-                      state: &'s mut Self::State,
-                      system_meta: &obel_ecs::system::SystemMeta,
-                      world: obel_ecs::world::unsafe_world_cell::UnsafeWorldCell<'w>,
-                      change_tick: obel_ecs::component::Tick,
-                  ) -> Self::Item<'w, 's> {
-                      let (f0, f1) = <(
-                          Query<'w, 's, ()>,
-                          Local<'s, usize>,
-                      ) as obel_ecs::system::SystemParam>::get_param(
-                          &mut state.state,
-                          system_meta,
-                          world,
-                          change_tick,
-                      );
-                      CustomParam {
-                          query: f0,
-                          local: f1,
-                      }
-                  }
-              }
-              unsafe impl<'w, 's> obel_ecs::system::ReadOnlySystemParam for CustomParam<'w, 's>
-              where
-                  Query<'w, 's, ()>: obel_ecs::system::ReadOnlySystemParam,
-                  Local<'s, usize>: obel_ecs::system::ReadOnlySystemParam,
-              {}
-              unsafe impl<
-                  'w,
-                  's,
-                  B0: obel_ecs::system::SystemParamBuilder<Query<'w, 's, ()>>,
-                  B1: obel_ecs::system::SystemParamBuilder<Local<'s, usize>>,
-              > obel_ecs::system::SystemParamBuilder<CustomParam<'w, 's>>
-              for CustomParamBuilder<B0, B1> {
-                  fn build(
-                      self,
-                      world: &mut obel_ecs::world::World,
-                      meta: &mut obel_ecs::system::SystemMeta,
-                  ) -> <CustomParam<'w, 's> as obel_ecs::system::SystemParam>::State {
-                      let CustomParamBuilder { query: f0, local: f1 } = self;
-                      FetchState {
-                          state: obel_ecs::system::SystemParamBuilder::build((f0, f1), world, meta),
-                      }
-                  }
-              }
-          };
-          ///A [`SystemParamBuilder`] for a [`CustomParam`].
-          struct CustomParamBuilder<B0, B1> {
-              query: B0,
-              local: B1,
-          }
+        const _: () = {
+            type __StructFieldsAlias<'w, 's> = (Query<'w, 's, ()>, Local<'s, usize>);
+            #[doc(hidden)]
+            pub struct FetchState {
+                state: <__StructFieldsAlias<
+                    'static,
+                    'static,
+                > as obel_ecs::system::SystemParam>::State,
+            }
+            unsafe impl obel_ecs::system::SystemParam for CustomParam<'_, '_> {
+                type State = FetchState;
+                type Item<'w, 's> = CustomParam<'w, 's>;
+                fn init_state(
+                    world: &mut obel_ecs::world::World,
+                    system_meta: &mut obel_ecs::system::SystemMeta,
+                ) -> Self::State {
+                    FetchState {
+                        state: <__StructFieldsAlias<
+                            '_,
+                            '_,
+                        > as obel_ecs::system::SystemParam>::init_state(world, system_meta),
+                    }
+                }
+                unsafe fn new_archetype(
+                    state: &mut Self::State,
+                    archetype: &obel_ecs::archetype::Archetype,
+                    system_meta: &mut obel_ecs::system::SystemMeta,
+                ) {
+                    unsafe {
+                        <__StructFieldsAlias<
+                            '_,
+                            '_,
+                        > as obel_ecs::system::SystemParam>::new_archetype(
+                            &mut state.state,
+                            archetype,
+                            system_meta,
+                        )
+                    }
+                }
+                fn apply(
+                    state: &mut Self::State,
+                    system_meta: &obel_ecs::system::SystemMeta,
+                    world: &mut obel_ecs::world::World,
+                ) {
+                    <__StructFieldsAlias<
+                        '_,
+                        '_,
+                    > as obel_ecs::system::SystemParam>::apply(
+                        &mut state.state,
+                        system_meta,
+                        world,
+                    );
+                }
+                fn queue(
+                    state: &mut Self::State,
+                    system_meta: &obel_ecs::system::SystemMeta,
+                    world: obel_ecs::world::DeferredWorld,
+                ) {
+                    <__StructFieldsAlias<
+                        '_,
+                        '_,
+                    > as obel_ecs::system::SystemParam>::queue(
+                        &mut state.state,
+                        system_meta,
+                        world,
+                    );
+                }
+                #[inline]
+                unsafe fn validate_param<'w, 's>(
+                    state: &'s Self::State,
+                    system_meta: &obel_ecs::system::SystemMeta,
+                    world: obel_ecs::world::unsafe_world_cell::UnsafeWorldCell<'w>,
+                ) -> obel_ecs::system::ValidationOutcome {
+                    <(
+                        Query<'w, 's, ()>,
+                        Local<'s, usize>,
+                    ) as obel_ecs::system::SystemParam>::validate_param(
+                        &state.state,
+                        system_meta,
+                        world,
+                    )
+                }
+                #[inline]
+                unsafe fn get_param<'w, 's>(
+                    state: &'s mut Self::State,
+                    system_meta: &obel_ecs::system::SystemMeta,
+                    world: obel_ecs::world::unsafe_world_cell::UnsafeWorldCell<'w>,
+                    change_tick: obel_ecs::component::Tick,
+                ) -> Self::Item<'w, 's> {
+                    let (f0, f1) = <(
+                        Query<'w, 's, ()>,
+                        Local<'s, usize>,
+                    ) as obel_ecs::system::SystemParam>::get_param(
+                        &mut state.state,
+                        system_meta,
+                        world,
+                        change_tick,
+                    );
+                    CustomParam {
+                        query: f0,
+                        local: f1,
+                    }
+                }
+            }
+            unsafe impl<'w, 's> obel_ecs::system::ReadOnlySystemParam for CustomParam<'w, 's>
+            where
+                Query<'w, 's, ()>: obel_ecs::system::ReadOnlySystemParam,
+                Local<'s, usize>: obel_ecs::system::ReadOnlySystemParam,
+            {}
+            unsafe impl<
+                'w,
+                's,
+                B0: obel_ecs::system::SystemParamBuilder<Query<'w, 's, ()>>,
+                B1: obel_ecs::system::SystemParamBuilder<Local<'s, usize>>,
+            > obel_ecs::system::SystemParamBuilder<CustomParam<'w, 's>>
+            for CustomParamBuilder<B0, B1> {
+                fn build(
+                    self,
+                    world: &mut obel_ecs::world::World,
+                    meta: &mut obel_ecs::system::SystemMeta,
+                ) -> <CustomParam<'w, 's> as obel_ecs::system::SystemParam>::State {
+                    let CustomParamBuilder { query: f0, local: f1 } = self;
+                    FetchState {
+                        state: obel_ecs::system::SystemParamBuilder::build((f0, f1), world, meta),
+                    }
+                }
+            }
+        };
+        ///A [`SystemParamBuilder`] for a [`CustomParam`].
+        struct CustomParamBuilder<B0, B1> {
+            query: B0,
+            local: B1,
+        }
         "#};
 
         let actual = derive_system_param_impl(quote! {

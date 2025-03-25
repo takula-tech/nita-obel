@@ -30,11 +30,9 @@ mod tests {
         vec,
         vec::Vec,
     };
-    use bincode::Options;
     use core::{any::TypeId, f32::consts::PI, ops::RangeInclusive};
     use serde::{Deserialize, de::DeserializeSeed};
     use serde::{Deserializer, de::IgnoredAny};
-    use std::println;
 
     use obel_platform::collections::{HashMap, HashSet};
 
@@ -468,10 +466,9 @@ mod tests {
 
         let deserializer = ReflectDeserializer::new(&registry);
 
-        let dynamic_output = bincode::DefaultOptions::new()
-            .with_fixint_encoding()
-            .deserialize_seed(deserializer, &input)
-            .unwrap();
+        let config = bincode::config::standard().with_fixed_int_encoding();
+        let (dynamic_output, _read_bytes) =
+            bincode::serde::seed_decode_from_slice(deserializer, &input, config).unwrap();
 
         let output = <MyStruct as FromReflect>::from_reflect(dynamic_output.as_ref()).unwrap();
         assert_eq!(expected, output);

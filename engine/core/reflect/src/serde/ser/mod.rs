@@ -24,8 +24,9 @@ mod tests {
         PartialReflect, Reflect, ReflectSerialize, Struct, TypeRegistry,
         serde::{ReflectSerializer, ReflectSerializerProcessor},
     };
+    #[cfg(feature = "functions")]
+    use alloc::boxed::Box;
     use alloc::{
-        boxed::Box,
         string::{String, ToString},
         vec,
         vec::Vec,
@@ -360,7 +361,8 @@ mod tests {
         let registry = get_registry();
 
         let serializer = ReflectSerializer::new(&input, &registry);
-        let bytes = bincode::serialize(&serializer).unwrap();
+        let config = bincode::config::standard().with_fixed_int_encoding();
+        let bytes = bincode::serde::encode_to_vec(&serializer, config).unwrap();
 
         let expected: Vec<u8> = vec![
             1, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 111, 98, 101, 108, 95, 114, 101, 102,
