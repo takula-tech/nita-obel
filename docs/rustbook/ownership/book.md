@@ -1,4 +1,5 @@
 # `1. Ownership`
+
 In Rust, a variable owns its value. When control leaves the block in which the variable is declared, the variable is dropped, and its value is dropped along with it. This is part of Rust's ownership model, which ensures memory safety without a garbage collector.
 
 Below is an example that demonstrates how ownership and dropping work in Rust:
@@ -22,13 +23,14 @@ fn print_padovan() {
 ```
 
 ## `1.1 Ownership Tree`
+
 Every value has a single owner, making it easy to
 decide when to drop it. But a single value may own many
 other values.  the owners and their owned values form
 trees: your owner is your parent, and the values you own
 are your children. Every value in a Rust program is
 a member of some tree, rooted in some variable. when that variable goes out of scope, the entire
-tree goes with it. 
+tree goes with it.
 
 For example:
 
@@ -49,9 +51,10 @@ something of that sort.
 
 At that point, Rust ensures the value
 is properly dropped, along with everything it owns.
-eg, When control leaves the scope in which `composers` is declared, the program drops its value and takes the entire arrangement with it. 
+eg, When control leaves the scope in which `composers` is declared, the program drops its value and takes the entire arrangement with it.
 
 # `2 Ownership Flexibility`
+
 In a certain sense, Rust is less powerful than other
 languages: every other practical programming language
 lets you build `arbitrary graphs` of objects that point to each other in whatever way you see fit. But it is exactly because Rust is less powerful that the analyses the language can
@@ -71,7 +74,7 @@ simple idea in several ways:
 
 - You can `move` values from one owner to another.
 This allows you to build, rearrange, and tear down
-the tree. 
+the tree.
 
 - Very simple types like integers, floating-point
 numbers, and characters are excused from the
@@ -89,8 +92,11 @@ ownership model, while still upholding Rust’s promises.
 `We’ll explain each one in turn`.
 
 ## `2.1 Move`
+
 ### `2.1.1 Python`
+
 Consider the following Python code:
+
 ```python
 s = ['udon', 'ramen', 'soba']
 t = s
@@ -109,16 +115,17 @@ source, and incrementing the object’s reference count:
 <img src="python-mv-1.png" />
 
 ### `2.1.2 Cpp`
+
 ```c++
 using namespace std;
 vector<string> s = { "udon", "ramen", "soba" };
 vector<string> t = s;
 vector<string> u = s;
 ```
+
 <img src="cpp-mv.png" />
 
-<img src="cpp-mv-1.png" />   
-
+<img src="cpp-mv-1.png" />
 
 In a sense, C++ and Python have chosen opposite trade-
 oﬀs: Python makes assignment cheap, at the expense of
@@ -127,17 +134,18 @@ garbage collection). C++ keeps the ownership of all the
 memory clear, at the expense of making assignment carry
 out a deep copy of the object.
 
-
 ### `2.1.3 Rust`
+
 In Rust, for most types, operations like assigning a value to
 a variable, passing it to a function, or returning it from a
 function don’t copy the value: they move it.
 
 Rust applies move semantics to almost any use of a value.
-- Initializing/assigning a value to a variable moves moves ownership to the variable. 
+
+- Initializing/assigning a value to a variable moves moves ownership to the variable.
 - Passing arguments to functions moves ownership to the function’s parameters;
 - returning a value from a function moves ownership to the
-caller. 
+caller.
 - and more...
 
 Note that the moves always apply to the value proper, not the heap storage they own. For vectors and strings, the value proper is the three-word header alone; the potentially large element arrays
@@ -148,7 +156,7 @@ let s = vec!["udon".to_string(), "ramen".to_string(),
 "soba".to_string()];
 let t = s;
 let u = s;
-``` 
+```
 
 <img src="rust-mv.png" />
 
@@ -156,8 +164,7 @@ But recall that, in Rust, assignments of most types move
 the value from the source to the destination, leaving the
 source uninitialized:
 
-<img src="rust-mv-1.png" />     
-
+<img src="rust-mv-1.png" />
 
 What has happened here? The initialization let t = s;
 moved the vector’s three header fields from s to t; `now t
@@ -196,6 +203,7 @@ string contents.
 
 he price you pay is that you must explicitly ask for copies
 when you want them:
+
 ```rust
 let s = vec!["udon".to_string(), "ramen".to_string(),
 "soba".to_string()];
@@ -208,6 +216,7 @@ reference-counted pointer types; we’ll discuss those shortly
 in [Rc and Arc: Shared Ownership](###2.3)
 
 ### `2.1.1 Moves with Control Flow`
+
 ```rust
 let x = vec![10, 20, 30];
 if c {
@@ -232,6 +241,7 @@ e(x);
 ```
 
 ### `2.1.2 Moves with Contest`
+
 We’ve mentioned that a move leaves its source
 uninitialized, as the destination takes ownership of the
 value. But not every kind of value owner is prepared to
@@ -340,15 +350,17 @@ let num2 = num1;
 
 `Only types for which a simple bit-for-bit copy suffices can
 be Copy`:
- - all the machine integer
- - floating-point numeric
- - char
- - bool
- -  A tuple or fixed-size array of Copy types is
+
+- all the machine integer
+- floating-point numeric
+- char
+- bool
+- A tuple or fixed-size array of Copy types is
 itself a Copy type.  
 
 `Any type that needs to do something
-special when a value is dropped cannot be Copy`: 
+special when a value is dropped cannot be Copy`:
+
 - a Vec/String/Box needs to free its elements
 - a File needs to close its file handle
 - a MutexGuard needs to unlock its mutex, and so on.
@@ -397,6 +409,7 @@ reference count.
 <img src="rc.png" />
 
 ### `2.3.1 Cyclic Reference`
+
 One well-known problem with using reference counts to
 manage memory is that, if there are ever two reference-
 counted values that point to each other, each will hold the
@@ -480,7 +493,7 @@ using weak pointers, `std::rc::Weak`.
 ## `2.4 Reference`
 
 Rust also has non-owning pointer types called references,
-which have no effect on their referents’ lifetimes.   
+which have no effect on their referents’ lifetimes.
 `references must never outlive their referents`.  
 
 Rust refers to creating a reference to some value
@@ -489,7 +502,8 @@ you must eventually return to its owner.
 
 A reference lets you access a value without affecting its
 ownership. References come in two kinds:
- - A `shared reference` lets you read but not modify its
+
+- A `shared reference` lets you read but not modify its
 referent. Shared references are Copy. you can have as many shared
 references to a particular value at a time as you like.
 
@@ -509,6 +523,7 @@ Nobody can modify table while show is working with it.
 the vec or string can re-allocate memory and so the srf can outlive the referent.
 
 ### `2.4.1 Assigning References`
+
 Assigning a reference to a variable makes that variable
 point somewhere new:
 
@@ -536,6 +551,7 @@ assert_eq!(rrr.y, 729);
 <img src="ref-0.png" />
 
 ### 2.4.3 Comparing References
+
 ```rust
 let x = 10; let y = 10;
 let rx = &x; let ry = &y;
@@ -549,6 +565,7 @@ comparison on their final targets, x and y.
 If you actually want to know whether
 two references point to the same memory, you can use
 std::ptr::eq, which compares them as addresses:
+
 ```rust
 // their referents are equal
 assert!(rx == ry); 
@@ -567,6 +584,7 @@ assert!(rx == *rrx);
 ```
 
 ### 2.4.4 References Are Never Null
+
 In Rust, if you need a value that is either a
 reference to something or not, use the type `Option<&T>`.  
 
@@ -601,12 +619,15 @@ variable the let initializes.  eg, ```rust let r = &factorial(6);```
 of the enclosing statement. eg, ```rust assert_eq!(r + &1009, 1729);```
 
 ### 2.4.5 References to Slices and Trait Objects
+
 The references we’ve shown so far are all simple
 addresses. However, Rust also has `fat pointers`:
+
 - `ref slice`, carrying the starting address of the slice and its length.
 - `trait object`, A trait object carries a value’s address and a pointer to the trait’s implementation appropriate to that value, for invoking the trait’s methods
 
 ## 2.5 Reference Safety
+
 A `lifetime` is code stretch/scope where a reference could be safe to use: a statement, an expression, the scope of some variable, or the like.
 
 two different references variables with same lifetime annotation eg, `'a`must have an `intersection` (overlapping scope), but they are not necessarily identical.
@@ -615,10 +636,10 @@ At run time, a reference is nothing but an address; its lifetime is part of its 
 
 A reference is `safe to use` if the rust complier can find out a smallest lifetime that is >= the lifetime of reference variable and <= the lifetime of referent variable.
 
-
 ### 2.5.1 Reference in Local Variable
 
-#### 2.5.1.1 No valid lifetime found:
+#### 2.5.1.1 No valid lifetime found
+
 <img src="lt-1.png" />  
 
 ```text
@@ -632,13 +653,14 @@ error: `x` does not live long enough
 9 | assert_eq!(*r, 1); // bad: reads memory `x` used to
 occupy
 10 | }
-```   
+```
 
+#### 2.5.1.2 Valid lifetime found
 
-#### 2.5.1.2 Valid lifetime found:
 <img src="lt-0.png" />
 
 ### 2.5.2 Reference in Function Arguments
+
 ```rust
 static mut STASH: &i32 = &10;
 fn f(p: &'static i32) {
@@ -648,22 +670,26 @@ fn f(p: &'static i32) {
 static WORTH_POINTING_AT: i32 = 1000;
 f(&WORTH_POINTING_AT);
 ```
+
 the lifetime `'a` =
 the `smallest` value in [`'p`, `'WORTH_POINTING_AT`] = `'g()` => `valid`  lifetime where:
- - `'p` represents the lifetime of reference param p at line 645.
- - `'WORTH_POINTING_AT` represents the lifetime of static variable WORTH_POINTING_AT that is `static` at whole program.
- - `'g()` represents the smallest valid lifetime enclosing 'p and enclosed by 'WORTH_POINTING_AT at line 644 -> 646 which is the scope of g() function.
+
+- `'p` represents the lifetime of reference param p at line 645.
+- `'WORTH_POINTING_AT` represents the lifetime of static variable WORTH_POINTING_AT that is `static` at whole program.
+- `'g()` represents the smallest valid lifetime enclosing 'p and enclosed by 'WORTH_POINTING_AT at line 644 -> 646 which is the scope of g() function.
 
 ### 2.5.3 Passing References to Functions
+
 ```rust
 fn g<'a>(p: &'a i32) { ... }
 let x = 10;
 g(&x);
 ```
+
 `'a` = smallest(['p, 'x]) = 'g() => `valid`
 
-
 ### 2.5.4 Returning References
+
 ```rust
 // v should have at least one element.
 fn smallest(v: &a'[i32]) -> &a'i32 {
@@ -676,6 +702,7 @@ fn smallest(v: &a'[i32]) -> &a'i32 {
 ```
 
 `Invalid lifetime case:`
+
 ```rust
 let s;
 {
@@ -698,10 +725,12 @@ array
 }
 assert_eq!(*s, 0); // bad: points to element of dropped array
 ```
+
 `v'a` = smallest(['v, 'parabola]) = 'smallest() => `valid`
 `s'a` = smallest(['s, 'parabola]) where 's > 'parabola => `invalid`
 
 `Valid lifetime case:`
+
 ```rust
 {
   let parabola = [9, 4, 1, 0, 1, 4, 9];
@@ -709,9 +738,9 @@ assert_eq!(*s, 0); // bad: points to element of dropped array
   assert_eq!(*s, 0); // fine: parabola still alive
 }
 ```
+
 `v'a` = smallest(['v, 'parabola]) = 'smallest() => `valid`
 `s'a` = smallest(['s, 'parabola]) = 's => `valid`
-
 
 ### 2.5.5 Structs Containing References
 
@@ -726,6 +755,7 @@ let s;
 }
 assert_eq!(*s.r, 10);
 ```
+
 As S and S.r have same lifetime 'a, => `s.r'a` = `s'a`.
 As s.r is filed of S, so `'(s.r)='s`,
 So we have: `s.r'a` = `s'a` = smallest(['(s.r)='s, 'x]) where 's > 'x => `invalid`
@@ -741,6 +771,7 @@ let d;
 }
 assert_eq!(*d,s.r, 10);
 ```
+
 `s'a` = `s.r'a` = smallest(['(s.r)='s='d, 'x]) where 'd > 'x => `invalid` != s'static.
 
 ```rust
@@ -754,11 +785,13 @@ let d;
 }
 assert_eq!(*d,s.r, 10);
 ```
+
 Valid lifetime range `s'a` = s.r'a = ['(s.r)='s='d, 'x] = ['d, 'x] = `['d, 'static]`; Obviously, the actual lifetime `s'static` is in the range of `['d, 'static]`, so `valid`
 
 ### 2.5.6 Distinct Lifetime Parameters
 
-`Invalid lifetime case: `
+`Invalid lifetime case:`
+
 ```rust
 struct S<'a> {
   x: &'a i32,
@@ -777,17 +810,20 @@ let r;
 }
 println!("{}", r);
 ```
+
 s'a = `s.x'a` = r'a = ['(s.x)='s='r, 'x] = ['r, 'x] = 'r;
 s'a = `s.y'a` = y'a = ['(s.y)='s, 'x] = ['s, 'x] = 's;
 however, 'r != 's, => `invalid`
 
-`Valid lifetime case: `
+`Valid lifetime case:`
+
 ```rust
 struct S<'a,'b> {
   x: &'a i32,
   y: &'b i32
 }
 ```
+
 'a = s'a = `s.x'a` = r'a = ['(s.x)='s='r, 'x] = ['r, 'x] = 'r;
 'b = s'b = `s.y'b` = y'b = ['(s.y)='s, 'x] = ['s, 'x] = 's;
 As 'a != 'b => `invalid`
@@ -803,20 +839,21 @@ pub struct Iter<'a, T: 'a> {
 }
 ```
 
-'a = Iter'a = T'a =T(any ref)'a = &Node<T>'a = marker'a =   
+'a = Iter'a = T'a =T(any ref)'a = &Node<T>'a = marker'a =
 min['Iter, 'T(any referent)] where 'Iter <= 'T(any referent)
 
 1 `Why is T: 'a Needed?`
- - In Rust, a type T might contain `references` with their own lifetimes.
- - T: 'a ensures that if T contains any references, those references must be 'a.
+
+- In Rust, a type T might contain `references` with their own lifetimes.
+- T: 'a ensures that if T contains any references, those references must be 'a.
 
 2 `Why is PhantomData<&'a Node<T>> Needed?`
 Rust’s compiler only considers fields that are actually used
 when determining lifetimes and ownership. However, in this struct:
 
- - head and tail are of type Option<NonNull<Node<T>>>, which are `raw pointers`.
- - Raw pointers do not affect Rust’s `borrow checker` (since they don’t enforce ownership rules).
- - Without an explicit `lifetime marker`, Rust wouldn’t know that this struct is tied to 'a.
+- head and tail are of type Option<NonNull<Node<T>>>, which are `raw pointers`.
+- Raw pointers do not affect Rust’s `borrow checker` (since they don’t enforce ownership rules).
+- Without an explicit `lifetime marker`, Rust wouldn’t know that this struct is tied to 'a.
    PhantomData<&'a Node<T>> explicitly tells the Rust compiler that this struct holds references tied to 'a.
 
 Together, these ensure that Iter can safely access `Node<T>` and any values pointed by the references in the `T`.
@@ -827,7 +864,8 @@ So far, we’ve discussed how Rust ensures no reference will
 ever point to a variable that has gone out of scope. But
 there are other ways to `introduce dangling pointers`.
 
-### 2.6.1 Dandling pointer by reassignment:
+### 2.6.1 Dandling pointer by reassignment
+
 ```rust
 let v = vec![4, 8, 19, 27, 34, 10];
 let r = &v;
@@ -842,10 +880,12 @@ error[E0505]: cannot move out of `v` because it is borrowed
 10 | let aside = v; // move vector to aside
 | ^^^^^ move out of `v` occurs here
 ```
+
 r'a = smallest(['r, 'v]) and `let aside = v;` => 'r > 'v => `invalid`
 <img src="2.6.png" />
 
-### Valid lifetime case:
+### Valid lifetime case
+
 ```rust
 let v = vec![4, 8, 19, 27, 34, 10];
 {
@@ -854,9 +894,10 @@ let v = vec![4, 8, 19, 27, 34, 10];
 }
 let aside = v;
 ```
+
 r'a = smallest(['r, 'v]) => `r` => `valid`
 
-### 2.6.2 Dandling pointer by memory reallocation:
+### 2.6.2 Dandling pointer by memory reallocation
 
 ```rust
 fn extend(vec: &mut Vec<f64>, slice: &[f64]) {
@@ -883,8 +924,8 @@ borrowed as mutable
 
 <img src="2.6.2.png" />
 
-
 ### 2.6.3 Reference Lifetime Impacts Other Values in Ownership Tree
+
 Each kind of reference aﬀects what we can do with the
 values along the owning path to the referent, and the
 values reachable from the referent:
@@ -906,7 +947,7 @@ references whose lifetimes may overlap with a mutable
 reference are those you borrow from the mutable
 reference itself.
 
-<img src="2.6.2.tree.png" /> 
+<img src="2.6.2.tree.png" />
 
 So there’s no way for the program to do anything that will invalidate the reference. Rust applies these rules everywhere: if we borrow,
 say, a shared reference to a key in a HashMap, we can’t
@@ -914,8 +955,8 @@ borrow a mutable reference to the HashMap until the shared
 reference’s lifetime ends.
 
 `More example:`
-<img src="2.6.3.examples.png" /> 
-<img src="2.6.3.examples-1.png" /> 
+<img src="2.6.3.examples.png" />
+<img src="2.6.3.examples-1.png" />
 
 ```cpp
 struct File {
@@ -928,8 +969,10 @@ struct File {
   }
 };
 ```
+
 The assignment operator is simple enough, but fails badly
 in a situation like this:
+
 ```cpp
 File f(open("foo.txt", ...));
 f = f;
@@ -942,6 +985,7 @@ same resource we were meant to copy.
 
 In Rust, the analogous code would be:
 (This is `not idiomatic Rust`.)
+
 ```rust
 struct File {
   descriptor: i32
@@ -970,15 +1014,14 @@ borrowed as mutable
 ```
 
 ## 2.7 A sea od Objects
+
 Since the rise of automatic memory management in the
 1990s, the default architecture of all programs has been the `sea of objects`,
 
 <img src="2.7.sea.png" />
 
-
 However, Rust prefers for pointers, ownership, and data flow to pass through the system in one direction, akka `tree of objects`.
 
 It takes a bit of effort to make a cycle in Rust—two values such that each one contains a reference pointing to the other. You have to use a smart pointer type, such as `Rc`, and `interior mutability`.
-
 
 <img src="2.7.tree.png" />

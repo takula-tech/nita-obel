@@ -513,7 +513,7 @@ and then restore it for late dev or testing.
 We can replicate this library to allow simple script to represent complex state-actions.
 A useful feature would be to display the variable values in the short script text when
 the user is debugging frame by frame.
-https://github.com/silentmatt/expr-eval?tab=readme-ov-file#expression-syntax
+<https://github.com/silentmatt/expr-eval?tab=readme-ov-file#expression-syntax>
 
 ### Game Development
 
@@ -556,13 +556,13 @@ GameEditor <---IPC---> GameRender <---UDP---> GameServer
 references：
 
 - Godot Source Code Analysis
-  https://www.zhihu.com/column/c_1678155259791507456
+  <https://www.zhihu.com/column/c_1678155259791507456>
 - 高品质游戏引擎开发
-  https://zhuanlan.zhihu.com/p/510064704
+  <https://zhuanlan.zhihu.com/p/510064704>
 - RTS Godot
-  https://www.youtube.com/watch?v=t-tkFxhpiCs&list=PLUzx1-8efVAoswyWSJh-du7HCCuVL3ckt&index=1
+  <https://www.youtube.com/watch?v=t-tkFxhpiCs&list=PLUzx1-8efVAoswyWSJh-du7HCCuVL3ckt&index=1>
 - unreal5 movement component
-  https://zhuanlan.zhihu.com/p/664568047
+  <https://zhuanlan.zhihu.com/p/664568047>
 
 ```
 

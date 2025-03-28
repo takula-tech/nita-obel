@@ -103,10 +103,10 @@ pub fn derive_relationship(
 
             #[inline]
             fn from(entity: #obel_ecs_path::entity::Entity) -> Self {
-                Self {
-                    #(#members: core::default::Default::default(),),*
-                    #relationship_member: entity
-                }
+              Self {
+                  #(#members: core::default::Default::default(),)*
+                  #relationship_member: collection
+              }
             }
         }
     }))
@@ -167,10 +167,10 @@ pub fn derive_relationship_target(
 
             #[inline]
             fn from_collection_risky(collection: Self::Collection) -> Self {
-                Self {
-                    #(#members: core::default::Default::default(),),*
-                    #relationship_member: collection
-                }
+              Self {
+                  #(#members: core::default::Default::default(),)*
+                  #relationship_member: collection
+              }
             }
         }
     }))

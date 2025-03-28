@@ -15,6 +15,7 @@
 | **ToOwned**                  | **Conversion trait** for converting a reference to an owned value.                                                     |
 
 ## `Drop`
+
 When a value is dropped, if it implements `std::ops::Drop`,
 Rust calls its drop method, `before` proceeding to drop whatever
 values its fields or elements own, as it normally would.
@@ -27,6 +28,7 @@ drop, but its definition is anything but magical:
 ```rust fn drop<T>(_x: T) { }```
 
 ## Sized
+
 The only use for Sized is as a bound for type variables:
 a bound like `T: Sized` requires T to be a type whose size is `known at compile time`.
 Traits of this sort are called marker traits, because the Rust language itself uses
@@ -34,7 +36,7 @@ them to mark certain types as having characteristics of interest.
 
 However, Rust also has a few `unsized` types whose values
 are not all the same size. For example, the string slice type
-`str` (note, without an &) is unsized. 
+`str` (note, without an &) is unsized.
 
 Rust can’t store unsized values in variables or pass them as
 arguments. You can only deal with them through pointers
@@ -46,23 +48,26 @@ In fact, it is the implicit default in Rust: if
 you write struct S<T> { ... }, Rust understands you to
 mean struct S<`T: Sized`> { ... }. If you do not want to
 constrain T this way, you must explicitly opt out, writing
-struct S<`T: ?Sized`> { ... }. 
+struct S<`T: ?Sized`> { ... }.
 
 For example, if you write:
-```rust 
+
+```rust
 struct S<T: ?Sized> {
   b: Box<T>
 }
 ```
+
 then Rust will allow you to write `S<str>` and `S<dyn Write>`,
 where the box becomes a fat pointer, as well as S<i32> and S<String>,
 where the box is an ordinary pointer.
 
 you can use this RcBox with sized types, like `RcBox<String>`;
 the result is a `sized` struct type. Or you can use it with
-unsized types, like `RcBox<dyn std::fmt::Display>`, 
+unsized types, like `RcBox<dyn std::fmt::Display>`,
 RcBox<dyn Display> is an `unsized` struct type
-```rust 
+
+```rust
 struct RcBox<T: ?Sized> {
   ref_count: usize,
   value: T,
@@ -70,6 +75,7 @@ struct RcBox<T: ?Sized> {
 ```
 
 ## `Clone`
+
 ```rust
 trait Clone: Sized {
 fn clone(&self) -> Self;
@@ -78,6 +84,7 @@ fn clone(&self) -> Self;
   }
 }
 ```
+
 In generic code, you should use `clone_from`
 whenever possible to take advantage of optimized
 implementations when present. eg:
@@ -103,11 +110,12 @@ for you: simply put `#[derive(Clone)]` above your type
 definition.
 
 ## Copy
+
 Copy is a `marker trait` with special meaning to
-the language. ```rust trait Copy: Clone { } ```
+the language. ```rust trait Copy: Clone { }```
 
 This is certainly easy to implement for your own types:
-```rust impl Copy for MyType { } ```
+```rust impl Copy for MyType { }```
 
 Rust permits a type to implement Copy only if
 a shallow `byte-for-byte copy` is all it needs.
@@ -117,7 +125,9 @@ operating system handles, cannot implement Copy.
 Any type that implements the Drop trait cannot be Copy.
 
 ## `Deref and DerefMut`
+
 The traits are defined like this:
+
 ```rust
 trait Deref {
   type Target: ?Sized;
@@ -129,6 +139,7 @@ trait DerefMut: Deref {
 ```
 
 For example, suppose you have the following type:
+
 ```rust
 struct Selector<T> {
   /// Elements available in this `Selector`.
@@ -142,6 +153,7 @@ struct Selector<T> {
 
 To make the Selector behave as the doc comment claims,
 you must implement Deref and DerefMut for the type:
+
 ```rust
 use std::ops::{Deref, DerefMut};
 impl<T> Deref for Selector<T> {
@@ -158,6 +170,7 @@ impl<T> DerefMut for Selector<T> {
 ```
 
 Given those implementations, you can use a Selector like this:
+
 ```rust
 let mut s = Selector { elements: vec!['x', 'y', 'z'], current: 2 };
 // Because `Selector` implements `Deref`, we can use the `*`
@@ -174,11 +187,13 @@ assert_eq!(s.elements, ['x', 'y', 'w']);
 ```
 
 For example, the following code works fine:
+
 ```rust
 let s = Selector { elements: vec!["good", "bad", "ugly"],current: 2 };
 fn show_it(thing: &str) { println!("{}", thing); }
 show_it(&s);
 ```
+
 In the call show_it(&s), Rust sees an argument of type
 `&Selector<&str>` and a parameter of type `&str`, finds the
 `Deref<Target=str>` implementation, and rewrites the call
@@ -186,6 +201,7 @@ to `show_it(s.deref())`, just as needed.
 
 However, if you change show_it into a `generic` function,
 Rust is suddenly no longer cooperative:
+
 ```rust
 use std::fmt::Display;
 fn show_it_generic<T: Display>(thing: T) { println!("{}", thing);}
@@ -230,18 +246,22 @@ would also frequently use by reference, the way Vec<T> and
 String serve as owning versions of [T] and str.
 
 ## `Default`
+
 Some types have a reasonably obvious default value: the
 default vector or string is empty, the default number is
 zero, the default Option is None, and so on. Types like this
 can implement the std::default::Default trait:
+
 ```rust
 trait Default {
   fn default() -> Self;
 }
 ```
+
 The default method simply returns a fresh value of type
 Self. String’s implementation of Default is
 straightforward:
+
 ```rust
 impl Default for String {
   fn default() -> String {
@@ -259,6 +279,7 @@ The glium draw function expects a `DrawParameters struct` as an argument.
 Since DrawParameters implements Default, you can create
 one to pass to draw, mentioning only those fields you want
 to change:
+
 ```rust
 let params = glium::DrawParameters {
   line_width: Some(0.02),
@@ -270,6 +291,7 @@ target.draw(..., &params).unwrap();
 
 If a type T implements Default, then the standard library
 implements Default `automatically` for:  
+
 - Rc<T>, Arc<T>, Box<T>
 - Cell<T>, RefCell<T>
 - Mutex<T>, RwLock<T>

@@ -1,41 +1,81 @@
+use alloc::string::ToString;
 use proc_macro2::TokenStream;
 use syn::{
-    ExprClosure, Ident, Path, Result, Token, parenthesized,
-    parse::{Parse, ParseStream},
-    token::Paren,
+    Expr, Path, Result, Token, braced, parenthesized,
+    parse::Parse,
+    punctuated::Punctuated,
+    token::{Brace, Paren},
 };
-
-pub enum RequireFunc {
-    Path(Path),
-    Closure(ExprClosure),
-}
 
 pub struct Require {
     pub path: Path,
-    pub func: Option<RequireFunc>,
+    pub func: Option<TokenStream>,
 }
 
 impl Parse for Require {
-    fn parse(input: ParseStream) -> Result<Self> {
-        let path = input.parse::<Path>()?;
-        let func = if input.peek(Paren) {
+    fn parse(input: syn::parse::ParseStream) -> Result<Self> {
+        let mut path = input.parse::<Path>()?;
+        let mut last_segment_is_lower = false;
+        let mut is_constructor_call = false;
+        // Use the case of the type name to check if it's an enum
+        // This doesn't match everything that can be an enum according to the rust spec
+        // but it matches what clippy is OK with
+        let is_enum = {
+            let mut first_chars =
+                path.segments.iter().rev().filter_map(|s| s.ident.to_string().chars().next());
+            if let Some(last) = first_chars.next() {
+                if last.is_uppercase() {
+                    if let Some(last) = first_chars.next() {
+                        last.is_uppercase()
+                    } else {
+                        false
+                    }
+                } else {
+                    last_segment_is_lower = true;
+                    false
+                }
+            } else {
+                false
+            }
+        };
+
+        let func = if input.peek(Token![=]) {
+            // If there is an '=', then this is a "function style" require
+            let _t: syn::Token![=] = input.parse()?;
+            let expr: Expr = input.parse()?;
+            let tokens: TokenStream = quote::quote! (|| #expr);
+            Some(tokens)
+        } else if input.peek(Brace) {
+            // This is a "value style" named-struct-like require
+            let content;
+            braced!(content in input);
+            let content = content.parse::<TokenStream>()?;
+            let tokens: TokenStream = quote::quote! (|| #path { #content });
+            Some(tokens)
+        } else if input.peek(Paren) {
+            // This is a "value style" tuple-struct-like require
             let content;
             parenthesized!(content in input);
-            if let Ok(func) = content.parse::<ExprClosure>() {
-                Some(RequireFunc::Closure(func))
-            } else {
-                let func = content.parse::<Path>()?;
-                Some(RequireFunc::Path(func))
-            }
-        } else if input.peek(Token![=]) {
-            let _t: syn::Token![=] = input.parse()?;
-            let label: Ident = input.parse()?;
-            let tokens: TokenStream = quote::quote! (|| #path::#label);
-            let func = syn::parse2(tokens).unwrap();
-            Some(RequireFunc::Closure(func))
+            let content = content.parse::<TokenStream>()?;
+            is_constructor_call = last_segment_is_lower;
+            let tokens: TokenStream = quote::quote! (|| #path (#content));
+            Some(tokens)
+        } else if is_enum {
+            // if this is an enum, then it is an inline enum component declaration
+            let tokens: TokenStream = quote::quote! (|| #path);
+            Some(tokens)
         } else {
+            // if this isn't any of the above, then it is a component ident, which will use Default
             None
         };
+
+        if is_enum || is_constructor_call {
+            let path_len = path.segments.len();
+            path = Path {
+                leading_colon: path.leading_colon,
+                segments: Punctuated::from_iter(path.segments.into_iter().take(path_len - 1)),
+            };
+        }
         Ok(Require {
             path,
             func,
@@ -68,9 +108,9 @@ mod tests {
         assert!(matches!(require.path, Path { .. }));
         assert!(require.func.is_some());
         // Verify the function is a Path
-        if let Some(RequireFunc::Path(func_path)) = require.func {
-            let func_str = quote!(#func_path).to_string();
-            assert_eq!(func_str, "validate_path");
+        if let Some(func_path) = require.func {
+            let func_str = func_path.to_string();
+            assert_eq!(func_str, "|| std :: path :: Path (validate_path)");
         } else {
             panic!("Expected RequireFunc::Path");
         }
@@ -82,8 +122,6 @@ mod tests {
         let require: Require = parse_quote!(std::path::Path(|x| x.is_valid()));
         assert!(matches!(require.path, Path { .. }));
         assert!(require.func.is_some());
-        // Verify the function is a Closure
-        assert!(matches!(require.func, Some(RequireFunc::Closure(_))));
     }
 
     #[test]

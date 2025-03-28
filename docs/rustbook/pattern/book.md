@@ -1,10 +1,12 @@
-# Pattern Match \
+# Pattern Match
+
 <img src="match-patterns.png" />
 <img src="match-patterns-1.png" />
 <img src="match-patterns-2.png" />
 <img src="match-patterns-3.png" />
 
 ## Where Pattern Apply
+
 Although patterns are most prominent in match
 expressions, they are also allowed in several other places,
 typically in place of an identifier. The meaning is always the

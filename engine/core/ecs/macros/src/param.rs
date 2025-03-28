@@ -212,7 +212,7 @@ pub fn derive_system_param_impl(input: TokenStream) -> TokenStream {
                     state: &'s Self::State,
                     system_meta: &#path::system::SystemMeta,
                     world: #path::world::unsafe_world_cell::UnsafeWorldCell<'w>,
-                ) -> #path::system::ValidationOutcome {
+                ) -> Result<(), #path::system::SystemParamValidationError> {
                     <(#(#tuple_types,)*) as #path::system::SystemParam>::validate_param(&state.state, system_meta, world)
                 }
 
@@ -330,7 +330,7 @@ mod tests {
                     state: &'s Self::State,
                     system_meta: &obel_ecs::system::SystemMeta,
                     world: obel_ecs::world::unsafe_world_cell::UnsafeWorldCell<'w>,
-                ) -> obel_ecs::system::ValidationOutcome {
+                ) -> Result<(), obel_ecs::system::SystemParamValidationError> {
                     <(
                         Query<'w, 's, ()>,
                         Local<'s, usize>,

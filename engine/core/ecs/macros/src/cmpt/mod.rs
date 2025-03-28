@@ -132,17 +132,7 @@ pub fn derive_component_impl(input: TokenStream) -> TokenStream {
                 );
             });
             match &require.func {
-                Some(RequireFunc::Path(func)) => {
-                    register_required.push(quote! {
-                        components.register_required_components_manual::<Self, #ident>(
-                            required_components,
-                            || { let x: #ident = #func().into(); x },
-                            inheritance_depth,
-                            recursion_check_stack
-                        );
-                    });
-                }
-                Some(RequireFunc::Closure(func)) => {
+                Some(func) => {
                     register_required.push(quote! {
                         components.register_required_components_manual::<Self, #ident>(
                             required_components,
@@ -492,7 +482,7 @@ mod tests {
             fn from(entity: obel_ecs::entity::Entity) -> Self {
                 Self {
                     a: core::default::Default::default(),
-                    parent: entity,
+                    parent: collection,
                 }
             }
         }
@@ -562,7 +552,8 @@ mod tests {
                     >(
                         required_components,
                         || {
-                            let x: DebandDither = (|| DebandDither::Enabled)().into();
+                            let x: DebandDither = (|| DebandDither(|| DebandDither::Enabled))()
+                                .into();
                             x
                         },
                         inheritance_depth,
