@@ -498,7 +498,7 @@ mod tests {
         string::{String, ToString},
     };
     use core::{alloc::Layout, cell::RefCell};
-    use obel_ecs_macros::Component;
+    // use obel_ecs_macros::Component;
     use obel_platform::utils::OwningPtr;
 
     /// # Safety
