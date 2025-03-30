@@ -81,7 +81,7 @@ impl StringExpr {
         let owned = self.into_owned();
         let borrowed = other.into_borrowed();
         Self::Owned(quote! {
-            #owned + #borrowed
+          ::core::ops::Add::<&str>::add(#owned, #borrowed)
         })
     }
 }
@@ -139,7 +139,7 @@ mod tests {
         let mixed_result = owned.appended_by(expr2);
         assert_eq!(
             mixed_result.into_owned().to_string(),
-            "String :: from (\"hello\") + \" world\""
+            ":: core :: ops :: Add :: < & str > :: add (String :: from (\"hello\") , \" world\")"
         );
     }
 
