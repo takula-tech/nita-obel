@@ -12,6 +12,9 @@ governs an entire system.
 Rust does not support downcasing from the trait object &mut dyn Write back to a concrete type like Vec<u8>.
 
 ```rust
+fn say_hello(out: &mut dyn Write) // plain function
+fn say_hello<W: Write>(out: &mut W) // generic function
+
 let mut buf: Vec<u8> = vec![];
 let writer: &mut dyn Write = &mut buf; // ok
 let w: Box<dyn Write> = Box::new(local_file);
@@ -97,7 +100,7 @@ All the features introduced in this section—`bounds`, `where`
 clauses, `lifetime` parameters, and so forth—can be used on
 all generic items, not just functions.
 
-## Which to Use
+## `Which to Use`
 
 `Trait objects` are the right choice whenever you need a
 collection of values of mixed types, all together:

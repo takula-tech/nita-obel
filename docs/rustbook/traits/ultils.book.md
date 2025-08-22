@@ -307,3 +307,326 @@ each element’s default value.
 Rust does not `implicitly` implement Default for struct
 types, but if all of a struct’s fields implement Default, you
 can implement Default for the struct automatically using `#[derive(Default)]`.
+
+## `AsRef and AsMut`
+
+```rust
+trait AsRef<T: ?Sized> {
+  fn as_ref(&self) -> &T;
+}
+trait AsMut<T: ?Sized> {
+  fn as_mut(&mut self) -> &mut T;
+}
+```
+
+Vec<T> implements AsRef<[T]>, and String implements AsRef<str>.  
+You can also borrow a String’s contents as an array of bytes,
+so String implements AsRef<[u8]> as well.
+
+AsRef is typically used to make functions more flexible in
+the argument types they accept. For example, the
+std::fs::File::open function is declared like this:
+```fn open<P: AsRef<Path>>(path: P) -> Result<File>```
+
+What open really wants is a &Path, the type representing a
+filesystem path. But with this signature, open accepts
+anything it can borrow a &Path from—that is, anything that
+implements `AsRef<Path>`. Such types include String and
+str, the operating system interface string types OsString
+and OsStr, and of course PathBuf and Path;
+
+For callers, the eﬀect resembles that of an overloaded function in C++,
+although Rust takes a different approach toward establishing which
+argument types are acceptable.
+
+
+## `Borrow and BorrowMut`
+
+Borrow’s definition is identical to that of AsRef; only the
+names have been changed:
+
+```rust
+trait Borrow<Borrowed: ?Sized> {
+  fn borrow(&self) -> &Borrowed;
+}
+```
+
+Borrow is designed to address a specific situation with
+generic hash tables and other associative collection types.
+For example, suppose you have a `std::collections
+::HashMap<String, i32>`, mapping strings to numbers.
+This table’s keys are Strings; each entry owns one. What
+should the signature of the method that looks up an entry
+in this table be? Here’s a first attempt:
+
+```rust
+impl<K, V> HashMap<K, V> where K: Eq + Hash
+{
+fn get(&self, key: K) -> Option<&V> { ... }
+}
+```
+
+This makes sense: to look up an entry, you must provide a
+key of the appropriate type for the table. But in this case, K
+is String; this signature would force you to pass a String
+by value to every call to get, which is clearly wasteful. You
+really just need a reference to the key:
+
+```rust
+impl<K, V> HashMap<K, V> where K: Eq + Hash
+{
+  fn get(&self, key: &K) -> Option<&V> { ... }
+}
+```
+
+This is `slightly better`, but now you have to pass the key as a
+`&String`, so if you wanted to look up a constant string,
+you’d have to write:
+
+```hashtable.get(&"twenty-two".to_string())```
+
+This is `ridiculous`: it allocates a String buﬀer on the heap
+and copies the text into it, just so it can borrow it as a
+&String, pass it to get, and then drop it.
+
+if you can borrow an entry’s key as an `&Q`
+and the resulting reference `hashes and compares` just the
+way the key itself would, then clearly `&Q` ought to be an
+acceptable key type. Since `String` implements
+`Borrow<str>` and `Borrow<String>`, this `final version` of get
+allows you to pass either `&String` or `&str` as a key, as
+needed.
+
+```rust
+impl<K, V> HashMap<K, V> where K: Eq + Hash
+{
+  fn get<Q: ?Sized>(&self, key: &Q) -> Option<&V>
+  where 
+    K: Borrow<Q>, 
+    Q: Eq + Hash
+  { 
+    ... 
+  }
+}
+```
+
+## `From and Into`
+
+the AsRef and AsMut traits borrow a reference of one type from another,
+From and Into `take ownership` of their argument, transform
+it, and then return ownership of the result back to the
+caller.
+
+You generally use Into to make your functions more
+flexible in the arguments they accept. For example, if you
+write:
+
+```rust
+use std::net::Ipv4Addr;
+fn ping<A>(address: A) -> std::io::Result<bool>
+where A: Into<Ipv4Addr>
+{
+  let ipv4_address = address.into();
+  ...
+}
+```
+
+then ping can accept not just an Ipv4Addr as an argument,
+but also a u32 or a [u8; 4] array, since those types both
+conveniently happen to implement `Into<Ipv4Addr>`.
+
+we can make any of these calls:
+
+```rust
+println!("{:?}", ping(Ipv4Addr::new(23, 21, 68, 141))); // pass an Ipv4Addr
+println!("{:?}", ping([66, 146, 219, 98])); // pass a [u8; 4]
+println!("{:?}", ping(0xd076eb94_u32)); // pass a u32
+```
+
+```rust
+type GenericError = Box<dyn std::error::Error + Send + Sync + 'static>;
+type GenericResult<T> = Result<T, GenericError>;
+
+fn parse_i32_bytes(b: &[u8]) -> GenericResult<i32> {
+  Ok(std::str::from_utf8(b)?.parse::<i32>()?)
+}
+```
+
+Like most error types, Utf8Error and ParseIntError
+implement the Error trait, and the standard library gives
+us a blanket From impl for converting from anything that
+implements `Error` to a `Box<dyn Error>`, which ? automatically uses:
+
+```rust
+impl<'a, E: Error + Send + Sync + 'a> From<E> for Box<dyn Error + Send + Sync + 'a> {
+  fn from(err: E) -> Box<dyn Error + Send + Sync + 'a> {
+    Box::new(err)
+  }
+}
+```
+
+## `TryFrom and TryInto`
+
+```rust
+pub trait TryFrom<T>: Sized {
+type Error;
+fn try_from(value: T) -> Result<Self, Self::Error>;
+}
+pub trait TryInto<T>: Sized {
+type Error;
+fn try_into(self) -> Result<T, Self::Error>;
+}
+```
+
+The `try_into()` method gives us a Result, so we can
+choose what to do in the exceptional case, such as a
+number that’s too large to fit in the resulting type:
+
+```rust
+use std::convert::TryInto;
+// Saturate on overflow, rather than wrapping
+let smaller: i32 = huge.try_into().unwrap_or(i32::MAX);
+```
+
+If we want to also handle the negative case, we can use the
+unwrap_or_else() method of Result:
+
+```rust
+let smaller: i32 = huge.try_into().unwrap_or_else(|_| {
+  if huge >= 0 {
+    i32::MAX
+  } else {
+    i32::MIN
+  }
+});
+```
+
+On the other hand, conversions between more
+complex types might want to return more information:
+
+```rust
+impl TryInto<LinearShift> for Transform {
+  type Error = TransformError;
+  fn try_into(self) -> Result<LinearShift, Self::Error> {
+    if !self.normalized() {
+      return Err(TransformError::NotNormalized);
+    }
+    ...
+  }
+}
+```
+
+Where From and Into relate types with simple conversions,
+TryFrom and TryInto, From and Into can be `used together`
+to relate many types in a single crate.
+
+
+## `ToOwned`
+
+if you want to clone a `&str` or a `&[i32]`, you probably want is a
+`String` or a `Vec<i32>`, but `Clone`’s definition doesn’t permit
+that: by definition, cloning a `&T` must always return a value
+of type `T`, and `str` and `[u8]` are unsized; they aren’t even
+types that a function could return.  
+
+The `std::borrow::ToOwned` trait provides a slightly looser
+way to convert a reference to an owned value:
+
+```rust
+trait ToOwned {
+  type Owned: Borrow<Self>;
+  fn to_owned(&self) -> Self::Owned;
+}
+```
+
+Unlike clone, which must return exactly Self, to_owned
+can return anything you could borrow a &Self from: the
+Owned type must implement Borrow<Self>. You can borrow
+a &[T] from a Vec<T>, so [T] can implement
+ToOwned<Owned=Vec<T>>, as long as T implements Clone,
+so that we can copy the slice’s elements into the vector.
+
+## `The Humble Cow`
+
+in some cases
+you cannot decide whether to borrow or own until the
+program is running ; the std::borrow::Cow type (for
+“clone on write”) provides one way to do this.
+Its definition is shown here:
+
+```rust
+enum Cow<'a, B: ?Sized> where B: ToOwned
+{
+  Borrowed(&'a B),
+  Owned(<B as ToOwned>::Owned),
+}
+```
+
+A `Cow<B>` either borrows a shared reference to a B or owns
+a value from which we could borrow such a reference.
+Since Cow implements Deref, you can call methods on it as
+if it were a shared reference to a B: if it’s Owned, it borrows
+a shared reference to the owned value; and if it’s Borrowed,
+it just hands out the reference it’s holding.
+
+You can also get a mutable reference to a Cow’s value by
+calling its `to_mut` method, which returns a &mut B. If the
+Cow happens to be Cow::Borrowed, to_mut simply calls the
+reference’s to_owned method to get its own copy of the
+referent, changes the Cow into a Cow::Owned, and borrows a
+mutable reference to the newly owned value. This is the
+`“clone on write”` behavior the type’s name refers to.
+
+Similarly, Cow has an `into_owned` method that promotes the
+reference to an owned value, if necessary, and then returns
+it, moving ownership to the caller and consuming the Cow
+in the process.
+
+`One common use` for Cow is to return either a statically
+allocated string constant or a computed string. For
+example, suppose you need to convert an error enum to a
+message. Most of the variants can be handled with fixed
+strings, but some of them have additional data that should
+be included in the message. You can return a `Cow<'static, str>`:
+
+```rust
+use std::path::PathBuf;
+use std::borrow::Cow;
+fn describe(error: &Error) -> Cow<'static, str> {
+  match *error {
+    Error::OutOfMemory => "out of memory".into(),
+    Error::StackOverflow => "stack overflow".into(),
+    Error::MachineOnFire => "machine on fire".into(),
+    Error::Unfathomable => "machine bewildered".into(),
+    Error::FileNotFound(ref path) => {
+      format!("file not found: {}", path.display()).into()
+    }
+  }
+}
+```
+
+This code uses Cow’s implementation of Into to construct
+the values. Most arms of this match statement return a
+`Cow::Borrowed` referring to a statically allocated string.
+
+But when we get a `FileNotFound` variant, we use format!`
+to construct a message incorporating the given filename.
+This arm of the match statement produces a `Cow::Owned` value.
+
+`Callers` of describe that don’t need to change the value can
+simply treat the Cow as a `&str`:
+
+```rust
+println!("Disaster has struck: {}", describe(&error));
+```
+
+Callers who do need an owned value can readily produce one:
+
+```rust
+let mut log: Vec<String> = Vec::new();
+...
+log.push(describe(&error).into_owned());
+```
+
+Using Cow helps describe and its callers `put oﬀ` allocation
+until the moment it becomes necessary.

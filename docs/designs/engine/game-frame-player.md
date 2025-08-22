@@ -14,6 +14,15 @@ to enhance the workflow in QA testing and developer troubleshooting/bug fixing:
   enabling faster bug identification.  
   In addition, Players can re-watch past matches directly in the game client with playback and fast-forward features
 
+  when user playback in frame-player client, the frame time points will be streaming to frame-player server who will:
+  - interpolate the frame time points to frame index based on sliding speed. the smaller speed, the less frames will be skipped.
+  - query the frame data from the in-memory cache of frame texture, otherwise query from embedded database and update the cache.
+  - steaming back frame textures to the frame-player client who will render the frame textures.
+
+ when user resume the game from the past frame, they will be asked to overwrite the current game frame or start a new play.  
+ the starting frame time point will be streaming to frame-player server who will then forward frame state to game engine who will
+ reset game world state to that in frame and then start game tick from there.
+  
 - **Manual Frame-by-Frame Tick**:  
   After identifying a bug, developers can step backward/forward the game logic frame by frame,  
   debugging anf fixing both client and server-side code.  

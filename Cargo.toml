@@ -34,6 +34,7 @@ panic = "unwind"
 
 [dependencies]
 obel_api = { workspace = true }
+snafu = { workspace = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies] # Wasm does not support dynamic linking.
 obel_dylib = { workspace = true, optional = true }
@@ -166,7 +167,7 @@ heapless = { version = "0.8", default-features = false }
 wasm-bindgen-futures = { version = "0.4" }
 pin-project = { version = "1" }
 futures-channel = { version = "0.3" }
-
+snafu = { version = "0.8" }
 
 [workspace.lints.rust]
 missing_docs = "warn"
